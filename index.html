@@ -1,0 +1,1322 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head profile="http://gmpg.org/xfn/11">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Famous theorems proven in Coq</title>
+    <link rel="stylesheet" href="def.css" type="text/css" media="screen" />
+    <script type="text/javascript">
+      var show = function(i){document.getElementById('send'+i).setAttribute('style','block'); return false;};
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-17038604-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="middle">
+      <h1>Formalizing 100 theorems in Coq</h1>
+      <p>This is an appendix
+      to <a href="http://www.cs.ru.nl/~freek/100/">Freek Wiedijk's
+      webpage on the "top 100" mathematical theorems</a>, to keep
+      track of the statements of the theorems that are formalised in
+      Coq.
+	<!--
+      I could not find a statement for 5 theorems that are listed <a href="http://www.cs.ru.nl/~freek/100/">on Freek's webpage</a>, namely the following: <a href='#34' title='Divergence of the Harmonic Series'>34</a>
+ <a href='#42' title='Sum of the Reciprocals of the Triangular Numbers'>42</a>
+ <a href='#57' title='Heron’s Formula'>57</a>
+ <a href='#84' title='Morley’s Theorem'>84</a>
+ <a href='#89' title='The Factor and Remainder Theorems'>89</a>
+ .  There remains 40 statements to prove in Coq: <a href='#5' title='Prime Number Theorem'>5</a>
+ <a href='#8' title='The Impossibility of Trisecting the Angle and Doubling the Cube'>8</a>
+ <a href='#9' title='The Area of a Circle'>9</a>
+ <a href='#12' title='The Independence of the Parallel Postulate'>12</a>
+ <a href='#16' title='Insolvability of General Higher Degree Equations'>16</a>
+ <a href='#21' title='Green’s Theorem'>21</a>
+ <a href='#24' title='The Undecidability of the Coninuum Hypothesis'>24</a>
+ <a href='#30' title='The Ballot Problem'>30</a>
+ <a href='#33' title='Fermat’s Last Theorem'>33</a>
+ <a href='#36' title='Brouwer Fixed Point Theorem'>36</a>
+ <a href='#37' title='The Solution of a Cubic'>37</a>
+ <a href='#38' title='Arithmetic Mean/Geometric Mean'>38</a>
+ <a href='#39' title='Solutions to Pell’s Equation'>39</a>
+ <a href='#40' title='Minkowski’s Fundamental Theorem'>40</a>
+ <a href='#43' title='The Isoperimetric Theorem'>43</a>
+ <a href='#45' title='The Partition Theorem'>45</a>
+ <a href='#46' title='The Solution of the General Quartic Equation'>46</a>
+ <a href='#47' title='The Central Limit Theorem'>47</a>
+ <a href='#48' title='Dirichlet’s Theorem'>48</a>
+ <a href='#50' title='The Number of Platonic Solids'>50</a>
+ <a href='#54' title='Konigsberg Bridges Problem'>54</a>
+ <a href='#56' title='The Hermite-Lindemann Transcendence Theorem'>56</a>
+ <a href='#58' title='Formula for the Number of Combinations'>58</a>
+ <a href='#59' title='The Laws of Large Numbers'>59</a>
+ <a href='#62' title='Fair Games Theorem'>62</a>
+ <a href='#64' title='L’Hopital’s Rule'>64</a>
+ <a href='#70' title='The Perfect Number Theorem'>70</a>
+ <a href='#76' title='Fourier Series'>76</a>
+ <a href='#77' title='Sum of kth powers'>77</a>
+ <a href='#78' title='The Cauchy-Schwarz Inequality'>78</a>
+ <a href='#81' title='Divergence of the Prime Reciprocal Series'>81</a>
+ <a href='#82' title='Dissection of Cubes (J.E. Littlewood’s ‘elegant’ proof)'>82</a>
+ <a href='#83' title='The Friendship Theorem'>83</a>
+ <a href='#86' title='Lebesgue Measure and Integration'>86</a>
+ <a href='#88' title='Derangements Formula'>88</a>
+ <a href='#92' title='Pick’s Theorem'>92</a>
+ <a href='#93' title='The Birthday Problem'>93</a>
+ <a href='#96' title='Principle of Inclusion/Exclusion'>96</a>
+ <a href='#99' title='Buffon Needle Problem'>99</a>
+ <a href='#100' title='Descartes Rule of Signs'>100</a>
+ .-->
+      </p>
+
+<h3 id='1'><a href='http://www.cs.ru.nl/~freek/100/#1'>1. The Irrationality of the Square Root of 2</a></h3>
+<div>
+<p class='statementinfo'>
+<strong class='author'>many versions</strong>
+<span class='location'>(contribs/Nijmegen/QArithSternBrocot/sqrt2.v)</a>:
+<pre class='comment'></pre>
+<pre class='statement'>Theorem sqrt2_not_rational : forall p q, q <> 0 -> p * p <> q * q * 2.</pre>
+</p>
+</div>
+
+
+<h3 id='2'><a href='http://www.cs.ru.nl/~freek/100/#2'>2. Fundamental Theorem of Algebra</a></h3>
+<div>
+<p class='statementinfo'>
+<strong class='author'>Herman Geuvers et al.</strong>
+<span class='location'>(contribs/Nijmegen/CoRN/fta/FTA.v)</a>:
+<pre class='comment'></pre>
+<pre class='statement'>Lemma FTA : forall f : CCX, nonConst _ f -> {z : CC | f ! z [=] Zero}.</pre>
+</p>
+</div>
+
+
+<h3 id='3'><a href='http://www.cs.ru.nl/~freek/100/#3'>3. The Denumerability of the Rational Numbers</a></h3>
+<div>
+<p class='statementinfo'>
+<strong class='author'>Milad Niqui</strong>
+<span class='location'>(contribs/Nijmegen/QArithSternBrocot/Q_denumerable.v)</a>:
+<pre class='comment'></pre>
+<pre class='statement'>Theorem Q_is_denumerable: same_cardinality Q nat.
+
+Definition same_cardinality (A:Set) (B:Set) :=
+  { f : A -> B &
+  { g : B -> A |
+    forall b,(compose _ _ _ f g) b = (identity B) b /\
+    forall a,(compose _ _ _ g f) a = (identity A) a
+  }}.</pre>
+</p>
+<strong class='author'>Daniel Schepler</strong>
+<span class='location'>(contribs/ZornsLemma/CountableTypes.v)</a>:
+<pre class='comment'></pre>
+<pre class='statement'>Inductive CountableT (X:Type) : Prop :=
+  | intro_nat_injection: forall f:X->nat, injective f -> CountableT X.
+
+Lemma Q_countable: CountableT Q.</pre>
+</p>
+</div>
+
+
+<h3 id='4'><a href='http://www.cs.ru.nl/~freek/100/#4'>4. Pythagorean Theorem</a></h3>
+<div>
+<p class='statementinfo'>
+<strong class='author'>Frédérique Guilhot</strong>
+<span class='location'>(contribs/Sophia-Antipolis/HighSchoolGeometry/euclidien_classiques.v)</a>:
+<pre class='comment'></pre>
+<pre class='statement'>Theorem Pythagore :
+ forall A B C : PO,
+ orthogonal (vec A B) (vec A C) <->
+ Rsqr (distance B C) = Rsqr (distance A B) + Rsqr (distance A C) :>R.</pre>
+</p>
+</div>
+
+
+<h3 id='5'><a href='http://www.cs.ru.nl/~freek/100/#5'>5. Prime Number Theorem</a></h3>
+<div>
+No known statement.
+</div>
+
+
+<h3 id='6'><a href='http://www.cs.ru.nl/~freek/100/#6'>6. Godel’s Incompleteness Theorem</a></h3>
+<div>
+<p class='statementinfo'>
+<strong class='author'>Russell O'Connor</strong>
+<span class='location'>(contribs/Berkeley/Goedel/goedel1.v)</a>:
+<pre class='comment'></pre>
+<pre class='statement'>Theorem Goedel'sIncompleteness1st :
+ wConsistent T ->
+ exists f : Formula,
+   ~ SysPrf T f /\
+   ~ SysPrf T (notH f) /\ (forall v : nat, ~ In v (freeVarFormula LNN f)).</pre>
+</p>
+<strong class='author'>Russell O'Connor</strong>
+<span class='location'>(contribs/Berkeley/Goedel/goedel2.v)</a>:
+<pre class='comment'>Russell O'Connor proved the theorem under the assumption of the last two Hilbert-Bernays-Loeb derivability conditions.</pre>
+<pre class='statement'>Hypothesis HBL2 : forall f, SysPrf T (impH (box f) (box (box f))).
+Hypothesis HBL3 : forall f g, SysPrf T (impH (box (impH f g)) (impH (box f) (box g))).
+
+Theorem SecondIncompletness : 
+SysPrf T Con -> Inconsistent LNT T.</pre>
+</p>
+</div>
+
+
+<h3 id='7'><a href='http://www.cs.ru.nl/~freek/100/#7'>7. Law of Quadratic Reciprocity</a></h3>
+<div>
+<p class='statementinfo'>
+<strong class='author'>Nathanaël Courant</strong>
+<span class='location'>(https://github.com/Novatux/coq-proofs/blob/master/reciprocity/Reciprocity.v)</a>:
+<pre class='comment'></pre>
+<pre class='statement'>Theorem Quadratic_reciprocity :
+  (legendre p q) * (legendre q p) = (-1) ^ (((p - 1) / 2) * ((q - 1) / 2)).</pre>
+</p>
+</div>
+
+
+<h3 id='8'><a href='http://www.cs.ru.nl/~freek/100/#8'>8. The Impossibility of Trisecting the Angle and Doubling the Cube</a></h3>
+<div>
+No known statement.
+</div>
+
+
+<h3 id='9'><a href='http://www.cs.ru.nl/~freek/100/#9'>9. The Area of a Circle</a></h3>
+<div>
+No known statement.
+</div>
+
+
+<h3 id='10'><a href='http://www.cs.ru.nl/~freek/100/#10'>10. Euler’s Generalization of Fermat’s Little Theorem</a></h3>
+<div>
+<p class='statementinfo'>
+<strong class='author'>Laurent Théry</strong>
+<span class='location'>(contribs/Saclay/Ssreflect/theories/cyclic.v)</a>:
+<pre class='comment'></pre>
+<pre class='statement'>Theorem Euler : forall a n, coprime a n -> a ^ phi n  = 1 %[mod n].</pre>
+</p>
+</div>
+
+
+<h3 id='11'><a href='http://www.cs.ru.nl/~freek/100/#11'>11. The Infinitude of Primes</a></h3>
+<div>
+<p class='statementinfo'>
+<strong class='author'>Russell O'Connor</strong>
+<span class='location'>(http://coq.inria.fr/cocorico/NotFinitePrimes)</a>:
+<pre class='comment'>(in coq 7.3)</pre>
+<pre class='statement'>Theorem ManyPrimes : ~(EX l:(list Prime) | (p:Prime)(In p l)).</pre>
+</p>
+</div>
+
+
+<h3 id='12'><a href='http://www.cs.ru.nl/~freek/100/#12'>12. The Independence of the Parallel Postulate</a></h3>
+<div>
+No known statement.
+</div>
+
+
+<h3 id='13'><a href='http://www.cs.ru.nl/~freek/100/#13'>13. Polyhedron Formula</a></h3>
+<div>
+<p class='statementinfo'>
+<strong class='author'>Jean-François Dufourd</strong>
+<span class='location'>(contribs/Strasbourg/EulerFormula/Euler3.v)</a>:
+<pre class='comment'>nc : number of connected components
+nv : number of vertices
+ne : number of edges
+nf : number of faces
+nd : number of darts
+plf m : m is a planar formation
+inv_qhmap : see Euler1.v</pre>
+<pre class='statement'>Theorem Euler_Poincare_criterion: forall m:fmap,
+  inv_qhmap m -> (plf m <-> (nv m + ne m + nf m - nd m) / 2 = nc m).</pre>
+</p>
+</div>
+
+
+<h3 id='14'><a href='http://www.cs.ru.nl/~freek/100/#14'>14. Euler’s Summation of 1 + (1/2)^2 + (1/3)^2 + ….</a></h3>
+<div>
+<p class='statementinfo'>
+<strong class='author'>Jean-Marie Madiot</strong>
+<span class='location'>(http://coqtail.sourceforge.net/main.php?page=3&doc=Reals.Rzeta2)</a>:
+<pre class='comment'></pre>
+<pre class='statement'>Theorem zeta2_pi_2_6 : Rser_cv (fun n => 1 / (n + 1) ^ 2) (PI ^ 2 / 6).</pre>
+</p>
+</div>
+
+
+<h3 id='15'><a href='http://www.cs.ru.nl/~freek/100/#15'>15. Fundamental Theorem of Integral Calculus</a></h3>
+<div>
+<p class='statementinfo'>
+<strong class='author'>Luís Cruz-Filipe</strong>
+<span class='location'>(contribs/Nijmegen/CoRN/ftc/FTC.v)</a>:
+<pre class='comment'>See contribs/Nijmegen/CoRN for definitions</pre>
+<pre class='statement'>Theorem FTC1 : Derivative J pJ G F.
+Theorem FTC2 : {c : IR | Feq J (G{-}G0) [-C-]c}.</pre>
+</p>
+<strong class='author'>The Coq development team</strong>
+<span class='location'>(theories/Reals/RiemannInt.v)</a>:
+<pre class='comment'></pre>
+<pre class='statement'>Lemma FTC_Riemann :
+  forall (f:C1_fun) (a b:R) (pr:Riemann_integrable (derive f (diff0 f)) a b),
+    RiemannInt pr = f b - f a.
+</pre>
+</p>
+</div>
+
+
+<h3 id='16'><a href='http://www.cs.ru.nl/~freek/100/#16'>16. Insolvability of General Higher Degree Equations</a></h3>
+<div>
+No known statement.
+</div>
+
+
+<h3 id='17'><a href='http://www.cs.ru.nl/~freek/100/#17'>17. DeMoivre’s Theorem</a></h3>
+<div>
+<p class='statementinfo'>
+<strong class='author'>Coqtail team</strong>
+<span class='location'>(http://coqtail.sourceforge.net/main.php?page=3&doc=Complex.Cexp)</a>:
+<pre class='comment'>De Moivre's formula is easily deduced from Euler's formula thanks to e^(n*z)=(e^z)^n.</pre>
+<pre class='statement'>Lemma Cexp_trigo_compat : forall a, Cexp (0 +i a) = cos a +i sin a.
+Lemma Cexp_mult : forall a n, Cexp (INC n * a) = (Cexp a) ^ n.</pre>
+</p>
+</div>
+
+
+<h3 id='18'><a href='http://www.cs.ru.nl/~freek/100/#18'>18. Liouville’s Theorem and the Construction of Trancendental Numbers</a></h3>
+<div>
+<p class='statementinfo'>
+<strong class='author'>Valentin Blot</strong>
+<span class='location'>(https://valentinblot.org/pro/?Stages:Stage_de_M1)</a>:
+<pre class='comment'></pre>
+<pre class='statement'>Theorem Liouville_theorem2 :
+    {n : nat | {C : IR | Zero [<] C | forall (x : Q),
+         (C[*]inj_Q IR (1#Qden x)%Q[^]n) [<=] AbsIR (inj_Q _ x [-] a)}}.</pre>
+</p>
+</div>
+
+
+<h3 id='19'><a href='http://www.cs.ru.nl/~freek/100/#19'>19. Four Squares Theorem</a></h3>
+<div>
+<p class='statementinfo'>
+<strong class='author'>Guillaume Allais, Jean-Marie Madiot (coqtail)</strong>
+<span class='location'>(https://github.com/coqtail/coqtail/blob/master/src/Arith/Lagrange_four_square.v)</a>:
+<pre class='comment'>"{a | P}" means "there exists a such that P" but in a constructive setting. Indeed, from the proof, we can extract a program computing a, b, c, d from n.</pre>
+<pre class='statement'>Theorem lagrange_4_square_theorem : forall n, 0 <= n ->
+  { a : _ & { b: _ & { c : _ & { d |
+    n = a * a + b * b + c * c + d * d } } } }.</pre>
+</p>
+</div>
+
+
+<h3 id='20'><a href='http://www.cs.ru.nl/~freek/100/#20'>20. All Primes Equal the Sum of Two Squares</a></h3>
+<div>
+<p class='statementinfo'>
+<strong class='author'>Laurent Théry</strong>
+<span class='location'>(contribs/Sophia-Antipolis/SumOfTwoSquare/TwoSquares.v)</a>:
+<pre class='comment'></pre>
+<pre class='statement'>Definition sum_of_two_squares :=
+   fun p => exists a , exists b , p = a * a + b * b.
+
+Theorem two_squares_sum:
+ forall n,
+ 0 <= n ->
+ (forall p, prime p -> Zis_mod p 3 4 ->  Zeven (Zdiv_exp p n)) ->
+  sum_of_two_squares n.</pre>
+</p>
+</div>
+
+
+<h3 id='21'><a href='http://www.cs.ru.nl/~freek/100/#21'>21. Green’s Theorem</a></h3>
+<div>
+No known statement.
+</div>
+
+
+<h3 id='22'><a href='http://www.cs.ru.nl/~freek/100/#22'>22. The Non-Denumerability of the Continuum</a></h3>
+<div>
+<p class='statementinfo'>
+<strong class='author'>Pierre-Marie Pédrot</strong>
+<span class='location'>(http://coqtail.sourceforge.net/main.php?page=3&doc=Reals.Runcountable)</a>:
+<pre class='comment'></pre>
+<pre class='statement'>Theorem R_uncountable : forall (f : nat -> R),
+  {l : R | forall n, l <> f n}.
+
+Theorem R_uncountable_strong : forall (f : nat -> R) (x y : R),
+  x < y -> {l : R | forall n, l <> f n & x <= l <= y}.</pre>
+</p>
+<strong class='author'>C-CoRN team</strong>
+<span class='location'>(contribs/Nijmegen/CoRN/reals/RealCount.v)</a>:
+<pre class='comment'></pre>
+<pre class='statement'>Theorem reals_not_countable : 
+  forall (f : nat -> IR), {x :IR | forall n : nat, x [#] (f n)}.
+</pre>
+</p>
+</div>
+
+
+<h3 id='23'><a href='http://www.cs.ru.nl/~freek/100/#23'>23. Formula for Pythagorean Triples</a></h3>
+<div>
+<p class='statementinfo'>
+<strong class='author'>David Delahaye</strong>
+<span class='location'>(contribs/CNAM/Fermat4/Pythagorean.v)</a>:
+<pre class='comment'></pre>
+<pre class='statement'>Lemma pytha_thm3 : forall a b c : Z,
+  is_pytha a b c -> Zodd a ->
+  exists p : Z, exists q : Z, exists m : Z,
+    a = m * (q * q - p * p) /\ b = 2 * m * (p * q) /\
+    c = m * (p * p + q * q) /\ m >= 0 /\
+    p >= 0 /\ q > 0 /\ p <= q /\ (rel_prime p q) /\
+    (distinct_parity p q).</pre>
+</p>
+</div>
+
+
+<h3 id='24'><a href='http://www.cs.ru.nl/~freek/100/#24'>24. The Undecidability of the Coninuum Hypothesis</a></h3>
+<div>
+No known statement.
+</div>
+
+
+<h3 id='25'><a href='http://www.cs.ru.nl/~freek/100/#25'>25. Schroeder-Bernstein Theorem</a></h3>
+<div>
+<p class='statementinfo'>
+<strong class='author'>Hugo Herbelin</strong>
+<span class='location'>(contribs/Rocq/Schroeder/Schroeder.v)</a>:
+<pre class='comment'></pre>
+<pre class='statement'>Theorem Schroeder : A <=_card B -> B <=_card A -> A =_card B.</pre>
+</p>
+<strong class='author'>Daniel Schepler</strong>
+<span class='location'>(contribs/ZornsLemma/CSB.v)</a>:
+<pre class='comment'></pre>
+<pre class='statement'>Section CSB.
+Variable X Y:Type.
+Variable f:X->Y.
+Variable g:Y->X.
+Hypothesis f_inj: injective f.
+Hypothesis g_inj: injective g.
+
+Theorem CSB: exists h:X->Y, bijective h.
+
+End CSB.</pre>
+</p>
+</div>
+
+
+<h3 id='26'><a href='http://www.cs.ru.nl/~freek/100/#26'>26. Leibniz’s Series for Pi</a></h3>
+<div>
+<p class='statementinfo'>
+<strong class='author'>Guillaume Allais</strong>
+<span class='location'>(theories/Reals/Ratan.v)</a>:
+<pre class='comment'></pre>
+<pre class='statement'>Lemma PI_2_aux : {z : R | 7 / 8 <= z <= 7 / 4 /\ - cos z = 0}.
+Definition PI := 2 * proj1_sig PI_2_aux.
+
+Definition PI_tg n := / INR (2 * n + 1).
+Lemma exists_PI : {l:R | Un_cv (fun N => sum_f_R0 (tg_alt PI_tg) N) l}.
+Definition Alt_PI : R := 4 * (let (a,_) := exist_PI in a).
+
+Theorem Alt_PI_eq : Alt_PI = PI.</pre>
+</p>
+<strong class='author'>Luís Cruz-Filipe</strong>
+<span class='location'>(contribs/Nijmegen/CoRN/transc/MoreArcTan.v)</a>:
+<pre class='comment'></pre>
+<pre class='statement'>Lemma ArcTan_one : ArcTan One[=]Pi[/]FourNZ.
+
+Lemma arctan_series : forall c : IR,
+  forall (Hs :
+    fun_series_convergent_IR
+      (olor ([--]One) One)
+      (fun i =>
+        (([--]One)[^]i[/]nring (S (2*i))
+        [//] nringS_ap_zero _ (2*i)){**}Fid IR{^}(2*i+1)))
+    Hc,
+       FSeries_Sum Hs c Hc[=]ArcTan c.</pre>
+</p>
+</div>
+
+
+<h3 id='27'><a href='http://www.cs.ru.nl/~freek/100/#27'>27. Sum of the Angles of a Triangle</a></h3>
+<div>
+<p class='statementinfo'>
+<strong class='author'>Frédérique Guilhot</strong>
+<span class='location'>(contribs/Sophia-Antipolis/HighSchoolGeometry/angles_vecteurs.v)</a>:
+<pre class='comment'></pre>
+<pre class='statement'>Theorem somme_triangle :
+ forall A B C : PO,
+ A <> B :>PO ->
+ A <> C :>PO ->
+ B <> C :>PO ->
+ plus (cons_AV (vec A B) (vec A C))
+   (plus (cons_AV (vec B C) (vec B A)) (cons_AV (vec C A) (vec C B))) =
+ image_angle pi :>AV.
+</pre>
+</p>
+</div>
+
+
+<h3 id='28'><a href='http://www.cs.ru.nl/~freek/100/#28'>28. Pascal’s Hexagon Theorem</a></h3>
+<div>
+<p class='statementinfo'>
+<strong class='author'>Magaud and Narboux</strong>
+<span class='location'>(contribs/Strasbourg/ProjectiveGeometry/plane/hexamys.v)</a>:
+<pre class='comment'></pre>
+<pre class='statement'>Definition is_hexamy A B C D E F := 
+  (A<>B / A<>C / A<>D / A<>E / A<>F /
+  B<>C / B<>D / B<>E / B<>F /
+  C<>D / C<>E / C<>F /
+  D<>E / D<>F /
+  E<>F) /
+  let a:= inter (line B C) (line E F) in
+  let b:= inter (line C D) (line F A) in 
+  let c:= inter (line A B) (line D E) in
+Col a b c.
+
+Lemma hexamy_prop: pappus_strong -> forall A B C D E F,
+ (line C D) <> (line A F) -> 
+ (line B C) <> (line E F) ->
+ (line A B) <> (line D E) -> 
+
+ (line A C) <> (line E F) ->
+ (line B F) <> (line C D) ->
+ is_hexamy A B C D E F -> is_hexamy B A C D E F.</pre>
+</p>
+</div>
+
+
+<h3 id='29'><a href='http://www.cs.ru.nl/~freek/100/#29'>29. Feuerbach’s Theorem</a></h3>
+<div>
+<p class='statementinfo'>
+<strong class='author'>CertiGeo team, marelle project</strong>
+<span class='location'>(http://www-sop.inria.fr/marelle/CertiGeo/feuerbach.html)</a>:
+<pre class='comment'></pre>
+<pre class='statement'>Lemma Feuerbach:  forall A B C A1 B1 C1 O A2 B2 C2 O2:point, 
+  forall r r2:R,
+  X A = 0 -> Y A =  0 -> X B = 1 -> Y B =  0->
+  middle A B C1 -> middle B C A1 -> middle C A B1 ->
+  distance2 O A1 = distance2 O B1 ->
+  distance2 O A1 = distance2 O C1 ->
+  collinear A B C2 -> orthogonal A B O2 C2 -> 
+  collinear B C A2 -> orthogonal B C O2 A2 ->
+  collinear A C B2 -> orthogonal A C O2 B2 ->
+  distance2 O2 A2 = distance2 O2 B2 ->
+  distance2 O2 A2 = distance2 O2 C2 ->
+  r^2 = distance2 O A1 ->
+  r2^2 = distance2 O2 A2 ->
+  distance2 O O2 = (r + r2)^2
+  \/ distance2 O O2 = (r - r2)^2
+  \/ collinear A B C.</pre>
+</p>
+</div>
+
+
+<h3 id='30'><a href='http://www.cs.ru.nl/~freek/100/#30'>30. The Ballot Problem</a></h3>
+<div>
+No known statement.
+</div>
+
+
+<h3 id='31'><a href='http://www.cs.ru.nl/~freek/100/#31'>31. Ramsey’s Theorem</a></h3>
+<div>
+<p class='statementinfo'>
+<strong class='author'>The Coq development team</strong>
+<span class='location'>(theories/Sets/Image.v, Infinite_sets.v)</a>:
+<pre class='comment'></pre>
+<pre class='statement'>Theorem Pigeonhole :
+  forall (A:Ensemble U) (f:U -> V) (n:nat),
+    cardinal U A n ->
+    forall n':nat, cardinal V (Im A f) n' -> n' < n -> ~ injective f.
+
+Lemma Pigeonhole_principle :
+  forall (A:Ensemble U) (f:U -> V) (n:nat),
+    cardinal _ A n ->
+    forall n':nat,
+      cardinal _ (Im A f) n' ->
+      n' < n ->  exists x : _, (exists y : _, f x = f y /\ x <> y).
+
+Theorem Pigeonhole_bis :
+  forall (A:Ensemble U) (f:U -> V),
+    ~ Finite U A -> Finite V (Im U V A f) -> ~ injective U V f.
+
+Theorem Pigeonhole_ter :
+  forall (A:Ensemble U) (f:U -> V) (n:nat),
+    injective U V f -> Finite V (Im U V A f) -> Finite U A.
+</pre>
+</p>
+<strong class='author'>Jean-Marie Madiot (many versions by others)</strong>
+<span class='location'>(<a href="pigeonhole.v">pigeonhole.v</a>)</a>:
+<pre class='comment'>constructive version (the proof from the standard library uses excluded middle)</pre>
+<pre class='statement'>Theorem pigeonhole :
+  forall m n, m < n -> forall f, (forall i, f i < m) ->
+    { i : nat & { j : nat | i < j < n /\ f i = f j } }.</pre>
+</p>
+<strong class='author'>Frédéric Blanqui</strong>
+<span class='location'>(http://color.inria.fr/doc/CoLoR.Util.Set.Ramsey.html)</a>:
+<pre class='comment'></pre>
+<pre class='statement'>Theorem ramsey A (W : set A) n (P : Pinf W) B : forall (C : Pf B)
+  (f : Pcard P (S n) -> elts C), Proper (Pcard_equiv ==> elts_eq) f ->
+  exists c (Q : Pinf P), forall X : Pcard Q (S n), f (Pcard_subset Q X) = c.</pre>
+</p>
+</div>
+
+
+<h3 id='32'><a href='http://www.cs.ru.nl/~freek/100/#32'>32. The Four Color Problem</a></h3>
+<div>
+<p class='statementinfo'>
+<strong class='author'>Georges Gonthier, Benjamin Werner</strong>
+<span class='location'>(https://github.com/kik/Four-Color-Theorem-Maintenance/blob/master/coq/fourcolor.v)</a>:
+<pre class='comment'></pre>
+<pre class='statement'>Theorem four_color : forall m : map R, simple_map m -> map_colorable 4 m.</pre>
+</p>
+</div>
+
+
+<h3 id='33'><a href='http://www.cs.ru.nl/~freek/100/#33'>33. Fermat’s Last Theorem</a></h3>
+<div>
+No known statement.
+</div>
+
+
+<h3 id='34'><a href='http://www.cs.ru.nl/~freek/100/#34'>34. Divergence of the Harmonic Series</a></h3>
+<div>
+No known statement.
+</div>
+
+
+<h3 id='35'><a href='http://www.cs.ru.nl/~freek/100/#35'>35. Taylor’s Theorem</a></h3>
+<div>
+<p class='statementinfo'>
+<strong class='author'>Luís Cruz-Filipe</strong>
+<span class='location'>(contribs/Nijmegen/CoRN/ftc/Taylor.v)</a>:
+<pre class='comment'></pre>
+<pre class='statement'>Theorem Taylor : forall e, Zero [<] e -> forall Hb',
+  {c : IR | Compact (Min_leEq_Max a b) c |
+    forall Hc, AbsIR (F b Hb'[-]Part _ _ Taylor_aux[-]deriv_Sn c Hc[*] (b[-]a)) [<=] e}.
+</pre>
+</p>
+</div>
+
+
+<h3 id='36'><a href='http://www.cs.ru.nl/~freek/100/#36'>36. Brouwer Fixed Point Theorem</a></h3>
+<div>
+No known statement.
+</div>
+
+
+<h3 id='37'><a href='http://www.cs.ru.nl/~freek/100/#37'>37. The Solution of a Cubic</a></h3>
+<div>
+No known statement.
+</div>
+
+
+<h3 id='38'><a href='http://www.cs.ru.nl/~freek/100/#38'>38. Arithmetic Mean/Geometric Mean</a></h3>
+<div>
+No known statement.
+</div>
+
+
+<h3 id='39'><a href='http://www.cs.ru.nl/~freek/100/#39'>39. Solutions to Pell’s Equation</a></h3>
+<div>
+No known statement.
+</div>
+
+
+<h3 id='40'><a href='http://www.cs.ru.nl/~freek/100/#40'>40. Minkowski’s Fundamental Theorem</a></h3>
+<div>
+No known statement.
+</div>
+
+
+<h3 id='41'><a href='http://www.cs.ru.nl/~freek/100/#41'>41. Puiseux’s Theorem</a></h3>
+<div>
+<p class='statementinfo'>
+<strong class='author'>Daniel de Rauglaudre</strong>
+<span class='location'>(https://gforge.inria.fr/plugins/scmgit/cgi-bin/gitweb.cgi?p=puiseuxth/puiseuxth.git;a=blob;f=coq/Puiseux.v;h=af46c812b5cb9527d82570db34e5a8bdd703fceb;hb=HEAD     (login anonsvn / anonsvn))</a>:
+<pre class='comment'></pre>
+<pre class='statement'>Theorem puiseux_series_algeb_closed : ? (pol : polynomial (puiseux_series ?)),
+  degree (ps_zerop R) pol ? 1
+  ? ? s, (ps_pol_apply pol s = 0)%ps.</pre>
+</p>
+</div>
+
+
+<h3 id='42'><a href='http://www.cs.ru.nl/~freek/100/#42'>42. Sum of the Reciprocals of the Triangular Numbers</a></h3>
+<div>
+No known statement.
+</div>
+
+
+<h3 id='43'><a href='http://www.cs.ru.nl/~freek/100/#43'>43. The Isoperimetric Theorem</a></h3>
+<div>
+No known statement.
+</div>
+
+
+<h3 id='44'><a href='http://www.cs.ru.nl/~freek/100/#44'>44. The Binomial Theorem</a></h3>
+<div>
+<p class='statementinfo'>
+<strong class='author'>The Coq development team</strong>
+<span class='location'>(theories/Reals/Binomial.v)</a>:
+<pre class='comment'>For the non-constructive type R</pre>
+<pre class='statement'>Lemma binomial :
+  forall (x y:R) (n:nat),
+    (x + y) ^ n = sum_f_R0 (fun i:nat => C n i * x ^ i * y ^ (n - i)) n.</pre>
+</p>
+<strong class='author'>Laurent Thery & Jose C. Almeida</strong>
+<span class='location'>(contribs/Sophia-Antipolis/RSA/Binomials.v)</a>:
+<pre class='comment'>For the type nat</pre>
+<pre class='statement'>Theorem exp_Pascal :
+ forall a b n : nat,
+ power (a + b) n =
+ sum_nm n 0 (fun k : nat => binomial n k * (power a (n - k) * power b k)).</pre>
+</p>
+<strong class='author'>Jean-Marie Madiot</strong>
+<span class='location'>(Coqtail/Hierarchy/Commutative_ring_binomial.v)</a>:
+<pre class='comment'>For any commutative ring X.</pre>
+<pre class='statement'>Theorem Nnewton : forall n a b, (a + b) ^ n == newton_sum n a b.
+
+Definition newton_sum n a b : X :=
+    CRsum (fun k => (Nbinomial n k) ** (a ^ k) * (b ^ (n - k))) n.</pre>
+</p>
+</div>
+
+
+<h3 id='45'><a href='http://www.cs.ru.nl/~freek/100/#45'>45. The Partition Theorem</a></h3>
+<div>
+No known statement.
+</div>
+
+
+<h3 id='46'><a href='http://www.cs.ru.nl/~freek/100/#46'>46. The Solution of the General Quartic Equation</a></h3>
+<div>
+No known statement.
+</div>
+
+
+<h3 id='47'><a href='http://www.cs.ru.nl/~freek/100/#47'>47. The Central Limit Theorem</a></h3>
+<div>
+No known statement.
+</div>
+
+
+<h3 id='48'><a href='http://www.cs.ru.nl/~freek/100/#48'>48. Dirichlet’s Theorem</a></h3>
+<div>
+No known statement.
+</div>
+
+
+<h3 id='49'><a href='http://www.cs.ru.nl/~freek/100/#49'>49. The Cayley-Hamilton Thoerem</a></h3>
+<div>
+<p class='statementinfo'>
+<strong class='author'>Sidi Ould Biha</strong>
+<span class='location'>(contribs/Saclay/Ssreflect/theories/charpoly.v)</a>:
+<pre class='comment'></pre>
+<pre class='statement'>Theorem Cayley_Hamilton : forall A, (Zpoly (char_poly A)).[A] = 0.</pre>
+</p>
+</div>
+
+
+<h3 id='50'><a href='http://www.cs.ru.nl/~freek/100/#50'>50. The Number of Platonic Solids</a></h3>
+<div>
+No known statement.
+</div>
+
+
+<h3 id='51'><a href='http://www.cs.ru.nl/~freek/100/#51'>51. Wilson’s Theorem</a></h3>
+<div>
+<p class='statementinfo'>
+<strong class='author'>unknown (Inria, Microsoft)</strong>
+<span class='location'>(contribs/Saclay/Ssreflect/theories/binomial.v)</a>:
+<pre class='comment'>copyrighted:
+
+(c) Copyright Microsoft Corporation and Inria. All rights reserved.</pre>
+<pre class='statement'>Theorem Wilson : forall p, p > 1 -> prime p = (p %| ((p.-1)`!).+1).</pre>
+</p>
+<strong class='author'>Laurent Théry</strong>
+<span class='location'>(contribs/Sophia-Antipolis/SumOfTwoSquare/Wilson.v)</a>:
+<pre class='comment'>licence: LGPL</pre>
+<pre class='statement'>Theorem wilson: forall p, prime p ->  Zis_mod (Zfact (p - 1)) (- 1) p.</pre>
+</p>
+</div>
+
+
+<h3 id='52'><a href='http://www.cs.ru.nl/~freek/100/#52'>52. The Number of Subsets of a Set</a></h3>
+<div>
+<p class='statementinfo'>
+<strong class='author'>unknown (Inria, Microsoft)</strong>
+<span class='location'>(contribs/Saclay/Ssreflect/theories/finfun.v)</a>:
+<pre class='comment'></pre>
+<pre class='statement'>Variable eT : finType.
+Variable A : pred eT.
+Definition powerset := pffun_on false A predT.
+
+Lemma card_powerset : #|powerset| = 2 ^ #|A|.</pre>
+</p>
+<strong class='author'>Pierre Letouzey, Jean-Christophe Filliâtre (unsure)</strong>
+<span class='location'>(contribs/Orsay/FSets/PowerSet.v)</a>:
+<pre class='comment'></pre>
+<pre class='statement'>Lemma powerset_cardinal: 
+  forall s, MM.cardinal (powerset s) = two_power (M.cardinal s).</pre>
+</p>
+</div>
+
+
+<h3 id='53'><a href='http://www.cs.ru.nl/~freek/100/#53'>53. Pi is Trancendental</a></h3>
+<div>
+<p class='statementinfo'>
+<strong class='author'>Sophie Bernard and Laurence Rideau</strong>
+<span class='location'>()</a>:
+<pre class='comment'>The concept algebraicOver is available from the public release ssreflect-1.4, ratr is the type of rational numbers. The definition of PI is from the Coq standard library.</pre>
+<pre class='statement'>Theorem pi_transcendant : ~ (algebraicOver ratr (PI)%:C).</pre>
+</p>
+</div>
+
+
+<h3 id='54'><a href='http://www.cs.ru.nl/~freek/100/#54'>54. Konigsberg Bridges Problem</a></h3>
+<div>
+No known statement.
+</div>
+
+
+<h3 id='55'><a href='http://www.cs.ru.nl/~freek/100/#55'>55. Product of Segments of Chords</a></h3>
+<div>
+<p class='statementinfo'>
+<strong class='author'>Loïc Pottier, Benjamin Grégoire, Laurent Théry</strong>
+<span class='location'>(http://www-sop.inria.fr/marelle/CertiGeo/chords.html)</a>:
+<pre class='comment'>The proof uses just two tactics. The first one transforms the goal into an algebraic statement and the second one generates and then checks a proof certificate.
+
+More information here: http://hal.inria.fr/inria-00504719_v1/</pre>
+<pre class='statement'>Lemma chords: forall O A B C D M:point,
+  equaldistance O A O B ->
+  equaldistance O A O C ->
+  equaldistance O A O D ->
+  collinear A B M -> collinear C D M ->
+  scalarproduct A M B = scalarproduct C M D
+  \/ parallel A B C D.</pre>
+</p>
+</div>
+
+
+<h3 id='56'><a href='http://www.cs.ru.nl/~freek/100/#56'>56. The Hermite-Lindemann Transcendence Theorem</a></h3>
+<div>
+No known statement.
+</div>
+
+
+<h3 id='57'><a href='http://www.cs.ru.nl/~freek/100/#57'>57. Heron’s Formula</a></h3>
+<div>
+No known statement.
+</div>
+
+
+<h3 id='58'><a href='http://www.cs.ru.nl/~freek/100/#58'>58. Formula for the Number of Combinations</a></h3>
+<div>
+No known statement.
+</div>
+
+
+<h3 id='59'><a href='http://www.cs.ru.nl/~freek/100/#59'>59. The Laws of Large Numbers</a></h3>
+<div>
+No known statement.
+</div>
+
+
+<h3 id='60'><a href='http://www.cs.ru.nl/~freek/100/#60'>60. Bezout’s Theorem</a></h3>
+<div>
+<p class='statementinfo'>
+<strong class='author'>The Coq development team</strong>
+<span class='location'>(theories/ZArith/Znumtheory.v)</a>:
+<pre class='comment'></pre>
+<pre class='statement'>Inductive Zdivide (a b:Z) : Prop :=
+    Zdivide_intro : forall q:Z, b = q * a -> Zdivide a b.
+
+Notation "( a | b )" := (Zdivide a b) (at level 0) : Z_scope.
+
+Inductive Zis_gcd (a b d:Z) : Prop :=
+  Zis_gcd_intro :
+  (d | a) ->
+  (d | b) ->
+  (forall x:Z, (x | a) -> (x | b) -> (x | d)) ->
+    Zis_gcd a b d.
+
+Inductive Bezout (a b d:Z) : Prop :=
+  Bezout_intro : forall u v:Z, u * a + v * b = d -> Bezout a b d.
+
+Lemma Zis_gcd_bezout : forall a b d:Z, Zis_gcd a b d -> Bezout a b d.</pre>
+</p>
+</div>
+
+
+<h3 id='61'><a href='http://www.cs.ru.nl/~freek/100/#61'>61. Theorem of Ceva</a></h3>
+<div>
+<p class='statementinfo'>
+<strong class='author'>Julien Narboux</strong>
+<span class='location'>(contribs/Rocq/AreaMethod/examples_2.v)</a>:
+<pre class='comment'></pre>
+<pre class='statement'>Theorem Ceva :
+ forall A B C D E F G P : Point,
+ inter_ll D B C A P ->
+ inter_ll E A C B P ->
+ inter_ll F A B C P ->
+ F <> B ->
+ D <> C ->
+ E <> A ->
+ parallel A F F B ->
+ parallel B D D C ->
+ parallel C E E A -> 
+ (A ** F / F ** B) * (B ** D / D ** C) * (C ** E / E ** A) = 1.</pre>
+</p>
+</div>
+
+
+<h3 id='62'><a href='http://www.cs.ru.nl/~freek/100/#62'>62. Fair Games Theorem</a></h3>
+<div>
+No known statement.
+</div>
+
+
+<h3 id='63'><a href='http://www.cs.ru.nl/~freek/100/#63'>63. Cantor’s Theorem</a></h3>
+<div>
+<p class='statementinfo'>
+<strong class='author'>Gilles Kahn, Gerard Huet</strong>
+<span class='location'>(theories/Sets/Powerset.v)</a>:
+<pre class='comment'>"Naive Set Theory in Coq"</pre>
+<pre class='statement'>Theorem Strict_Rel_is_Strict_Included :
+ same_relation (Ensemble U) (Strict_Included U)
+   (Strict_Rel_of (Ensemble U) (Power_set_PO (Full_set U))).</pre>
+</p>
+</div>
+
+
+<h3 id='64'><a href='http://www.cs.ru.nl/~freek/100/#64'>64. L’Hopital’s Rule</a></h3>
+<div>
+No known statement.
+</div>
+
+
+<h3 id='65'><a href='http://www.cs.ru.nl/~freek/100/#65'>65. Isosceles Triangle Theorem</a></h3>
+<div>
+<p class='statementinfo'>
+<strong class='author'>Frédérique Guilhot</strong>
+<span class='location'>(contribs/Sophia-Antipolis/HighSchoolGeometry/isocele.v)</a>:
+<pre class='comment'></pre>
+<pre class='statement'>Lemma isocele_angles_base :
+ isocele A B C -> cons_AV (vec B C) (vec B A) = cons_AV (vec C A) (vec C B).</pre>
+</p>
+</div>
+
+
+<h3 id='66'><a href='http://www.cs.ru.nl/~freek/100/#66'>66. Sum of a Geometric Series</a></h3>
+<div>
+<p class='statementinfo'>
+<strong class='author'>Luís Cruz-Filipe</strong>
+<span class='location'>(contribs/Nijmegen/CoRN/ftc/MoreFunSeries.v)</a>:
+<pre class='comment'></pre>
+<pre class='statement'>Lemma fun_power_series_conv_IR :
+  fun_series_convergent_IR
+    (olor ([--]One) One)
+    (fun (i:nat) => Fid IR{^}i).
+</pre>
+</p>
+</div>
+
+
+<h3 id='67'><a href='http://www.cs.ru.nl/~freek/100/#67'>67. e is Transcendental</a></h3>
+<div>
+<p class='statementinfo'>
+<strong class='author'>Sophie Bernard and Laurence Rideau</strong>
+<span class='location'>()</a>:
+<pre class='comment'>The concept algebraicOver is available from the public release ssreflect-1.4, ratr is the type of rational numbers. The definition of exp is from the Coq standard library.
+</pre>
+<pre class='statement'>Theorem e_transcendant : ~ (algebraicOver ratr (exp 1)%:C).
+</pre>
+</p>
+</div>
+
+
+<h3 id='68'><a href='http://www.cs.ru.nl/~freek/100/#68'>68. Sum of an arithmetic series</a></h3>
+<div>
+<p class='statementinfo'>
+<strong class='author'>many versions</strong>
+<span class='location'>(<a href="68.sumarith.v">local</a>)</a>:
+<pre class='comment'></pre>
+<pre class='statement'>Theorem arith_sum a b n : 2 * sum (fun i => a + i * b) n = S n * (2 * a + n * b).</pre>
+</p>
+</div>
+
+
+<h3 id='69'><a href='http://www.cs.ru.nl/~freek/100/#69'>69. Greatest Common Divisor Algorithm</a></h3>
+<div>
+<p class='statementinfo'>
+<strong class='author'>The Coq development team</strong>
+<span class='location'>(theories/ZArith/Znumtheory.v)</a>:
+<pre class='comment'>This is a binary version, as it is more efficient in coq.
+
+(There are several other versions in this file)</pre>
+<pre class='statement'>Fixpoint Pgcdn (n: nat) (a b : positive) : positive :=
+  match n with
+    | O => 1
+    | S n =>
+      match a,b with
+	| xH, _ => 1
+	| _, xH => 1
+	| xO a, xO b => xO (Pgcdn n a b)
+	| a, xO b => Pgcdn n a b
+	| xO a, b => Pgcdn n a b
+	| xI a', xI b' =>
+          match Pcompare a' b' Eq with
+	    | Eq => a
+	    | Lt => Pgcdn  n (b'-a') a
+	    | Gt => Pgcdn n (a'-b') b
+          end
+      end
+  end.
+
+Definition Zgcd (a b : Z) : Z :=
+  match a,b with
+    | Z0, _ => Zabs b
+    | _, Z0 => Zabs a
+    | Zpos a, Zpos b => Zpos (Pgcd a b)
+    | Zpos a, Zneg b => Zpos (Pgcd a b)
+    | Zneg a, Zpos b => Zpos (Pgcd a b)
+    | Zneg a, Zneg b => Zpos (Pgcd a b)
+  end.
+
+Lemma Zgcd_is_gcd : forall a b, Zis_gcd a b (Zgcd a b).</pre>
+</p>
+</div>
+
+
+<h3 id='70'><a href='http://www.cs.ru.nl/~freek/100/#70'>70. The Perfect Number Theorem</a></h3>
+<div>
+No known statement.
+</div>
+
+
+<h3 id='71'><a href='http://www.cs.ru.nl/~freek/100/#71'>71. Order of a Subgroup</a></h3>
+<div>
+<p class='statementinfo'>
+<strong class='author'>unknown (Laurent Théry?)</strong>
+<span class='location'>(contribs/Saclay/Ssreflect/theories/groups.v)</a>:
+<pre class='comment'></pre>
+<pre class='statement'>Theorem LaGrange : forall G H,
+  H \subset G -> (#|H| * #|G : H|)%N = #|G|.</pre>
+</p>
+</div>
+
+
+<h3 id='72'><a href='http://www.cs.ru.nl/~freek/100/#72'>72. Sylow’s Theorem</a></h3>
+<div>
+<p class='statementinfo'>
+<strong class='author'>Laurent Théry</strong>
+<span class='location'>(contribs/Saclay/Ssreflect/theories/sylow.v)</a>:
+<pre class='comment'></pre>
+<pre class='statement'>Theorem Sylow's_theorem :
+  [/\ forall P, [max P | p.-subgroup(G) P] = p.-Sylow(G) P,
+      [transitive G, on 'Syl_p(G) | 'JG],
+      forall P, p.-Sylow(G) P -> #|'Syl_p(G)| = #|G : 'N_G(P)|
+   &  prime p -> #|'Syl_p(G)| %% p = 1%N].</pre>
+</p>
+</div>
+
+
+<h3 id='73'><a href='http://www.cs.ru.nl/~freek/100/#73'>73. Ascending or Descending Sequences</a></h3>
+<div>
+<p class='statementinfo'>
+<strong class='author'>Florent Hivert</strong>
+<span class='location'>(https://github.com/hivert/Coq-Combi/blob/master/LRrule/Erdos_Szekeres.v)</a>:
+<pre class='comment'></pre>
+<pre class='statement'>Variable T : ordType. (* a totally ordered type *)
+(*   <= is denoted (leqX T)       *)
+(*   >  is denoted (gtnX T)       *)
+
+Theorem Erdos_Szekeres (m n : nat) (s : seq T) :
+  (size s) > (m * n) ->
+  (exists t, subseq t s /\ sorted (leqX T) t /\ size t > m) \/
+  (exists t, subseq t s /\ sorted (gtnX T) t /\ size t > n).</pre>
+</p>
+</div>
+
+
+<h3 id='74'><a href='http://www.cs.ru.nl/~freek/100/#74'>74. The Principle of Mathematical Induction</a></h3>
+<div>
+<p class='statementinfo'>
+<strong class='author'>built-in</strong>
+<span class='location'>(theories/Init)</a>:
+<pre class='comment'>This is automatically deduced by coq when defining the set of natural numbers. This lemma is inhabited by the following term:
+
+fun P HO HS => fix f n : P n := match n with O => HO | S p => HS p (f p) end</pre>
+<pre class='statement'>Inductive nat : Set :=  O : nat | S : nat -> nat.
+
+Lemma nat_ind :
+  forall P : nat -> Prop,
+  P 0 ->
+  (forall n : nat, P n -> P (S n)) ->
+  forall n : nat, P n.</pre>
+</p>
+</div>
+
+
+<h3 id='75'><a href='http://www.cs.ru.nl/~freek/100/#75'>75. The Mean Value Theorem</a></h3>
+<div>
+<p class='statementinfo'>
+<strong class='author'>Luís Cruz-Filipe</strong>
+<span class='location'>(contribs/Nijmegen/CoRN/ftc/Rolle.v)</a>:
+<pre class='comment'></pre>
+<pre class='statement'>Theorem Law_of_the_Mean : forall a b, I a -> I b -> forall e, Zero [<] e ->
+ {x : IR | Compact (Min_leEq_Max a b) x | forall Ha Hb Hx,
+  AbsIR (F b Hb[-]F a Ha[-]F' x Hx[*] (b[-]a)) [<=] e}.</pre>
+</p>
+</div>
+
+
+<h3 id='76'><a href='http://www.cs.ru.nl/~freek/100/#76'>76. Fourier Series</a></h3>
+<div>
+No known statement.
+</div>
+
+
+<h3 id='77'><a href='http://www.cs.ru.nl/~freek/100/#77'>77. Sum of kth powers</a></h3>
+<div>
+No known statement.
+</div>
+
+
+<h3 id='78'><a href='http://www.cs.ru.nl/~freek/100/#78'>78. The Cauchy-Schwarz Inequality</a></h3>
+<div>
+No known statement.
+</div>
+
+
+<h3 id='79'><a href='http://www.cs.ru.nl/~freek/100/#79'>79. The Intermediate Value Theorem</a></h3>
+<div>
+<p class='statementinfo'>
+<strong class='author'>The Coq development team</strong>
+<span class='location'>(theories/Reals/Rsqrt_def.v)</a>:
+<pre class='comment'>non constructive version</pre>
+<pre class='statement'>Lemma IVT_cor :
+  forall (f:R -> R) (x y:R),
+    continuity f ->
+    x <= y -> f x * f y <= 0 ->
+    { z:R | x <= z <= y /\ f z = 0 }.</pre>
+</p>
+</div>
+
+
+<h3 id='80'><a href='http://www.cs.ru.nl/~freek/100/#80'>80. The Fundamental Theorem of Arithmetic</a></h3>
+<div>
+<p class='statementinfo'>
+<strong class='author'>unknown (Inria, Microsoft)</strong>
+<span class='location'>(contribs/Saclay/Ssreflect/theories/prime.v)</a>:
+<pre class='comment'></pre>
+<pre class='statement'>Lemma divisors_correct : forall n, n > 0 ->
+  [/\ uniq (divisors n), sorted leq (divisors n)
+    & forall d, (d \in divisors n) = (d %| n)].</pre>
+</p>
+</div>
+
+
+<h3 id='81'><a href='http://www.cs.ru.nl/~freek/100/#81'>81. Divergence of the Prime Reciprocal Series</a></h3>
+<div>
+No known statement.
+</div>
+
+
+<h3 id='82'><a href='http://www.cs.ru.nl/~freek/100/#82'>82. Dissection of Cubes (J.E. Littlewood’s ‘elegant’ proof)</a></h3>
+<div>
+No known statement.
+</div>
+
+
+<h3 id='83'><a href='http://www.cs.ru.nl/~freek/100/#83'>83. The Friendship Theorem</a></h3>
+<div>
+No known statement.
+</div>
+
+
+<h3 id='84'><a href='http://www.cs.ru.nl/~freek/100/#84'>84. Morley’s Theorem</a></h3>
+<div>
+No known statement.
+</div>
+
+
+<h3 id='85'><a href='http://www.cs.ru.nl/~freek/100/#85'>85. Divisibility by 3 Rule</a></h3>
+<div>
+<p class='statementinfo'>
+<strong class='author'>many versions</strong>
+<span class='location'>(<a href="85.div3.v">local</a>)</a>:
+<pre class='comment'></pre>
+<pre class='statement'>Theorem div3 : forall n d,
+  (number n d) mod 3 = (sumdigits n d) mod 3.
+</pre>
+</p>
+</div>
+
+
+<h3 id='86'><a href='http://www.cs.ru.nl/~freek/100/#86'>86. Lebesgue Measure and Integration</a></h3>
+<div>
+No known statement.
+</div>
+
+
+<h3 id='87'><a href='http://www.cs.ru.nl/~freek/100/#87'>87. Desargues’s Theorem</a></h3>
+<div>
+<p class='statementinfo'>
+<strong class='author'>Frédérique Guilhot</strong>
+<span class='location'>(contribs/Sophia-Antipolis/HighSchoolGeometry/affine_classiques.v)</a>:
+<pre class='comment'></pre>
+<pre class='statement'>Theorem Desargues :
+ forall A B C A1 B1 C1 S : PO,
+ C <> C1 -> B <> B1 -> C <> S -> B <> S -> C1 <> S ->
+ B1 <> S -> A1 <> B1 -> A1 <> C1 -> B <> C -> B1 <> C1 ->
+ triangle A A1 B ->
+ triangle A A1 C ->
+ alignes A A1 S ->
+ alignes B B1 S ->
+ alignes C C1 S ->
+ paralleles (droite A B) (droite A1 B1) ->
+ paralleles (droite A C) (droite A1 C1) ->
+ paralleles (droite B C) (droite B1 C1).</pre>
+</p>
+<strong class='author'>Julien Narboux</strong>
+<span class='location'>(contribs/Rocq/AreaMethod/examples_2.v)</a>:
+<pre class='comment'>proved with the area_method tactic.
+http://dpt-info.u-strasbg.fr/~narboux/area_method.html</pre>
+<pre class='statement'>Theorem Desargues :
+ forall A B C X A' B' C' : Point, A' <>C' -> A' <> B' ->
+ on_line A' X A ->
+ on_inter_line_parallel B' A' X B A B -> 
+ on_inter_line_parallel C' A' X C A C ->
+ parallel B C B' C'.</pre>
+</p>
+</div>
+
+
+<h3 id='88'><a href='http://www.cs.ru.nl/~freek/100/#88'>88. Derangements Formula</a></h3>
+<div>
+No known statement.
+</div>
+
+
+<h3 id='89'><a href='http://www.cs.ru.nl/~freek/100/#89'>89. The Factor and Remainder Theorems</a></h3>
+<div>
+No known statement.
+</div>
+
+
+<h3 id='90'><a href='http://www.cs.ru.nl/~freek/100/#90'>90. Stirling’s Formula</a></h3>
+<div>
+<p class='statementinfo'>
+<strong class='author'>Coqtail team</strong>
+<span class='location'>(http://coqtail.sourceforge.net/main.php?page=3&doc=Reals.RStirling)</a>:
+<pre class='comment'></pre>
+<pre class='statement'>Lemma Stirling_equiv :
+  Rseq_fact ~ (fun n => sqrt (2 × PI) × (INR n) ^ n × exp (- (INR n)) × sqrt (INR n)).</pre>
+</p>
+</div>
+
+
+<h3 id='91'><a href='http://www.cs.ru.nl/~freek/100/#91'>91. The Triangle Inequality</a></h3>
+<div>
+<p class='statementinfo'>
+<strong class='author'>The Coq Development Team</strong>
+<span class='location'>(theories/Reals/Rgeom.v)</a>:
+<pre class='comment'></pre>
+<pre class='statement'>Lemma triangle :
+  forall x0 y0 x1 y1 x2 y2:R,
+    dist_euc x0 y0 x1 y1 <= dist_euc x0 y0 x2 y2 + dist_euc x2 y2 x1 y1.</pre>
+</p>
+</div>
+
+
+<h3 id='92'><a href='http://www.cs.ru.nl/~freek/100/#92'>92. Pick’s Theorem</a></h3>
+<div>
+No known statement.
+</div>
+
+
+<h3 id='93'><a href='http://www.cs.ru.nl/~freek/100/#93'>93. The Birthday Problem</a></h3>
+<div>
+No known statement.
+</div>
+
+
+<h3 id='94'><a href='http://www.cs.ru.nl/~freek/100/#94'>94. The Law of Cosines</a></h3>
+<div>
+<p class='statementinfo'>
+<strong class='author'>Frédérique Guilhot</strong>
+<span class='location'>(contribs/Sophia-Antipolis/HighSchoolGeometry/metrique_triangle.v)</a>:
+<pre class='comment'></pre>
+<pre class='statement'>Theorem Al_Kashi :
+ forall (A B C : PO) (a : R),
+ A <> B ->
+ A <> C ->
+ image_angle a = cons_AV (vec A B) (vec A C) ->
+ Rsqr (distance B C) =
+ Rsqr (distance A B) + Rsqr (distance A C) -
+ 2 * distance A B * distance A C * cos a.</pre>
+</p>
+</div>
+
+
+<h3 id='95'><a href='http://www.cs.ru.nl/~freek/100/#95'>95. Ptolemy’s Theorem</a></h3>
+<div>
+<p class='statementinfo'>
+<strong class='author'>Tuan Minh Pham</strong>
+<span class='location'>()</a>:
+<pre class='comment'>Publication: http://hal.inria.fr/inria-00585203</pre>
+<pre class='statement'>forall (O A B C D : PO) (r: R),
+convexQuad A B C D ? concyclic O r A B C D ?
+AD ? BC + AB ? CD = AC ? BD.</pre>
+</p>
+</div>
+
+
+<h3 id='96'><a href='http://www.cs.ru.nl/~freek/100/#96'>96. Principle of Inclusion/Exclusion</a></h3>
+<div>
+No known statement.
+</div>
+
+
+<h3 id='97'><a href='http://www.cs.ru.nl/~freek/100/#97'>97. Cramer’s Rule</a></h3>
+<div>
+<p class='statementinfo'>
+<strong class='author'>Georges Gonthier et al.</strong>
+<span class='location'>(http://coqfinitgroup.gforge.inria.fr/matrix.html)</a>:
+<pre class='comment'></pre>
+<pre class='statement'>Lemma mul_mx_adj : forall n (A : 'M[R]_n), A *m \adj A = (\det A)%:M.
+
+Lemma trmx_adj : forall n (A : 'M[R]_n), (\adj A)^T = \adj A^T.
+
+Lemma mul_adj_mx : forall n (A : 'M[R]_n), \adj A *m A = (\det A)%:M.</pre>
+</p>
+</div>
+
+
+<h3 id='98'><a href='http://www.cs.ru.nl/~freek/100/#98'>98. Bertrand’s Postulate</a></h3>
+<div>
+<p class='statementinfo'>
+<strong class='author'>Laurent Théry</strong>
+<span class='location'>(contribs/Sophia-Antipolis/Bertrand/Bertrand.v)</a>:
+<pre class='comment'></pre>
+<pre class='statement'>Theorem Bertrand :
+ forall n : nat, 2 <= n -> exists p : nat, prime p /\ n < p /\ p < 2 * n.</pre>
+</p>
+</div>
+
+
+<h3 id='99'><a href='http://www.cs.ru.nl/~freek/100/#99'>99. Buffon Needle Problem</a></h3>
+<div>
+No known statement.
+</div>
+
+
+<h3 id='100'><a href='http://www.cs.ru.nl/~freek/100/#100'>100. Descartes Rule of Signs</a></h3>
+<div>
+No known statement.
+</div>
+    </div>
+  </body>
+</html>
