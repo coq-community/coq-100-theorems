@@ -1,0 +1,89 @@
+body {
+  background-color:#fff;
+  color:#000;
+  font-family:verdana, arial;
+  /* font-size:11px; */
+}
+
+.middle{
+  width:70%;
+  margin:auto;
+}
+
+.ressources:before{
+  content:"Ressources";
+  color:gray;
+  float:right;
+}
+
+.ressources {
+  border-left:dashed 1px gray;
+  float:right;
+  padding:2px;
+  margin-left:50px;
+  margin-bottom:5px;
+  width:30%;
+}
+
+hr.clear {
+  clear:both;
+  visibility:hidden;
+}
+
+h1 {
+  font-family:georgia, times;
+  text-align:center;
+  font-variant: small-caps;
+}
+
+h3 {
+  /*font-family:times, georgia;*/
+}
+
+span.hid {
+  color:#aaa;
+}
+
+.statement {
+  background-color:#eef;
+  /* border:1px solid #444477; */
+  font-family:monospace;
+  font-size:1.2em;
+  padding:0.7em;
+  margin:0.7em;
+}
+
+.comment {
+  /*background-color:#eef;
+  padding:10px;
+  font-size:1.2em;
+  border:1px solid #444477;*/
+  font-family:verdana, arial, sans-serif;
+}
+
+.ref {
+  font-size:0.6em;
+  font-weight:normal;
+  font-family:verdana, sans-serif;
+}
+
+a:link,a:visited{text-decoration:none;}
+a:hover,a:active{text-decoration:underline;}
+a   {color:#25c;}
+/*.banane {color:yellow;}
+#more {font-size:2em;position:absolute; top:2px; right:10px;}*/
+
+div>p>.autohide {
+visibility:hidden;
+}
+div:hover>p>.autohide {
+visibility:visible;
+}
+
+pre {
+    white-space: pre-wrap;       /* CSS 3 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
