@@ -129,6 +129,27 @@ Lemma Q_countable: CountableT Q.</pre>
 <h3 id='4'><a href='http://www.cs.ru.nl/~freek/100/#4'>4. Pythagorean Theorem</a></h3>
 <div>
 <p class='statementinfo'>
+<strong class='author'>Gabriel Braun</strong>
+<span class='location'>(GeoCoq in <a href="https://github.com/GeoCoq/GeoCoq/blob/master/Ch15_lengths.v">Chapter 15</a>)</a>:
+<pre class='comment'>
+A synthetic proof in the context of Tarski's axioms.
+</pre>
+<pre class='statement'>
+Lemma pythagoras :
+ forall O E E' A B C AC BC AB AC2 BC2 AB2, 
+  O<>E ->
+  Per A C B ->
+  length O E E' A B AB ->
+  length O E E' A C AC ->
+  length O E E' B C BC ->
+  prod O E E' AC AC AC2 ->
+  prod O E E' BC BC BC2 ->
+  prod O E E' AB AB AB2 ->
+  sum  O E E' AC2 BC2 AB2.
+</pre>
+</p>
+
+<p class='statementinfo'>
 <strong class='author'>Frédérique Guilhot</strong>
 <span class='location'>(contribs/Sophia-Antipolis/HighSchoolGeometry/euclidien_classiques.v)</a>:
 <pre class='comment'></pre>
@@ -902,6 +923,19 @@ No known statement.
 
 <h3 id='65'><a href='http://www.cs.ru.nl/~freek/100/#65'>65. Isosceles Triangle Theorem</a></h3>
 <div>
+
+<p class='statementinfo'>
+<strong class='author'>GeoCoq team</strong>
+<span class='location'>(GeoCoq in <a href="https://github.com/GeoCoq/GeoCoq/blob/master/triangles.v">triangle.v</a>)</a>:
+<pre class='comment'></pre>
+<pre class='statement'>
+Lemma isosceles_conga :
+  A<>C -> A <> B ->
+  isosceles A B C ->
+  Conga C A B A C B.
+</pre>
+</p>
+
 <p class='statementinfo'>
 <strong class='author'>Frédérique Guilhot</strong>
 <span class='location'>(contribs/Sophia-Antipolis/HighSchoolGeometry/isocele.v)</a>:
@@ -1195,6 +1229,20 @@ http://dpt-info.u-strasbg.fr/~narboux/area_method.html</pre>
  on_inter_line_parallel C' A' X C A C ->
  parallel B C B' C'.</pre>
 </p>
+
+<p class='statementinfo'>
+<strong class='author'>Gabriel Braun</strong>
+<span class='location'>GeoCoq (<a href="https://github.com/GeoCoq/GeoCoq/blob/master/Ch13_6_Desargues_Hessenberg.v">Ch13_6_Desargues_Hessenberg.v </a>)</a>:
+<pre class='comment'>Hessenberg's proof following the book of Tarski.</pre>
+<pre class='statement'>Theorem Desargues :
+ forall A B C X A' B' C' : Point, A' <>C' -> A' <> B' ->
+ on_line A' X A ->
+ on_inter_line_parallel B' A' X B A B -> 
+ on_inter_line_parallel C' A' X C A C ->
+ parallel B C B' C'.</pre>
+</p>
+
+
 </div>
 
 
@@ -1232,6 +1280,10 @@ No known statement.
   forall x0 y0 x1 y1 x2 y2:R,
     dist_euc x0 y0 x1 y1 <= dist_euc x0 y0 x2 y2 + dist_euc x2 y2 x1 y1.</pre>
 </p>
+</pre>
+</p>
+
+
 </div>
 
 
