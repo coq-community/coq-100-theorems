@@ -128,6 +128,8 @@ Lemma Q_countable: CountableT Q.</pre>
 
 <h3 id='4'><a href='http://www.cs.ru.nl/~freek/100/#4'>4. Pythagorean Theorem</a></h3>
 <div>
+
+
 <p class='statementinfo'>
 <strong class='author'>Frédérique Guilhot</strong>
 <span class='location'>(contribs/Sophia-Antipolis/HighSchoolGeometry/euclidien_classiques.v)</a>:
@@ -137,6 +139,28 @@ Lemma Q_countable: CountableT Q.</pre>
  orthogonal (vec A B) (vec A C) <->
  Rsqr (distance B C) = Rsqr (distance A B) + Rsqr (distance A C) :>R.</pre>
 </p>
+
+<p class='statementinfo'>
+<strong class='author'>Gabriel Braun</strong>
+<span class='location'>(GeoCoq in <a href="https://github.com/GeoCoq/GeoCoq/blob/master/Tarski_dev/Ch15_lengths.v">Chapter 15</a>)</a>:
+<pre class='comment'>
+A synthetic proof in the context of Tarski's axioms.
+</pre>
+<pre class='statement'>
+Lemma pythagoras :
+ forall O E E' A B C AC BC AB AC2 BC2 AB2, 
+  O<>E ->
+  Per A C B ->
+  length O E E' A B AB ->
+  length O E E' A C AC ->
+  length O E E' B C BC ->
+  prod O E E' AC AC AC2 ->
+  prod O E E' BC BC BC2 ->
+  prod O E E' AB AB AB2 ->
+  sum  O E E' AC2 BC2 AB2.
+</pre>
+</p>
+
 </div>
 
 
@@ -458,6 +482,32 @@ Lemma arctan_series : forall c : IR,
  image_angle pi :>AV.
 </pre>
 </p>
+
+<p class='statementinfo'>
+<strong class='author'>Boutry, Gries, Narboux</strong>
+<span class='location'>(https://github.com/GeoCoq/GeoCoq/blob/master/Meta_theory/Parallel_postulates/Euclid.v)</a>:
+<pre class='comment'>
+It is shown that the sum of angles is two rights is equivalent to other versions of the parallel postulate.
+</pre>
+<pre class='statement'>
+Theorem parallel_postulates_assuming_greenberg_s_postulate :
+ greenberg_s_postulate ->
+ all_equiv  (tarski_s_parallel_postulate::
+             triangle_circumscription_principle::
+             playfair_s_postulate::
+             perpendicular_transversal_postulate::
+             postulate_of_parallelism_of_perpendicular_tranversals::
+             proclus_postulate::
+             postulate_of_transitivity_of_parallelism::
+             strong_parallel_postulate::
+             euclid_5::
+             midpoints_converse_postulate::
+             alternate_interior_angles_postulate::
+             playfair_bis::
+             triangle_postulate::nil).
+</pre>
+</p>
+
 </div>
 
 
@@ -902,6 +952,8 @@ No known statement.
 
 <h3 id='65'><a href='http://www.cs.ru.nl/~freek/100/#65'>65. Isosceles Triangle Theorem</a></h3>
 <div>
+
+
 <p class='statementinfo'>
 <strong class='author'>Frédérique Guilhot</strong>
 <span class='location'>(contribs/Sophia-Antipolis/HighSchoolGeometry/isocele.v)</a>:
@@ -909,6 +961,19 @@ No known statement.
 <pre class='statement'>Lemma isocele_angles_base :
  isocele A B C -> cons_AV (vec B C) (vec B A) = cons_AV (vec C A) (vec C B).</pre>
 </p>
+
+<p class='statementinfo'>
+<strong class='author'>GeoCoq team</strong>
+<span class='location'>(GeoCoq in <a href="https://github.com/GeoCoq/GeoCoq/blob/master/Highschool/triangles.v">triangle.v</a>)</a>:
+<pre class='comment'></pre>
+<pre class='statement'>
+Lemma isosceles_conga :
+  A<>C -> A <> B ->
+  isosceles A B C ->
+  Conga C A B A C B.
+</pre>
+</p>
+
 </div>
 
 
@@ -1186,7 +1251,7 @@ No known statement.
 </p>
 <strong class='author'>Julien Narboux</strong>
 <span class='location'>(contribs/Rocq/AreaMethod/examples_2.v)</a>:
-<pre class='comment'>proved with the area_method tactic.
+<pre class='comment'>Proved with the area_method tactic.
 http://dpt-info.u-strasbg.fr/~narboux/area_method.html</pre>
 <pre class='statement'>Theorem Desargues :
  forall A B C X A' B' C' : Point, A' <>C' -> A' <> B' ->
@@ -1195,6 +1260,31 @@ http://dpt-info.u-strasbg.fr/~narboux/area_method.html</pre>
  on_inter_line_parallel C' A' X C A C ->
  parallel B C B' C'.</pre>
 </p>
+
+<p class='statementinfo'>
+<strong class='author'>Gabriel Braun</strong>
+<span class='location'>GeoCoq (<a href="https://github.com/GeoCoq/GeoCoq/blob/master/Ch13_6_Desargues_Hessenberg.v">Ch13_6_Desargues_Hessenberg.v </a>)</a>:
+<pre class='comment'>Hessenberg's proof following the book of Tarski.</pre>
+<pre class='statement'>
+Lemma l13_15 : forall A B C A' B' C' O ,
+  ~Col A B C ->
+  Par_strict A B A' B' ->
+  Par_strict A C A' C' ->
+  Col O A A' ->
+  Col O B B' ->
+  Col O C C' ->
+  Par B C B' C'.
+
+Lemma l13_18 : forall A B C A' B' C' O,
+  ~Col A B C /\ Par_strict A B A' B' /\  Par_strict A C A' C' ->
+  (Par_strict B C B' C' /\ Col O A A' /\ Col O B B' -> Col O C C') /\ 
+  ((Par_strict B C B' C' /\ Par A A' B B') ->
+  (Par C C' A A' /\ Par C C' B B'))  /\
+  (Par A A' B B' /\ Par A A' C C' -> Par B C B' C').
+</pre>
+</p>
+
+
 </div>
 
 
