@@ -31,9 +31,9 @@ hr.clear {
 }
 
 h1 {
-  font-family:georgia, times;
+  /* font-family:georgia, times; */
   text-align:center;
-  font-variant: small-caps;
+  /* font-variant: small-caps; */
 }
 
 h3 {
@@ -87,3 +87,7 @@ pre {
     white-space: -o-pre-wrap;    /* Opera 7 */
     word-wrap: break-word;       /* Internet Explorer 5.5+ */
 }
+
+/* .unknowntitle>a{color:grey;} */
+.unknown{color:grey;display:none;}
+h3{margin-top:2em;}
