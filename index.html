@@ -429,7 +429,7 @@ End CSB.</pre>
 <div>
 <p class='statementinfo'>
 <strong class='author'>Guillaume Allais</strong>
-<span class='location'>(theories/Reals/Ratan.v)</span>:
+(in <a class='location' href="https://coq.inria.fr/library/Coq.Reals.Ratan.html">standard library, Reals/Ratan</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Lemma PI_2_aux : {z : R | 7 / 8 <= z <= 7 / 4 /\ - cos z = 0}.
 Definition PI := 2 * proj1_sig PI_2_aux.
@@ -477,26 +477,44 @@ Lemma arctan_series : forall c : IR,
 
 <p class='statementinfo'>
 <strong class='author'>Boutry, Gries, Narboux</strong>
-<span class='location'>(https://github.com/GeoCoq/GeoCoq/blob/master/Meta_theory/Parallel_postulates/Euclid.v)</span>:
+(in <a class='location' href="https://github.com/GeoCoq/GeoCoq/blob/master/Meta_theory/Parallel_postulates/Euclid.v#L358">GeoCoq/Meta_theory/Parallel_postulates/Euclid</a>):
 <pre class='comment'>
 It is shown that the sum of angles is two rights is equivalent to other versions of the parallel postulate.
 </pre>
-<pre class='statement'>
-Theorem parallel_postulates_assuming_greenberg_s_postulate :
- greenberg_s_postulate ->
- all_equiv  (tarski_s_parallel_postulate::
-             triangle_circumscription_principle::
-             playfair_s_postulate::
-             perpendicular_transversal_postulate::
-             postulate_of_parallelism_of_perpendicular_tranversals::
-             proclus_postulate::
-             postulate_of_transitivity_of_parallelism::
-             strong_parallel_postulate::
-             euclid_5::
-             midpoints_converse_postulate::
-             alternate_interior_angles_postulate::
-             playfair_bis::
-             triangle_postulate::nil).
+<pre class='statement'>Theorem equivalent_parallel_postulates_assuming_greenberg_s_postulate :
+  greenberg_s_postulate ->
+  all_equiv
+    (alternate_interior_angles_postulate::
+     alternative_playfair_s_postulate::
+     alternative_proclus_postulate::
+     alternative_strong_parallel_postulate::
+     consecutive_interior_angles_postulate::
+     euclid_5::
+     euclid_s_parallel_postulate::
+     existential_playfair_s_postulate::
+     existential_thales_postulate::
+     inverse_projection_postulate::
+     midpoint_converse_postulate::
+     perpendicular_transversal_postulate::
+     playfair_s_postulate::
+     posidonius_postulate::
+     postulate_of_existence_of_a_right_lambert_quadrialteral::
+     postulate_of_existence_of_a_right_saccheri_quadrialteral::
+     postulate_of_existence_of_a_triangle_whose_angles_sum_to_2_rights::
+     postulate_of_existence_of_similar_triangles::
+     postulate_of_parallelism_of_perpendicular_transversals::
+     postulate_of_right_lambert_quadrilaterals::
+     postulate_of_right_saccheri_quadrilaterals::
+     postulate_of_transitivity_of_parallelism::
+     proclus_postulate::
+     proclus_second_postulate::
+     strong_parallel_postulate::
+     tarski_s_parallel_postulate::
+     thales_postulate::
+     thales_converse_postulate::
+     triangle_circumscription_principle::
+     triangle_postulate::
+     nil).
 </pre>
 </p>
 
@@ -536,7 +554,7 @@ Lemma hexamy_prop: pappus_strong -> forall A B C D E F,
 <div>
 <p class='statementinfo'>
 <strong class='author'>CertiGeo team, marelle project</strong>
-<span class='location'>(http://www-sop.inria.fr/marelle/CertiGeo/feuerbach.html)</span>:
+(in <a class='location' href="http://www-sop.inria.fr/marelle/CertiGeo/feuerbach.html">CertiGeo/feuerbach</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Lemma Feuerbach:  forall A B C A1 B1 C1 O A2 B2 C2 O2:point,
   forall r r2:R,
@@ -568,7 +586,9 @@ Lemma hexamy_prop: pappus_strong -> forall A B C D E F,
 <div>
 <p class='statementinfo'>
 <strong class='author'>The Coq development team</strong>
-<span class='location'>(theories/Sets/Image.v, Infinite_sets.v)</span>:
+(in standard library,
+<a class='location' href="https://coq.inria.fr/library/Coq.Sets.Image.html">Sets/Image</a> and 
+<a class='location' href="https://coq.inria.fr/library/Coq.Sets.Infinite_sets.html">Sets/Infinite_sets</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Theorem Pigeonhole :
   forall (A:Ensemble U) (f:U -> V) (n:nat),
@@ -599,7 +619,7 @@ Theorem Pigeonhole_ter :
     { i : nat & { j : nat | i < j < n /\ f i = f j } }.</pre>
 </p>
 <strong class='author'>Frédéric Blanqui</strong>
-<span class='location'>(http://color.inria.fr/doc/CoLoR.Util.Set.Ramsey.html)</span>:
+(in <a class='location' href="http://color.inria.fr/doc/CoLoR.Util.Set.Ramsey.html">CoLoR/Util/Set/Ramsey</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Theorem ramsey A (W : set A) n (P : Pinf W) B : forall (C : Pf B)
   (f : Pcard P (S n) -> elts C), Proper (Pcard_equiv ==> elts_eq) f ->
@@ -612,7 +632,7 @@ Theorem Pigeonhole_ter :
 <div>
 <p class='statementinfo'>
 <strong class='author'>Georges Gonthier, Benjamin Werner</strong>
-<span class='location'>(https://github.com/kik/Four-Color-Theorem-Maintenance/blob/master/coq/fourcolor.v)</span>:
+(on <a class='location' href="https://github.com/kik/Four-Color-Theorem-Maintenance/blob/master/coq/fourcolor.v">github</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Theorem four_color : forall m : map R, simple_map m -> map_colorable 4 m.</pre>
 </p>
@@ -685,7 +705,7 @@ Theorem Pigeonhole_ter :
 <div>
 <p class='statementinfo'>
 <strong class='author'>Daniel de Rauglaudre</strong>
-<span class='location'>(https://gforge.inria.fr/plugins/scmgit/cgi-bin/gitweb.cgi?p=puiseuxth/puiseuxth.git;a=blob;f=coq/Puiseux.v;h=af46c812b5cb9527d82570db34e5a8bdd703fceb;hb=HEAD     (login anonsvn / anonsvn))</span>:
+(on <a class='location' href="https://gforge.inria.fr/plugins/scmgit/cgi-bin/gitweb.cgi?p=puiseuxth/puiseuxth.git;a=blob;f=coq/Puiseux.v;h=af46c812b5cb9527d82570db34e5a8bdd703fceb;hb=HEAD">gforge</a> (use login anonsvn / anonsvn if needed)):
 <pre class='comment'></pre>
 <pre class='statement'>Theorem puiseux_series_algeb_closed : ? (pol : polynomial (puiseux_series ?)),
   degree (ps_zerop R) pol ? 1
@@ -698,7 +718,7 @@ Theorem Pigeonhole_ter :
 <div>
 <p class='statementinfo'>
 <strong class='author'>Coqtail</strong>
-<a href="https://coqtail.github.io/doc/Coqtail.Reals.Triangular.html" class='location'>(Coqtail/Reals/Triangular)</a>:
+(in <a href="https://coqtail.github.io/doc/Coqtail.Reals.Triangular.html" class='location'>Coqtail/Reals/Triangular</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Lemma sum_reciprocal_triangular : Rser_cv (fun n => / triangle (S n)) 2.</pre>
 </p>
@@ -764,13 +784,14 @@ Theorem Newton : forall n a b, (a + b) ^ n == newton_sum n a b.</pre>
 </div>
 
 
-<h3 id='49'><a href='http://www.cs.ru.nl/~freek/100/#49'>49. The Cayley-Hamilton Thoerem</a></h3>
+<h3 id='49'><a href='http://www.cs.ru.nl/~freek/100/#49'>49. The Cayley-Hamilton Theorem</a></h3>
 <div>
 <p class='statementinfo'>
 <strong class='author'>Sidi Ould Biha</strong>
-<span class='location'>(contribs/Saclay/Ssreflect/theories/charpoly.v)</span>:
+(in <a class='location' href="https://github.com/math-comp/math-comp/blob/master/mathcomp/algebra/mxpoly.v#L412">mathcomp/algebra/mxpoly</a>):
 <pre class='comment'></pre>
-<pre class='statement'>Theorem Cayley_Hamilton : forall A, (Zpoly (char_poly A)).[A] = 0.</pre>
+<pre class='statement'>Theorem Cayley_Hamilton (R : comRingType) n' (A : 'M[R]_n'.+1) :
+  horner_mx A (char_poly A) = 0.</pre>
 </p>
 </div>
 
@@ -785,7 +806,7 @@ Theorem Newton : forall n a b, (a + b) ^ n == newton_sum n a b.</pre>
 <div>
 <p class='statementinfo'>
 <strong class='author'>unknown (Inria, Microsoft)</strong>
-<span class='location'>(contribs/Saclay/Ssreflect/theories/binomial.v)</span>:
+(in <a class='location' href="https://github.com/math-comp/math-comp/blob/master/mathcomp/ssreflect/binomial.v#L52">mathcomp/ssreflect/binomial</a>):
 <pre class='comment'>copyrighted:
 
 (c) Copyright Microsoft Corporation and Inria. All rights reserved.</pre>
@@ -803,16 +824,12 @@ Theorem Newton : forall n a b, (a + b) ^ n == newton_sum n a b.</pre>
 <div>
 <p class='statementinfo'>
 <strong class='author'>unknown (Inria, Microsoft)</strong>
-<span class='location'>(contribs/Saclay/Ssreflect/theories/finfun.v)</span>:
+(in <a class='location' href="https://github.com/math-comp/math-comp/blob/master/mathcomp/ssreflect/finset.v#L1530">mathcomp/ssreflect/finset</a>):
 <pre class='comment'></pre>
-<pre class='statement'>Variable eT : finType.
-Variable A : pred eT.
-Definition powerset := pffun_on false A predT.
-
-Lemma card_powerset : #|powerset| = 2 ^ #|A|.</pre>
+<pre class='statement'>Lemma card_powerset (T : finType) (A : {set T}) : #|powerset A| = 2 ^ #|A|.</pre>
 </p>
 <strong class='author'>Pierre Letouzey</strong>
-(<a class='location' href="https://gforge.inria.fr/scm/viewvc.php/coq-contribs/trunk/Orsay/FSets/PowerSet.v?view=markup#l214">in contribs/FSets/PowerSet</a>):
+(in <a class='location' href="https://gforge.inria.fr/scm/viewvc.php/coq-contribs/trunk/Orsay/FSets/PowerSet.v?view=markup#l214">contribs/FSets/PowerSet</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Lemma powerset_cardinal:
   forall s, MM.cardinal (powerset s) = two_power (M.cardinal s).</pre>
@@ -841,7 +858,7 @@ Lemma card_powerset : #|powerset| = 2 ^ #|A|.</pre>
 <div>
 <p class='statementinfo'>
 <strong class='author'>Loïc Pottier, Benjamin Grégoire, Laurent Théry</strong>
-<span class='location'>(http://www-sop.inria.fr/marelle/CertiGeo/chords.html)</span>:
+(in <a class='location' href="http://www-sop.inria.fr/marelle/CertiGeo/chords.html">CertiGeo/chords</a>):
 <pre class='comment'>The proof uses just two tactics. The first one transforms the goal into an algebraic statement and the second one generates and then checks a proof certificate.
 
 More information here: http://hal.inria.fr/inria-00504719_v1/</pre>
@@ -866,7 +883,7 @@ More information here: http://hal.inria.fr/inria-00504719_v1/</pre>
 <div>
 <p class='statementinfo'>
 <strong class='author'>Julien Narboux</strong>
-<a class='location' href="http://dpt-info.u-strasbg.fr/~narboux/AreaMethod/AreaMethod.pythagoras_difference_lemmas.html#herron_qin">AreaMethod.pythagoras_difference_lemmas</a>:
+(in <a class='location' href="http://dpt-info.u-strasbg.fr/~narboux/AreaMethod/AreaMethod.pythagoras_difference_lemmas.html#herron_qin">AreaMethod/pythagoras_difference_lemmas</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Definition Py A B C := A**B * A**B + B**C * B**C - A**C * A**C.
 
@@ -876,11 +893,11 @@ Lemma herron_qin : forall A B C,
 </p>
 </div>
 
-<h3 class="unknowntitle" id='58'><a href='http://www.cs.ru.nl/~freek/100/#58'>58. Formula for the Number of Combinations</a></h3>
+<h3 id='58'><a href='http://www.cs.ru.nl/~freek/100/#58'>58. Formula for the Number of Combinations</a></h3>
 <div>
 <p class='statementinfo'>
 <strong class='author'>Pierre Letouzey</strong>
-(<a class='location' href="https://gforge.inria.fr/scm/viewvc.php/coq-contribs/trunk/Orsay/FSets/PowerSet.v?view=markup#l261">in contribs/FSets/PowerSet</a>):
+(in <a class='location' href="https://gforge.inria.fr/scm/viewvc.php/coq-contribs/trunk/Orsay/FSets/PowerSet.v?view=markup#l261">contribs/FSets/PowerSet</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Lemma powerset_k_cardinal : forall s k, 
 MM.cardinal (powerset_k s k) = binomial (M.cardinal s) k.
@@ -1109,10 +1126,9 @@ Lemma Zgcd_is_gcd : forall a b, Zis_gcd a b (Zgcd a b).</pre>
 <div>
 <p class='statementinfo'>
 <strong class='author'>unknown (Laurent Théry?)</strong>
-<span class='location'>(contribs/Saclay/Ssreflect/theories/groups.v)</span>:
+(in <a class='location' href="https://github.com/math-comp/math-comp/blob/master/mathcomp/fingroup/fingroup.v#L1976">mathcomp/fingroup/fingroup</a>):
 <pre class='comment'></pre>
-<pre class='statement'>Theorem LaGrange : forall G H,
-  H \subset G -> (#|H| * #|G : H|)%N = #|G|.</pre>
+<pre class='statement'>Theorem Lagrange G H : H \subset G -> (#|H| * #|G : H|)%N = #|G|.</pre>
 </p>
 </div>
 
@@ -1121,7 +1137,7 @@ Lemma Zgcd_is_gcd : forall a b, Zis_gcd a b (Zgcd a b).</pre>
 <div>
 <p class='statementinfo'>
 <strong class='author'>Laurent Théry</strong>
-<span class='location'>(contribs/Saclay/Ssreflect/theories/sylow.v)</span>:
+(in <a class='location' href="https://github.com/math-comp/math-comp/blob/master/mathcomp/solvable/sylow.v#L91">mathcomp/solvable/sylow</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Theorem Sylow's_theorem :
   [/\ forall P, [max P | p.-subgroup(G) P] = p.-Sylow(G) P,
@@ -1395,7 +1411,7 @@ Lemma edivpP m d : edivp_spec m d (edivp m d).
 <div>
 <p class='statementinfo'>
 <strong class='author'>The Coq Development Team</strong>
-(<a class='location' href="https://github.com/coq/coq/blob/trunk/theories/Reals/Rgeom.v">theories/Reals/Rgeom</a>):
+(in <a class='location' href="https://github.com/coq/coq/blob/trunk/theories/Reals/Rgeom.v">standard library, Reals/Rgeom</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Lemma triangle :
   forall x0 y0 x1 y1 x2 y2:R,
