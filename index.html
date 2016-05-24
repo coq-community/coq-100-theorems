@@ -51,7 +51,6 @@
 	     <a href='#50' title='The Number of Platonic Solids'>50</a>
 	     <a href='#54' title='Konigsberg Bridges Problem'>54</a>
 	     <a href='#56' title='The Hermite-Lindemann Transcendence Theorem'>56</a>
-	     <a href='#58' title='Formula for the Number of Combinations'>58</a>
 	     <a href='#59' title='The Laws of Large Numbers'>59</a>
 	     <a href='#62' title='Fair Games Theorem'>62</a>
 	     <a href='#70' title='The Perfect Number Theorem'>70</a>
@@ -877,14 +876,17 @@ Lemma herron_qin : forall A B C,
 </p>
 </div>
 
-
-
-
 <h3 class="unknowntitle" id='58'><a href='http://www.cs.ru.nl/~freek/100/#58'>58. Formula for the Number of Combinations</a></h3>
 <div>
-<span class="unknown">No known statement.</span>
+<p class='statementinfo'>
+<strong class='author'>Pierre Letouzey</strong>
+(<a class='location' href="https://gforge.inria.fr/scm/viewvc.php/coq-contribs/trunk/Orsay/FSets/PowerSet.v?view=markup#l261">in contribs/FSets/PowerSet</a>):
+<pre class='comment'></pre>
+<pre class='statement'>Lemma powerset_k_cardinal : forall s k, 
+MM.cardinal (powerset_k s k) = binomial (M.cardinal s) k.
+</pre>
+</p>
 </div>
-
 
 <h3 class="unknowntitle" id='59'><a href='http://www.cs.ru.nl/~freek/100/#59'>59. The Laws of Large Numbers</a></h3>
 <div>
