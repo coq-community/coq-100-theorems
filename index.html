@@ -441,7 +441,7 @@ Definition Alt_PI : R := 4 * (let (a,_) := exist_PI in a).
 Theorem Alt_PI_eq : Alt_PI = PI.</pre>
 </p>
 <strong class='author'>Luís Cruz-Filipe</strong>
-<span class='location'>(contribs/Nijmegen/CoRN/transc/MoreArcTan.v)</span>:
+(in <a class='location' href="https://github.com/c-corn/corn/blob/master/transc/MoreArcTan.v#L553">C-CoRN/transc/MoreArcTan</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Lemma ArcTan_one : ArcTan One[=]Pi[/]FourNZ.
 
@@ -641,7 +641,7 @@ Theorem Pigeonhole_ter :
 <div>
 <p class='statementinfo'>
 <strong class='author'>Luís Cruz-Filipe</strong>
-<span class='location'>(contribs/Nijmegen/CoRN/ftc/Taylor.v)</span>:
+(in <a class='location' href="https://github.com/c-corn/corn/blob/master/ftc/Taylor.v#L355">C-CoRN/ftc/Taylor</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Theorem Taylor : forall e, Zero [<] e -> forall Hb',
   {c : IR | Compact (Min_leEq_Max a b) c |
@@ -1022,12 +1022,12 @@ Lemma isosceles_conga :
 <div>
 <p class='statementinfo'>
 <strong class='author'>Luís Cruz-Filipe</strong>
-<span class='location'>(contribs/Nijmegen/CoRN/ftc/MoreFunSeries.v)</span>:
+(in <a class='location' href="https://github.com/c-corn/corn/blob/master/ftc/MoreFunSeries.v#L994">C-CoRN/ftc/MoreFunSeries</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Lemma fun_power_series_conv_IR :
   fun_series_convergent_IR
-    (olor ([--]One) One)
-    (fun (i:nat) => Fid IR{^}i).
+  (olor ([--][1]) [1])
+  (fun (i:nat) => Fid IR{^}i).
 </pre>
 </p>
 </div>
@@ -1175,7 +1175,7 @@ Lemma nat_ind :
 <div>
 <p class='statementinfo'>
 <strong class='author'>Luís Cruz-Filipe</strong>
-<span class='location'>(contribs/Nijmegen/CoRN/ftc/Rolle.v)</span>:
+(in <a class='location' href="https://github.com/c-corn/corn/blob/master/ftc/Rolle.v#L689">C-CoRN/ftc/Rolle</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Theorem Law_of_the_Mean : forall a b, I a -> I b -> forall e, Zero [<] e ->
  {x : IR | Compact (Min_leEq_Max a b) x | forall Ha Hb Hx,
