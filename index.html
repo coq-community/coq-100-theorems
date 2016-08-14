@@ -683,9 +683,20 @@ Theorem Pigeonhole_ter :
 </div>
 
 
-<h3 class="unknowntitle" id='38'><a href='http://www.cs.ru.nl/~freek/100/#38'>38. Arithmetic Mean/Geometric Mean</a></h3>
+<h3 id='38'><a href='http://www.cs.ru.nl/~freek/100/#38'>38. Arithmetic Mean/Geometric Mean</a></h3>
 <div>
-<span class="unknown">No known statement.</span>
+<p class='statementinfo'>
+<strong class='author'>Jean-Marie Madiot</strong>
+(in <a class='location' href="mean.v">mean.v</a>), using forward-backward induction:
+<pre class='comment'></pre>
+<pre class='statement'>Theorem geometric_arithmetic_mean a n :
+  O <> n ->
+  (forall i, lt i n -> 0 <= a i) ->
+  prod n a <= (sum n a / INR n) ^ n
+  /\
+  (prod n a = (sum n a / INR n) ^ n -> forall i, lt i n -> a i = a O).
+</pre>
+</p>
 </div>
 
 
