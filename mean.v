@@ -166,23 +166,11 @@ Qed.
 
 Definition shift {X} n (u : nat -> X) : nat -> X := fun i => u (plus i n).
 
-Fixpoint sum n u :=
-  (match n with
-    O => 0
-  | S n => u O + sum n (shift 1 u)
-  end)%R.
+Fixpoint sum n u := match n with O => 0 | S n => u O + sum n (shift 1 u) end.
 
-Fixpoint prod n u :=
-  (match n with
-    O => 1
-  | S n => u O * prod n (shift 1 u)
-  end)%R.
+Fixpoint prod n u := match n with O => 1 | S n => u O * prod n (shift 1 u) end.
 
-Fixpoint pow2 n :=
-  (match n with
-     O => 1
-   | S n => 2 * pow2 n
-   end)%nat.
+Fixpoint pow2 n := (match n with O => 1 | S n => 2 * pow2 n end)%nat.
 
 Lemma sum_ext n u v : (forall x, u x = v x) -> sum n u = sum n v.
 Proof.
@@ -374,11 +362,12 @@ Proof.
       omega.
 Qed.
 
-Theorem geometric_arithmetic_mean a n :
-  O <> n ->
-  (forall i, lt i n -> 0 <= a i) ->
-  prod n a <= (sum n a / INR n) ^ n /\
-  (prod n a = (sum n a / INR n) ^ n -> forall i, lt i n -> a i = a O).
+Theorem geometric_arithmetic_mean (a : nat -> R) (n : nat) :
+  n <> O ->
+  (forall i, (i < n)%nat -> 0 <= a i) ->
+  prod n a <= (sum n a / INR n) ^ n
+  /\
+  (prod n a = (sum n a / INR n) ^ n -> forall i, (i < n)%nat -> a i = a O).
 Proof.
   assert (H : exists k, lt n (pow2 k)).
   { exists n. induction n; simpl; omega. }

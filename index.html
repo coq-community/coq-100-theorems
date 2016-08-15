@@ -687,14 +687,14 @@ Theorem Pigeonhole_ter :
 <div>
 <p class='statementinfo'>
 <strong class='author'>Jean-Marie Madiot</strong>
-(in <a class='location' href="mean.v">mean.v</a>), using forward-backward induction:
+(in file <a class='location' href="mean.v">mean.v</a>, using forward-backward induction):
 <pre class='comment'></pre>
-<pre class='statement'>Theorem geometric_arithmetic_mean a n :
-  O <> n ->
-  (forall i, lt i n -> 0 <= a i) ->
+<pre class='statement'>Theorem geometric_arithmetic_mean (a : nat -> R) (n : nat) :
+  n <> O ->
+  (forall i, (i < n)%nat -> 0 <= a i) ->
   prod n a <= (sum n a / INR n) ^ n
   /\
-  (prod n a = (sum n a / INR n) ^ n -> forall i, lt i n -> a i = a O).
+  (prod n a = (sum n a / INR n) ^ n -> forall i, (i < n)%nat -> a i = a O).
 </pre>
 </p>
 </div>
