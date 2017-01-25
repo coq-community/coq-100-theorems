@@ -718,9 +718,9 @@ Theorem Pigeonhole_ter :
 <strong class='author'>Daniel de Rauglaudre</strong>
 (on <a class='location' href="https://gforge.inria.fr/plugins/scmgit/cgi-bin/gitweb.cgi?p=puiseuxth/puiseuxth.git;a=blob;f=coq/Puiseux.v;h=af46c812b5cb9527d82570db34e5a8bdd703fceb;hb=HEAD">gforge</a> (use login anonsvn / anonsvn if needed)):
 <pre class='comment'></pre>
-<pre class='statement'>Theorem puiseux_series_algeb_closed : ? (pol : polynomial (puiseux_series ?)),
-  degree (ps_zerop R) pol ? 1
-  ? ? s, (ps_pol_apply pol s = 0)%ps.</pre>
+<pre class='statement'>Theorem puiseux_series_algeb_closed : ∀ (pol : polynomial (puiseux_series α)),
+  degree (ps_zerop K) pol ≥ 1
+  → ∃ s, (ps_pol_apply pol s = 0)%ps.</pre>
 </p>
 </div>
 
