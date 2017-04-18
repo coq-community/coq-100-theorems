@@ -1227,7 +1227,19 @@ Lemma nat_ind :
 
 <h3 class="unknowntitle" id='78'><a href='http://www.cs.ru.nl/~freek/100/#78'>78. The Cauchy-Schwarz Inequality</a></h3>
 <div>
-<span class="unknown">No known statement.</span>
+<p class='statementinfo'>
+<strong class='author'>Daniel de Rauglaudre</strong>
+(in <a class='location' href="https://github.com/roglo/cauchy_schwarz">roglo/cauchy_schwarz</a>):
+<pre class='comment'></pre>
+<pre class='statement'>
+Notation "'Σ' ( i = b , e ) , g" := (summation b e (λ i, (g)%R)).
+Notation "u .[ i ]" := (List.nth (pred i) u 0%R).
+Cauchy_Schwarz_inequality
+     : ∀ (u v : list R) (n : nat),
+       (Σ (k = 1, n), (u.[k] * v.[k])²
+        ≤ Σ (k = 1, n), ((u.[k])²) * Σ (k = 1, n), ((v.[k])²))%R
+</pre>
+</p>
 </div>
 
 
