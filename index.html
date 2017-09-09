@@ -1498,7 +1498,18 @@ AD ? BC + AB ? CD = AC ? BD.</pre>
 
 <h3 class="unknowntitle" id='96'><a href='http://www.cs.ru.nl/~freek/100/#96'>96. Principle of Inclusion/Exclusion</a></h3>
 <div>
-<span class="unknown">No known statement.</span>
+<p class='statementinfo'>
+<strong class='author'>Jean-Marie Madiot</strong>
+(in file <a class='location' href="inclusionexclusion.v">inclusionexclusion.v</a>):
+<pre class='comment'></pre>
+<pre class='statement'>Theorem inclusion_exclusion (l : list set) :
+  cardinal (list_union l) =
+  sum
+    (map (fun l' => cardinal (list_intersection l') *
+                 alternating_sign (1 + length l'))
+         (filter nonempty (sublists l))).
+</pre>
+</p>
 </div>
 
 
