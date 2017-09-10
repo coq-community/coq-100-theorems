@@ -494,17 +494,8 @@ induction Hbc;
 Qed.
 
 Lemma lt_bad : forall a b, a < S b -> a = b \/ a < b.
-induction b.
-  intros; left.
-  induction a.
-  reflexivity.
-  inversion H.
-  apply False_ind.
-    inversion H2.
-intros.
-destruct a.
-  right; apply lt_0_S_n.
-admit.
+  intros a b H.
+  inversion H; subst; auto.
 Qed.  
 
 (*Lemma lt_antistable_by_S : forall a b, S a < S b -> a < b.
@@ -571,4 +562,4 @@ assert (qpos : 0 < q).
   exact (lt_0_S_n q).
 apply (sqrt2_not_rat_min (S q) q); [apply lt_n | exact qpos].
 Qed.
-Print sqrt2_not_rational.
+
