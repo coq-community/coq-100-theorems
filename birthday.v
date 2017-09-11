@@ -39,11 +39,6 @@ Fixpoint cartesian_product {A B} (xs : list A) (ys : list B) : list (A * B) :=
   | x :: xs => map (pair x) ys ++ cartesian_product xs ys
   end.
 
-Lemma cartesian_product_nil {A B} l : @cartesian_product A B l [] = [].
-Proof.
-  induction l; simpl; congruence.
-Qed.
-
 Fixpoint picks {A} n (l : list A) : list (list A) :=
   match n with
   | O => [[]]
@@ -117,29 +112,6 @@ Proof.
   simpl.
   destruct (appears a (snd a0)); reflexivity.
 Qed.
-
-Lemma collision_count_old :
-  forall l : list nat, collision l = false -> Forall (fun x1 : nat => count_occ Nat.eq_dec l x1 = 1) l.
-Proof.
-  intros l Hcol.
-  revert l Hcol.
-  induction l. constructor. constructor.
-  - simpl. destruct (Nat.eq_dec a a). 2:tauto.
-    f_equal.
-    simpl in Hcol. destruct (appears a l) eqn:Ha. discriminate.
-    clear -Ha.
-    induction l as [| b l IHl]. reflexivity. simpl.
-    simpl in Ha. destruct (a =? b) eqn:Eab. discriminate.
-    rewrite IHl; auto.
-    destruct (Nat.eq_dec b a); auto.
-    subst.
-    rewrite <-beq_nat_refl in Eab.
-    discriminate.
-  - simpl in Hcol.
-    destruct (appears a l) eqn:Ha. discriminate.
-    pose proof (IHl Hcol) as IH; clear IHl.
-    admit.
-Abort.
 
 Lemma appears_filter x l f :
   appears x l = false -> appears x (filter f l) = false.
