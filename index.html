@@ -1461,7 +1461,19 @@ Lemma edivpP m d : edivp_spec m d (edivp m d).
 
 <h3 class="unknowntitle" id='93'><a href='http://www.cs.ru.nl/~freek/100/#93'>93. The Birthday Problem</a></h3>
 <div>
-<span class="unknown">No known statement.</span>
+<p class='statementinfo'>
+<strong class='author'>Jean-Marie Madiot</strong>
+(in file <a class='location' href="birthday.v">birthday.v</a>):
+<pre class='comment'>Note: this formalization uses lists of natural numbers to model sets.</pre>
+<pre class='statement'>Theorem birthday_paradox :
+  let l := picks 23 (enumerate 365) in
+  2 * length (filter collision l) > length l.
+
+Theorem birthday_paradox_min :
+  let l := picks 22 (enumerate 365) in
+  2 * length (filter collision l) < length l.
+</pre>
+</p>
 </div>
 
 
