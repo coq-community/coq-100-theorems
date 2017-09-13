@@ -578,7 +578,17 @@ Lemma hexamy_prop: pappus_strong -> forall A B C D E F,
 
 <h3 class="unknowntitle" id='30'><a href='http://www.cs.ru.nl/~freek/100/#30'>30. The Ballot Problem</a></h3>
 <div>
-<span class="unknown">No known statement.</span>
+<p class='statementinfo'>
+<strong class='author'>Jean-Marie Madiot</strong>
+(in file <a class='location' href="ballot.v">ballot.v</a>):
+<pre class='comment'></pre>
+<pre class='statement'>Theorem bertrand_ballot p q :
+  let l := filter (fun votes => count_votes votes "A" =? p) (picks (p + q) ["A"; "B"]) in
+  p >= q ->
+  (p + q) * List.length (filter (throughout (wins "A" "B")) l) =
+  (p - q) * List.length (filter (wins "A" "B") l).
+</pre>
+</p>
 </div>
 
 
