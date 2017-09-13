@@ -873,7 +873,15 @@ Theorem Newton : forall n a b, (a + b) ^ n == newton_sum n a b.</pre>
 
 <h3 class="unknowntitle" id='54'><a href='http://www.cs.ru.nl/~freek/100/#54'>54. Konigsberg Bridges Problem</a></h3>
 <div>
-<span class="unknown">No known statement.</span>
+<p class='statementinfo'>
+<strong class='author'>Jean-Marie Madiot</strong>
+(in file <a class='location' href="konigsberg_bridges.v">konigsberg_bridges.v</a>):
+<pre class='comment'></pre>
+<pre class='statement'>Theorem konigsberg_bridges :
+  let E := [(0, 1); (0, 2); (0, 3); (1, 2); (1, 2); (2, 3); (2, 3)] in
+  forall p, path p -> eulerian E p -> False.
+</pre>
+</p>
 </div>
 
 
