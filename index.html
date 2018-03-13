@@ -687,9 +687,36 @@ Theorem Pigeonhole_ter :
 </div>
 
 
-<h3 class="unknowntitle" id='37'><a href='http://www.cs.ru.nl/~freek/100/#37'>37. The Solution of a Cubic</a></h3>
+<h3 id='37'><a href='http://www.cs.ru.nl/~freek/100/#37'>37. The Solution of a Cubic</a></h3>
 <div>
-<span class="unknown">No known statement.</span>
+<p class='statementinfo'>
+<strong class='author'>Frédéric Chardard</strong>
+(in file <a class='location' href="37.cardan3.v">37.cardan3.v</a>):
+<pre class='comment'></pre>
+<pre class='statement'>Theorem Cardan_Tartaglia : forall a1 a2 a3 :C,
+    let s := -a1 / 3 in
+    let p := a2 + 2 * s * a1 + 3 * pow s 2 in
+    let q := a3 + a2 * s + a1 * pow s 2 + pow s 3 in
+    (p <> 0 ->
+     let Delta := pow (q / 2) 2 + pow (p / 3) 3 in
+     let alpha := cubicroot (- (q / 2) + nroot 2 Delta) in
+     let beta := - (p / 3) / alpha in
+     let z1 := alpha + beta in
+     let z2 := alpha * CJ + beta * pow CJ 2 in
+     let z3 := alpha * pow CJ 2 + beta * CJ in
+     forall u : C,
+       (u - (s + z1)) * (u - (s + z2)) * (u - (s + z3))
+       = pow u 3 + a1 * pow u 2 + a2 * u + a3)
+    /\
+    (p = 0 ->
+     let z1 := - cubicroot q in
+     let z2 := z1 * CJ in
+     let z3 := z1 * pow CJ 2 in
+     forall u : C,
+       (u - (s + z1)) * (u - (s + z2)) * (u - (s + z3))
+       = pow u 3 + a1 * pow u 2 + a2 * u + a3).
+</pre>
+</p>
 </div>
 
 
