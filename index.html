@@ -331,20 +331,23 @@ Lemma Cexp_mult : forall a n, Cexp (INC n * a) = (Cexp a) ^ n.</pre>
 </div>
 
 
-<h3 id='20'><a href='http://www.cs.ru.nl/~freek/100/#20'>20. All Primes Equal the Sum of Two Squares</a></h3>
+<h3 id='20'><a href='http://www.cs.ru.nl/~freek/100/#20'>20. All Primes (= 1 mod 4) Equal the Sum of Two Squares</a></h3>
 <div>
 <p class='statementinfo'>
 <strong class='author'>Laurent Théry</strong>
-(in <a class='location' href="http://www.lix.polytechnique.fr/coq/pylons/contribs/files/SumOfTwoSquare/trunk/SumOfTwoSquare.TwoSquares.html">contribs/SumOfTwoSquare/TwoSquares</a>):  
+<!-- http://www.lix.polytechnique.fr/coq/pylons/contribs/files/SumOfTwoSquare/trunk/SumOfTwoSquare.TwoSquares.html -->
+(in <a class='location' href="https://github.com/coq-contribs/sum-of-two-square/blob/master/TwoSquares.v#L641">contribs/sum-of-two-square/TwoSquares</a>):  
 <pre class='comment'></pre>
-<pre class='statement'>Definition sum_of_two_squares :=
-   fun p => exists a , exists b , p = a * a + b * b.
+<pre class='statement'>
+Definition sum_of_two_squares :=
+  fun p => exists a , exists b , p = a * a + b * b.
 
-Theorem two_squares_sum:
- forall n,
- 0 <= n ->
- (forall p, prime p -> Zis_mod p 3 4 ->  Zeven (Zdiv_exp p n)) ->
-  sum_of_two_squares n.</pre>
+Theorem two_squares_exists:
+  forall p, prime p -> p = 2 \/ Zis_mod p 1 4 -> sum_of_two_squares p.</pre>
+
+also done in ssreflect available as an <a class='location' href="http://coq.io/opam/coq-mathcomp-sum-of-two-square.1.0.0.html">opam archive</a>:
+<pre class='statement'>Lemma sum2sprime p :
+  odd p -> prime p -> p \is a sum_of_two_square = (p %% 4 == 1).</pre>
 </p>
 </div>
 
