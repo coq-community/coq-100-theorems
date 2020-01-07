@@ -89,7 +89,7 @@ pre {
 }
 
 /* .unknowntitle>a{color:grey;} */
-.unknown{color:grey;display:none;}
+/* .unknown{color:grey;display:none;} */
 h3{margin-top:2em;}
 
 @media print { h2 { color:#000088; }  .middle{ border-top:none; } }
