@@ -132,7 +132,8 @@ Lemma pythagoras :
 <div>
 <p class='statementinfo'>
 <strong class='author'>Russell O'Connor</strong>
-(<a class='location' href="http://www.lix.polytechnique.fr/coq/pylons/contribs/files/Goedel/trunk/Goedel.goedel1.html">in contribs/Goedel/goedel1</a>, see <a class='location' href="http://r6.ca/Goedel/goedel1.html">description on r6.ca</a> and proof archive: <a href="http://r6.ca/Goedel/Goedel20050512.tar.gz">Goedel20050512.tar.gz</a>):
+(<a class='location' href="https://github.com/coq-contribs/goedel/blob/master/goedel1.v">in contribs/Goedel/goedel1</a>,
+see <a class='location' href="http://r6.ca/Goedel/goedel1.html">description on r6.ca</a> and proof archive: <a href="http://r6.ca/Goedel/Goedel20050512.tar.gz">Goedel20050512.tar.gz</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Theorem Goedel'sIncompleteness1st :
  wConsistent T ->
@@ -141,7 +142,7 @@ Lemma pythagoras :
    ~ SysPrf T (notH f) /\ (forall v : nat, ~ In v (freeVarFormula LNN f)).</pre>
 </p>
 <strong class='author'>Russell O'Connor</strong>
-(<a class='location' href="http://www.lix.polytechnique.fr/coq/pylons/contribs/files/Goedel/trunk/Goedel.goedel2.html">in contribs/Goedel/goedel2</a>):
+(<a class='location' href="https://github.com/coq-contribs/goedel/blob/master/goedel2.v">in contribs/Goedel/goedel2</a>):
 <pre class='comment'>Russell O'Connor proved the theorem under the assumption of the last two Hilbert-Bernays-Loeb derivability conditions.</pre>
 <pre class='statement'>Hypothesis HBL2 : forall f, SysPrf T (impH (box f) (box (box f))).
 Hypothesis HBL3 : forall f g, SysPrf T (impH (box (impH f g)) (impH (box f) (box g))).
@@ -208,7 +209,7 @@ SysPrf T Con -> Inconsistent LNT T.</pre>
 <div>
 <p class='statementinfo'>
 <strong class='author'>Jean-François Dufourd</strong>
-(in <a class='location' href="http://www.lix.polytechnique.fr/coq/pylons/contribs/files/EulerFormula/trunk/EulerFormula.Euler3.html">contribs/EulerFormula/Euler3</a>):
+(in <a class='location' href="https://github.com/coq-contribs/euler-formula/blob/master/Euler3.v">contribs/EulerFormula/Euler3</a>):
 <pre class='comment'>nc : number of connected components
 nv : number of vertices
 ne : number of edges
@@ -351,7 +352,7 @@ Theorem R_uncountable_strong : forall (f : nat -> R) (x y : R),
 <div>
 <p class='statementinfo'>
 <strong class='author'>David Delahaye</strong>
-(in <a class='location' href="http://www.lix.polytechnique.fr/coq/pylons/contribs/files/Fermat4/trunk/Fermat4.Pythagorean.html">contribs/Fermat4/Pythagorean</a>):
+(in <a class='location' href="https://github.com/coq-contribs/fermat4/blob/master/Pythagorean.v">contribs/Fermat4/Pythagorean</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Lemma pytha_thm3 : forall a b c : Z,
   is_pytha a b c -> Zodd a ->
@@ -374,7 +375,7 @@ Theorem R_uncountable_strong : forall (f : nat -> R) (x y : R),
 <div>
 <p class='statementinfo'>
 <strong class='author'>Hugo Herbelin</strong>
-(in <a class='location' href="http://www.lix.polytechnique.fr/coq/pylons/contribs/files/Schroeder/trunk/Schroeder.Schroeder.html">contribs/Schroeder/Schroeder</a>):
+(in <a class='location' href="https://github.com/coq-contribs/schroeder/blob/master/Schroeder.v">contribs/Schroeder/Schroeder</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Theorem Schroeder : A <=_card B -> B <=_card A -> A =_card B.</pre>
 </p>
@@ -494,7 +495,7 @@ It is shown that the sum of angles is two rights is equivalent to other versions
 <div>
 <p class='statementinfo'>
 <strong class='author'>Magaud and Narboux</strong>
-(in <a class='location' href="http://www.lix.polytechnique.fr/coq/pylons/contribs/files/ProjectiveGeometry/trunk/ProjectiveGeometry.Plane.hexamys.html">contribs/ProjectiveGeometry/plane/hexamys</a>):
+(in <a class='location' href="https://github.com/coq-contribs/projective-geometry/blob/master/Plane/hexamys.v">contribs/projective-geometry/Plane/hexamys</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Definition is_hexamy A B C D E F :=
   (A<>B / A<>C / A<>D / A<>E / A<>F /
@@ -732,7 +733,7 @@ camlp5.7.03 conf-gtksourceview.2 conf-m4.1 coq.8.7.0 coq-coquelicot.3.0.1 coq-ma
     (x + y) ^ n = sum_f_R0 (fun i:nat => C n i * x ^ i * y ^ (n - i)) n.</pre>
 </p>
 <strong class='author'>Laurent Thery & Jose C. Almeida</strong>
-(in <a class='location' href="http://www.lix.polytechnique.fr/coq/pylons/contribs/files/RSA/trunk/RSA.Binomials.html">contribs/RSA/Binomials</a>):
+(in <a class='location' href="https://github.com/coq-contribs/rsa/blob/master/Binomials.v">contribs/RSA/Binomials</a>):
 <pre class='comment'>For the type nat</pre>
 <pre class='statement'>Theorem exp_Pascal :
  forall a b n : nat,
@@ -803,7 +804,7 @@ Theorem Newton : forall n a b, (a + b) ^ n == newton_sum n a b.</pre>
 <pre class='statement'>Theorem Wilson : forall p, p > 1 -> prime p = (p %| ((p.-1)`!).+1).</pre>
 </p>
 <strong class='author'>Laurent Théry</strong>
-(in <a class='location' href="http://www.lix.polytechnique.fr/coq/pylons/contribs/files/SumOfTwoSquare/trunk/SumOfTwoSquare.Wilson.html">contribs/SumOfTwoSquare/Wilson</a>):
+(in <a class='location' href="https://github.com/coq-contribs/sum-of-two-square/blob/master/Wilson.v">contribs/sum-of-two-square/Wilson</a>):
 <pre class='comment'>licence: LGPL</pre>
 <pre class='statement'>Theorem wilson: forall p, prime p ->  Zis_mod (Zfact (p - 1)) (- 1) p.</pre>
 </p>
