@@ -74,6 +74,7 @@ Proof.
   pose proof base x y as L.
   apply sqrt_le_1 in L.
   rewrite sqrt_mult in L.
+  replace 4 with (2 * 2) in L by ring.
   do 2 rewrite sqrt_square in L.
   apply Rmult_le_compat_r with (r := / 2) in L.
   refine (Rle_trans _ _ _ _ L); clear L; apply Req_le.
@@ -102,6 +103,7 @@ Proof.
   intros px py n.
   pose proof base_strict x y n as L.
   apply sqrt_lt_1 in L.
+  replace 4 with (2 * 2) in L by ring.
   rewrite sqrt_mult in L.
   do 2 rewrite sqrt_square in L.
   apply Rmult_lt_compat_r with (r := / 2) in L.

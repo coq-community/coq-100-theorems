@@ -40,7 +40,14 @@ Proof.
   end. ring.
   rewrite mult_assoc.
   f_equal.
-  nia.
+  replace (S a - S b) with (a - b) by lia.
+  replace (S a - b) with (1 + (a - b)) by lia.
+  replace (a - S b) with (a - b - 1) by lia.
+  replace a with (b + 1 + (a - b - 1)) by lia.
+  generalize (a - b - 1); intros c.
+  replace (b + 1 + c - b - 1) with c by lia.
+  replace (b + 1 + c - b) with (c + 1) by lia.
+  ring.
 Qed.
 
 Import ListNotations.
@@ -506,7 +513,7 @@ Open Scope string_scope.
      - p votes for A   *)
 
 Theorem bertrand_ballot p q :
-  let l := filter (fun votes => count_votes votes "A" =? p) (picks (p + q) ["A"; "B"]) in
+  let l := filter (fun votes => count_votes votes "A" =? p)%nat (picks (p + q) ["A"; "B"]) in
   p >= q ->
   (p + q) * List.length (filter (throughout (wins "A" "B")) l) =
   (p - q) * List.length (filter (wins "A" "B") l).
@@ -547,4 +554,3 @@ Proof.
     intros l; f_equal. 2:now auto.
     unfold sumtrue. f_equal. rewrite <-A. auto.
 Qed.
-
