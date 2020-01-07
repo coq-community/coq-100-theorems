@@ -77,7 +77,7 @@ Definition same_cardinality (A:Set) (B:Set) :=
   }}.</pre>
 </p>
 <strong class='author'>Daniel Schepler</strong>
-(in <a class='location' href="http://www.lix.polytechnique.fr/coq/pylons/contribs/files/ZornsLemma/v8.4/ZornsLemma.CountableTypes.html">contribs/ZornsLemma/CountableTypes</a>):
+(in <a class='location' href="https://github.com/coq-community/zorns-lemma/blob/master/CountableTypes.v">coq-community/zorns-lemma/CountableTypes</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Inductive CountableT (X:Type) : Prop :=
   | intro_nat_injection: forall f:X->nat, injective f -> CountableT X.
@@ -192,9 +192,13 @@ SysPrf T Con -> Inconsistent LNT T.</pre>
 <div>
 <p class='statementinfo'>
   <strong class='author'>Russell O'Connor</strong>
-  (<a class='location' href="https://coq.inria.fr/cocorico/NotFinitePrimes">in cocorico</a>, compatible with coq 7.3):
-<!-- <pre class='comment'>(in coq 7.3)</pre> -->
+  <!-- (<a class='location' href="https://coq.inria.fr/cocorico/NotFinitePrimes">in cocorico</a>, compatible with coq 7.3): -->
+  (this old statement was formerly in cocorico, compatible with coq 7.3):
 <pre class='statement'>Theorem ManyPrimes : ~(EX l:(list Prime) | (p:Prime)(In p l)).</pre>
+</p>
+<p class='statementinfo'>
+  The one above was one of many. You should check out however this <a href="https://x80.org/rhino-coq/">interactive proof in you browser using JsCoq!</a>
+  <pre class='statement'>Lemma prime_above m : {p | m < p & prime p}.</pre>
 </p>
 </div>
 
@@ -375,12 +379,12 @@ Theorem R_uncountable_strong : forall (f : nat -> R) (x y : R),
 <div>
 <p class='statementinfo'>
 <strong class='author'>Hugo Herbelin</strong>
-(in <a class='location' href="https://github.com/coq-contribs/schroeder/blob/master/Schroeder.v">contribs/Schroeder/Schroeder</a>):
+(in <a class='location' href="https://github.com/coq-contribs/schroeder/blob/master/Schroeder.v">contribs/schroeder/Schroeder</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Theorem Schroeder : A <=_card B -> B <=_card A -> A =_card B.</pre>
 </p>
 <strong class='author'>Daniel Schepler</strong>
-(in <a class='location' href="http://www.lix.polytechnique.fr/coq/pylons/contribs/files/ZornsLemma/trunk/ZornsLemma.CSB.html">contribs/ZornsLemma/CSB</a>):
+(in <a class='location' href="https://github.com/coq-community/zorns-lemma/blob/master/CSB.v">coq-community/zorns-lemma/CSB</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Section CSB.
 Variable X Y:Type.
@@ -448,12 +452,12 @@ Lemma arctan_series : forall c : IR,
 
 <p class='statementinfo'>
 <strong class='author'>Boutry, Gries, Narboux</strong>
-(in <a class='location' href="https://github.com/GeoCoq/GeoCoq/blob/master/Meta_theory/Parallel_postulates/Euclid.v#L358">GeoCoq/Meta_theory/Parallel_postulates/Euclid</a>):
+(in <a class='location' href="https://github.com/GeoCoq/GeoCoq/blob/master/Meta_theory/Parallel_postulates/parallel_postulates.v">GeoCoq/Meta_theory/Parallel_postulates/Euclid</a>):
 <pre class='comment'>
 It is shown that the sum of angles is two rights is equivalent to other versions of the parallel postulate.
 </pre>
-<pre class='statement'>Theorem equivalent_parallel_postulates_assuming_greenberg_s_postulate :
-  greenberg_s_postulate ->
+<pre class='statement'>Theorem equivalent_postulates_assuming_greenberg_s_axiom :
+  greenberg_s_axiom ->
   all_equiv
     (alternate_interior_angles_postulate::
      alternative_playfair_s_postulate::
@@ -467,12 +471,13 @@ It is shown that the sum of angles is two rights is equivalent to other versions
      inverse_projection_postulate::
      midpoint_converse_postulate::
      perpendicular_transversal_postulate::
+     postulate_of_transitivity_of_parallelism::
      playfair_s_postulate::
      posidonius_postulate::
-     posidonius_second_postulate::
+     universal_posidonius_postulate::
      postulate_of_existence_of_a_right_lambert_quadrilateral::
      postulate_of_existence_of_a_right_saccheri_quadrilateral::
-     postulate_of_existence_of_a_triangle_whose_angles_sum_to_2_rights::
+     postulate_of_existence_of_a_triangle_whose_angles_sum_to_two_rights::
      postulate_of_existence_of_similar_triangles::
      postulate_of_parallelism_of_perpendicular_transversals::
      postulate_of_right_lambert_quadrilaterals::
@@ -879,7 +884,7 @@ More information here: http://hal.inria.fr/inria-00504719_v1/</pre>
 <div>
 <p class='statementinfo'>
 <strong class='author'>Sophie Bernard</strong>
-(on <a class='location' href="https://github.com/Sobernard/Lindemann/blob/master/seq_Lind.v">github</a>. See <a class='location' href="http://www-sop.inria.fr/marelle/lindemann/">installation instructions</a>):
+(on <a class='location' href="https://github.com/Sobernard/Lindemann/blob/master/LindemannTheorem.v">github</a>. See <a class='location' href="http://www-sop.inria.fr/marelle/lindemann/">installation instructions</a>):
 <pre class='comment'></pre>
 <pre class='statement'>
 Theorem HermiteLindemann (x : complexR) :
@@ -1255,8 +1260,7 @@ Cauchy_Schwarz_inequality
 <div>
 <p class='statementinfo'>
 <strong class='author'>unknown (Inria, Microsoft)</strong>
-<!-- <span class='location'>(contribs/Saclay/Ssreflect/theories/prime.v)</span>: -->
-(<a class='location' href="http://ssr.msr-inria.inria.fr/~jenkins/current/mathcomp.ssreflect.prime.html#divisors_correct">ssreflect/prime</a>):
+(<a class='location' href="https://math-comp.github.io/htmldoc/mathcomp.ssreflect.prime.html#divisors_correct">ssreflect/prime</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Lemma divisors_correct : forall n, n > 0 ->
   [/\ uniq (divisors n), sorted leq (divisors n)
@@ -1364,7 +1368,7 @@ http://dpt-info.u-strasbg.fr/~narboux/area_method.html</pre>
 
 <p class='statementinfo'>
 <strong class='author'>Gabriel Braun</strong>
-(<a class="location" href="https://github.com/GeoCoq/GeoCoq/blob/master/Ch13_6_Desargues_Hessenberg.v">GeoCoq/Ch13_6_Desargues_Hessenberg</a>):
+(<a class="location" href="https://geocoq.github.io/GeoCoq/html/GeoCoq.Tarski_dev.Ch13_6_Desargues_Hessenberg.html">GeoCoq/Ch13_6_Desargues_Hessenberg</a>):
 <pre class='comment'>Hessenberg's proof following the book of Tarski.</pre>
 <pre class='statement'>
 Lemma l13_15 : forall A B C A' B' C' O ,
@@ -1512,7 +1516,7 @@ AD ? BC + AB ? CD = AC ? BD.</pre>
 <div>
 <p class='statementinfo'>
 <strong class='author'>Georges Gonthier et al.</strong>
-(<a class='location' href="http://coqfinitgroup.gforge.inria.fr/doc/matrix.html">coqfinitgroup/matrix</a>):
+(<a class='location' href="https://math-comp.github.io/htmldoc/mathcomp.algebra.matrix.html">mathcomp.algebra.matrix</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Lemma mul_mx_adj : forall n (A : 'M[R]_n), A *m \adj A = (\det A)%:M.
 
