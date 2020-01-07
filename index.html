@@ -599,39 +599,6 @@ Lemma hexamy_prop: pappus_strong -> forall A B C D E F,
 <h3 id='31'><a href='http://www.cs.ru.nl/~freek/100/#31'>31. Ramsey’s Theorem</a></h3>
 <div>
 <p class='statementinfo'>
-<strong class='author'>The Coq development team</strong>
-(in standard library,
-<a class='location' href="https://coq.inria.fr/library/Coq.Sets.Image.html">Sets/Image</a> and 
-<a class='location' href="https://coq.inria.fr/library/Coq.Sets.Infinite_sets.html">Sets/Infinite_sets</a>):
-<pre class='comment'></pre>
-<pre class='statement'>Theorem Pigeonhole :
-  forall (A:Ensemble U) (f:U -> V) (n:nat),
-    cardinal U A n ->
-    forall n':nat, cardinal V (Im A f) n' -> n' < n -> ~ injective f.
-
-Lemma Pigeonhole_principle :
-  forall (A:Ensemble U) (f:U -> V) (n:nat),
-    cardinal _ A n ->
-    forall n':nat,
-      cardinal _ (Im A f) n' ->
-      n' < n ->  exists x : _, (exists y : _, f x = f y /\ x <> y).
-
-Theorem Pigeonhole_bis :
-  forall (A:Ensemble U) (f:U -> V),
-    ~ Finite U A -> Finite V (Im U V A f) -> ~ injective U V f.
-
-Theorem Pigeonhole_ter :
-  forall (A:Ensemble U) (f:U -> V) (n:nat),
-    injective U V f -> Finite V (Im U V A f) -> Finite U A.
-</pre>
-</p>
-<strong class='author'>Jean-Marie Madiot (many versions by others)</strong>
-<span class='location'>(<a href="pigeonhole.v">pigeonhole.v</a>)</span>:
-<pre class='comment'>constructive version (the proof from the standard library uses excluded middle)</pre>
-<pre class='statement'>Theorem pigeonhole :
-  forall m n, m < n -> forall f, (forall i, f i < m) ->
-    { i : nat & { j : nat | i < j < n /\ f i = f j } }.</pre>
-</p>
 <strong class='author'>Frédéric Blanqui</strong>
 (in <a class='location' href="http://color.inria.fr/doc/CoLoR.Util.Set.Ramsey.html">CoLoR/Util/Set/Ramsey</a>):
 <pre class='comment'></pre>
