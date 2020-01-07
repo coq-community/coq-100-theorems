@@ -882,7 +882,7 @@ Theorem Newton : forall n a b, (a + b) ^ n == newton_sum n a b.</pre>
 <div>
 <p class='statementinfo'>
 <strong class='author'>unknown (Inria, Microsoft)</strong>
-(in <a class='location' href="https://github.com/math-comp/math-comp/blob/master/mathcomp/ssreflect/finset.v#L1530">mathcomp/ssreflect/finset</a>):
+(in <a class='location' href="https://github.com/math-comp/math-comp/blob/master/mathcomp/ssreflect/finset.v#L1542">mathcomp/ssreflect/finset</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Lemma card_powerset (T : finType) (A : {set T}) : #|powerset A| = 2 ^ #|A|.</pre>
 </p>
@@ -899,9 +899,12 @@ Theorem Newton : forall n a b, (a + b) ^ n == newton_sum n a b.</pre>
 <div>
 <p class='statementinfo'>
 <strong class='author'>Sophie Bernard and Laurence Rideau</strong>
-<span class='location'>()</span>:
+<span class='location'>(<a href="http://marelledocsgit.gforge.inria.fr/">archive
+available, also in coquelicot which is available in opam</a>)</span>:
 <pre class='comment'>The concept algebraicOver is available from the public release ssreflect-1.4, ratr is the type of rational numbers. The definition of PI is from the Coq standard library.</pre>
-<pre class='statement'>Theorem pi_transcendant : ~ (algebraicOver ratr (PI)%:C).</pre>
+<pre class='statement'>
+  Theorem pi_transcendental : ~algebraicOver ratr PI%:C.
+</pre>
 </p>
 </div>
 
