@@ -37,6 +37,7 @@
 		Show:
 		<input type="checkbox" checked onclick="javascript:if(this.checked) show_solved(); else hide_solved();"/><label>formalized</label>
 		<input type="checkbox" checked onclick="javascript:if(this.checked) show_unsolved(); else hide_unsolved();"/><label>not formalized</label>
+		<input type="checkbox" onclick="javascript:if(this.checked) show_others(); else hide_others();"/><label>all formalizations</label>
 	  </p>
 
 <h3 id='1' class='formalized'><a href='http://www.cs.ru.nl/~freek/100/#1'>1. The Irrationality of the Square Root of 2</a></h3>
@@ -1578,10 +1579,32 @@ for(let i of formalized)
 	  document.head.appendChild(style);
 	  return style.sheet;
     };
-	var sheet1 = sheet(), sheet2 = sheet();
+	var sheet1 = sheet(), sheet2 = sheet(), sheet3 = sheet();
 	function hide_solved()   { sheet1.insertRule('.formalized,.formalized+div{ display:none; }', 0); }
 	function hide_unsolved() { sheet2.insertRule('.notformalizedyet,.notformalizedyet+div{ display:none; }', 0); }
+	function hide_others()   { if(sheet3.rules.length) {sheet3.removeRule(1);sheet3.removeRule(0);} }
 	function show_solved()   { if(sheet1.rules.length) sheet1.removeRule(0); }
 	function show_unsolved() { if(sheet2.rules.length) sheet2.removeRule(0); }
+	function show_others()   {
+    sheet3.insertRule('.others{ display:block; }', 0);
+    sheet3.insertRule('.unknown {display:none;}', 1);
+  }
+
+/**
+to update, type this in freek's page and paste the result after proofs=
+JSON.stringify([...(function*() { for(let i = 1; i <= 100; i++) yield i; })()].map(id => document.getElementById(id).children[1] && [...document.getElementById(id).children[1].children].map(li => li.innerText.replace(/^([^,]*),.*$/, '$1'))))
+*/
+	let proofs=[["HOL Light","Isabelle","Metamath","Coq","Mizar","ProofPower","Lean","PVS","ACL2","NuPRL"],["HOL Light","Isabelle","Metamath","Coq","Mizar","ProofPower","Lean","PVS"],["HOL Light","Isabelle","Metamath","Coq","Mizar","ProofPower","Lean","PVS","NuPRL"],["HOL Light","Isabelle","Metamath","Coq","Mizar","ProofPower","PVS"],["HOL Light","Isabelle","Metamath"],["HOL Light","Isabelle","Coq","nqthm"],["HOL Light","Isabelle","Metamath","Coq","Mizar","Lean","nqthm"],["HOL Light","Isabelle"],["HOL Light","Isabelle","Metamath","ProofPower"],["HOL Light","Isabelle","Metamath","Coq","Mizar"],["HOL Light","Isabelle","Metamath","Coq","Mizar","ProofPower","Lean","PVS","ACL2"],["HOL Light","Isabelle"],["HOL Light","Coq","Mizar"],["HOL Light","Isabelle","Metamath","Coq","Mizar"],["HOL Light","Isabelle","Metamath","Coq","Mizar","ProofPower","PVS","ACL2"],null,["HOL Light","Isabelle","Metamath","Coq","Mizar","ProofPower","Lean"],["HOL Light","Isabelle","Metamath","Coq","Mizar"],["HOL Light","Isabelle","Metamath","Coq","Mizar","PVS"],["HOL Light","Isabelle","Metamath","Coq","Mizar","ProofPower","Lean","PVS"],["Isabelle"],["HOL Light","Isabelle","Metamath","Coq","Mizar","ProofPower","Lean"],["HOL Light","Isabelle","Metamath","Coq","Mizar","ProofPower"],["Lean"],["HOL Light","Isabelle","Metamath","Coq","Mizar","ProofPower","Lean"],["HOL Light","Isabelle","Metamath","Coq","Mizar","PVS"],["HOL Light","Isabelle","Metamath","Coq","Mizar"],["HOL Light","Coq","Mizar"],["HOL Light","Coq"],["HOL Light","Isabelle","Metamath","Coq","Mizar","ProofPower"],["HOL Light","Isabelle","Metamath","Coq","Mizar","ProofPower","PVS","nqthm","NuPRL"],["Coq"],null,["HOL Light","Isabelle","Metamath","Coq","Mizar","ProofPower","PVS"],["HOL Light","Isabelle","Metamath","Coq","Mizar","ProofPower","PVS","ACL2"],["HOL Light","Isabelle","Mizar"],["HOL Light","Isabelle","Metamath","Mizar"],["HOL Light","Isabelle","Metamath","Coq","Mizar","ProofPower","ACL2"],["HOL Light","Isabelle","Metamath","Mizar","Lean"],["HOL Light","Isabelle","ProofPower"],["Coq"],["HOL Light","Metamath","Coq","Mizar","ProofPower"],null,["HOL Light","Isabelle","Metamath","Coq","Mizar","ProofPower","Lean","ACL2","NuPRL"],["HOL Light","Isabelle","Metamath","Mizar"],["HOL Light","Isabelle","Metamath","Mizar"],["Isabelle"],["HOL Light","Isabelle","Metamath"],["HOL Light","Isabelle","Metamath","Coq"],["HOL Light"],["HOL Light","Isabelle","Metamath","Coq","Mizar","ProofPower","Lean","nqthm"],["HOL Light","Isabelle","Metamath","Coq","Mizar","ProofPower","Lean"],["Isabelle","Coq"],["HOL Light","Isabelle","Metamath","Coq","Mizar"],["HOL Light","Isabelle","Metamath","Coq","Mizar"],["Coq"],["HOL Light","Isabelle","Metamath","Coq","Mizar"],["HOL Light","Isabelle","Metamath","Coq","Mizar","ProofPower","Lean"],null,["HOL Light","Isabelle","Metamath","Coq","Mizar","ProofPower","Lean","ACL2","NuPRL"],["HOL Light","Metamath","Coq","Mizar"],null,["HOL Light","Isabelle","Metamath","Coq","Mizar","ProofPower","Lean","NuPRL"],["HOL Light","Isabelle","Metamath","Coq","Mizar","ProofPower"],["HOL Light","Isabelle","Metamath","Coq","Mizar"],["HOL Light","Isabelle","Metamath","Coq","Mizar","ProofPower","Lean","PVS","ACL2"],["HOL Light","Isabelle","Coq"],["HOL Light","Isabelle","Metamath","Coq","Mizar","ProofPower","Lean","PVS","ACL2"],["HOL Light","Isabelle","Metamath","Coq","Mizar","ProofPower","Lean","ACL2","NuPRL"],["HOL Light","Isabelle","Metamath","Mizar"],["HOL Light","Isabelle","Metamath","Coq","Mizar","ProofPower","Lean","PVS"],["HOL Light","Isabelle","Metamath","Coq","Mizar","Lean","PVS"],["HOL Light","Isabelle","Metamath","Coq","Mizar"],["HOL Light","Isabelle","Metamath","Coq","Mizar","ProofPower","Lean"],["HOL Light","Isabelle","Metamath","Coq","Mizar","ProofPower","PVS","ACL2"],["HOL Light","Isabelle","Metamath"],["HOL Light","Isabelle","Metamath"],["HOL Light","Isabelle","Metamath","Coq","Mizar","ProofPower","PVS"],["HOL Light","Isabelle","Metamath","Coq","Mizar","ProofPower","Lean","PVS","ACL2"],["HOL Light","Isabelle","Metamath","Coq","Mizar","ProofPower","Lean","PVS","ACL2","NuPRL"],["HOL Light","Isabelle","Metamath","ProofPower"],["Lean"],["HOL Light","Isabelle","Metamath","Mizar"],["HOL Light","Coq","Mizar"],["HOL Light","Isabelle","Metamath","Coq","Mizar","ProofPower"],["HOL Light","Isabelle","Metamath","Mizar","Lean"],["HOL Light","Isabelle","Metamath","Coq","Mizar"],["HOL Light","Isabelle","Metamath","Mizar"],["HOL Light","Isabelle","Metamath","Coq","Mizar","ProofPower","Lean"],["HOL Light","Isabelle","Metamath","Coq"],["HOL Light","Isabelle","Metamath","Coq","Mizar","ProofPower","PVS","ACL2"],["HOL Light"],["HOL Light","Isabelle","Metamath","Coq","Mizar","ProofPower"],["HOL Light","Isabelle","Metamath","Coq","Mizar","PVS"],["HOL Light","Isabelle","Metamath","Coq","Mizar"],["HOL Light","Isabelle","Metamath","Coq","Mizar","ProofPower","Lean"],["HOL Light","Isabelle","Metamath","Coq","Mizar"],["HOL Light","Isabelle","Metamath","Coq","Mizar"],["Isabelle","ProofPower"],["HOL Light","Isabelle","ProofPower"]];
+
+
+  let middle = document.getElementsByClassName('middle')[0];
+  for(let i = 1; i <= 100; i++) {
+    let text = '(no formalization yet)';
+    if(proofs[i-1]) text = proofs[i-1].filter(x=>x!=='Coq' || 1).join(', ');
+    let p = document.createElement('p');
+    p.className='others';
+    p.appendChild(document.createTextNode(text));
+    document.querySelector(`h3[id='${i}']+div`).appendChild(p);
+  }
   </script>
 </html>

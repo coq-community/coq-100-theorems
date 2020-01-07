@@ -88,9 +88,8 @@ pre {
     word-wrap: break-word;       /* Internet Explorer 5.5+ */
 }
 
-/* .unknowntitle>a{color:grey;} */
-/* .unknown{color:grey;display:none;} */
 h3{margin-top:2em;}
+.others{display:none;}
 
 @media print { h2 { color:#000088; }  .middle{ border-top:none; } }
 
