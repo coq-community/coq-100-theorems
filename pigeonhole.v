@@ -1,5 +1,14 @@
 Require Import Omega.
 
+(* We can know if there is some [i] such that [f i = k] if we restrict the search space. *)
+Lemma bounded_lookup f (k:nat) m : {i | i < m /\ f i = k} + ~ exists i, i < m /\ f i = k.
+Proof.
+  induction m. now right; intros [i [L _]]; inversion L.
+  destruct IHm as [[i Hi]|N]. now left; exists i; omega.
+  assert (D:{f m = k} + {f m <> k}) by eauto with *. destruct D. now subst; eauto.
+  right; intros [i Hi]. assert (D:i = m \/ i < m) by omega; intuition eauto. now subst; eauto.
+Defined.
+
 Theorem pigeonhole :
   forall m n, m < n -> forall f, (forall i, f i < m) ->
     { i : nat & { j : nat | i < j < n /\ f i = f j } }.
@@ -12,15 +21,6 @@ Proof.
   (* We do an induction on n (the base cases, for 1 and 2, are easy) *)
   destruct n. intros f L; specialize (L 0); exfalso; inversion L.
   induction n; intros f B. now pose proof conj (B 0) (B 1); exists 1; intuition; exists 0; intuition.
-  
-  (* We can know if there is some [i] such that [f i = k] if we restrict the search space. *)
-  Lemma bounded_lookup f (k:nat) m : {i | i < m /\ f i = k} + ~ exists i, i < m /\ f i = k.
-  Proof.
-    induction m. now right; intros [i [L _]]; inversion L.
-    destruct IHm as [[i Hi]|N]. now left; exists i; omega.
-    assert (D:{f m = k} + {f m <> k}) by eauto with *. destruct D. now subst; eauto.
-    right; intros [i Hi]. assert (D:i = m \/ i < m) by omega; intuition eauto. now subst; eauto.
-  Defined.
   
   (* If, for some i, [f i = f m] then it is easy: *)
   destruct (bounded_lookup f (f (S (S n))) (S (S n))) as [[i Hi]|J].
@@ -56,4 +56,4 @@ Defined.
 
 (* underlying functional *)
 Definition find m n (L:m < n) f (H:forall i, f i < m) :=
-  let p := pigeonhole m n L f H in (projT1 p, projT1 (projT2 p)).
+  let p := pigeonhole m n L f H in (projT1 p, proj1_sig (projT2 p)).
