@@ -6,4 +6,4 @@ all: $(vfiles:.v=.vo)
 	coqc $<
 
 clean:
-	rm -f *.vo *.glob .*.aux .lia.cache .nia.cache
+	rm -f *.vo *.vok *.vos *.glob .*.aux .lia.cache .nia.cache
