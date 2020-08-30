@@ -804,9 +804,8 @@ Theorem Newton : forall n a b, (a + b) ^ n == newton_sum n a b.</pre>
 <p class='statementinfo'>
 <strong class='author'>unknown (Inria, Microsoft)</strong>
 (in <a class='location' href="https://github.com/math-comp/math-comp/blob/master/mathcomp/ssreflect/binomial.v#L52">mathcomp/ssreflect/binomial</a>):
-<pre class='comment'>copyrighted:
-
-(c) Copyright Microsoft Corporation and Inria. All rights reserved.</pre>
+<pre class='comment'>(c) Copyright 2006-2016 Microsoft Corporation and Inria.
+Distributed under the terms of CeCILL-B.</pre>
 <pre class='statement'>Theorem Wilson : forall p, p > 1 -> prime p = (p %| ((p.-1)`!).+1).</pre>
 </p>
 <strong class='author'>Laurent Théry</strong>
@@ -1064,8 +1063,7 @@ Lemma isosceles_conga :
 <h3 id='67' class='formalized'><a href='http://www.cs.ru.nl/~freek/100/#67'>67. e is Transcendental</a></h3>
 <div>
 <p class='statementinfo'>
-<strong class='author'>Sophie Bernard and Laurence Rideau</strong>
-<span class='location'>()</span>:
+<strong class='author'>Sophie Bernard and Laurence Rideau</strong>:
 <pre class='comment'>The concept algebraicOver is available from the public release ssreflect-1.4, ratr is the type of rational numbers. The definition of exp is from the Coq standard library.
 </pre>
 <pre class='statement'>Theorem e_transcendant : ~ (algebraicOver ratr (exp 1)%:C).
