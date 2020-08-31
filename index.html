@@ -1217,7 +1217,17 @@ Lemma nat_ind :
 
 <h3 id='77' class='notformalizedyet'><a href='http://www.cs.ru.nl/~freek/100/#77'>77. Sum of kth powers</a></h3>
 <div>
-<span class="unknown">No known Coq formalization</span>
+<p class='statementinfo'>
+<strong class='author'>Frédéric Chardard</strong>
+(in file <a class='location' href="sumkthpowers.v">sumkthpowers.v</a>):
+<pre class='comment'></pre>
+<pre class='statement'>
+Lemma sum_kthpowers : forall r:nat, forall n:nat,
+  (0&lt;r)%nat->
+  sum_f_R0 (fun k => ((INR k)^r)%R) n
+  =((bernoulli_polynomial (S r) (INR n+1))-(bernoulli_polynomial (S r) 0))/(INR r+1).
+</pre>
+</p>
 </div>
 
 
@@ -1319,7 +1329,7 @@ Cauchy_Schwarz_inequality
 <div>
 <p class='statementinfo'>
 <strong class='author'>many versions</strong>
-<span class='location'>(<a href="div3.v">local</a>)</span>:
+<span class='location'>(<a href="div3.v">div3.v</a>)</span>:
 <pre class='comment'></pre>
 <pre class='statement'>Theorem div3 : forall n d,
   (number n d) mod 3 = (sumdigits n d) mod 3.
