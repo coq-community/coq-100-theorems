@@ -1,9 +1,16 @@
-vfiles=$(shell ls *.v)
+all: Makefile.coq
+	@+$(MAKE) -f Makefile.coq all
 
-all: $(vfiles:.v=.vo)
+clean: Makefile.coq
+	@+$(MAKE) -f Makefile.coq cleanall
+	@rm -f Makefile.coq Makefile.coq.conf
 
-%.vo:%.v
-	coqc $<
+Makefile.coq: _CoqProject
+	$(COQBIN)coq_makefile -f _CoqProject -o Makefile.coq
 
-clean:
-	rm -f *.vo *.vok *.vos *.glob .*.aux .lia.cache .nia.cache
+force _CoqProject Makefile: ;
+
+%: Makefile.coq force
+	@+$(MAKE) -f Makefile.coq $@
+
+.PHONY: all clean force
