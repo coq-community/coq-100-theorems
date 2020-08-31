@@ -1,0 +1,35 @@
+opam-version: "2.0"
+maintainer: "palmskog@gmail.com"
+version: "dev"
+
+homepage: "https://github.com/coq-community/coq100"
+dev-repo: "git+https://github.com/coq-community/coq100.git"
+bug-reports: "https://github.com/coq-community/coq100/issues"
+license: "MIT"
+
+synopsis: "Coq theorems from the list of 100 famous theorems"
+description: """
+[Freek Wiedijk's webpage](http://www.cs.ru.nl/~freek/100/) lists
+[100 famous theorems](http://pirate.shu.edu/~kahlnath/Top100.html)
+and how many of those have been formalised using proof assistants.
+This repository keeps track of the statements that have been proved
+using the [Coq proof assistant](https://coq.inria.fr/).
+
+You can see the list on [this webpage](https://madiot.fr/coq100)."""
+
+build: [make "-j%{jobs}%" ]
+install: [make "install"]
+depends: [
+  "coq" {(>= "8.10" & < "8.13~") | (= "dev")}
+  "coq-coquelicot" {>= "3.1.0"}
+]
+
+tags: [
+  "category:Mathematics/Algebra"
+  "keyword:famous theorems"
+  "logpath:Coq100"
+]
+authors: [
+  "Jean-Marie Madiot"
+  "Frédéric Chardard"
+]
