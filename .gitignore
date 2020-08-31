@@ -42,3 +42,5 @@
 *.native
 *.nia.cache
 *.lia.cache
+Makefile.coq
+Makefile.coq.conf
