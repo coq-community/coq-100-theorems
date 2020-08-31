@@ -1,16 +1,34 @@
 (*
+MIT License
+
+Copyright (c) 2017 Frédéric Chardard, Institut Camille Jordan /
+Université Jean Monnet de Saint-Etienne
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*)
+
+
+(*
 This file contains:
 _A construction of a nth-root of complex numbers.
 _A construction of a cubic root on C such that if the argument is real, then the result is also real.
 _A proof that Cardan-Tartaglia formula solves the general cubic equation in the field of complex numbers.
-
-Author: Frederic Chardard
-Institut Camille Jordan / Universite Jean Monnet de Saint-Etienne
-
-License:
-_As long as the author is properly credited, this file may be used, modified and included in other software.
-_This file may be used, modified and included without restriction in the Coquelicot, SSreflect and Coq projects.
-
 
 This file was checked by Coq without error with following configuration:
 
