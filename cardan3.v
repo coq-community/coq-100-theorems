@@ -353,7 +353,7 @@ apply Rmult_integral_contrapositive.
 split.
 apply Rmult_integral_contrapositive.
 split.
-admit (* apply Qreals.IZR_nz. *).
+apply Qreals.IZR_nz.
 rewrite Hequ.
 rewrite<-sqrt_0.
 intro.
@@ -383,7 +383,7 @@ apply Rmult_integral_contrapositive.
 split.
 apply Rmult_integral_contrapositive.
 split.
-admit. (* apply Qreals.IZR_nz. *)
+apply Qreals.IZR_nz.
 rewrite Hequ.
 apply Rgt_not_eq.
 apply sqrt_lt_R0.
@@ -425,7 +425,7 @@ assert (PI-PI/2=PI/2).
 field.
 rewrite H.
 apply PI2_RGT_0.
-Admitted.
+Qed.
 
 Lemma sinarg : forall x:R, forall y:R, sin(rargument x y)*sqrt(x^2+y^2)=y.
 assert(forall u:R, forall v:R, forall w:R, ((0<=u /\ 0<=w) \/ (u<=0 /\ w<=0)) -> 0<=v -> u²*v²=w² -> u*v=w).
@@ -1320,4 +1320,3 @@ field.
 Qed.
 
 (* Print Assumptions Cardan_Tartaglia. *)
-
