@@ -25,6 +25,7 @@ SOFTWARE.
 Require Import Arith.
 Require Import ZArith.
 Require Import List.
+Require Import Lia.
 Import ListNotations.
 
 Fixpoint appears x l :=
@@ -87,7 +88,7 @@ Proof.
   rewrite <-IHn.
   rewrite Nat2Z.inj_mul, Zlength_correct.
   reflexivity.
-  all: zify; omega.
+  all: zify; lia.
 Qed.
 
 Fixpoint partial_fact k n (* = n! / (n-k)! *) :=
@@ -212,7 +213,7 @@ Proof.
     {
       apply Forall_inv in Huniq.
       cut (Zlength l' + 1 = Zlength l)%Z.
-      { intros <-. omega. }
+      { intros <-. lia. }
       unfold l'.
       do 2 rewrite Zlength_correct.
       change 1%Z with (Z.of_nat 1).
@@ -224,7 +225,7 @@ Proof.
       rewrite <-IHl.
       unfold no.
       destruct (Nat.eq_dec b a).
-      - subst. rewrite <-beq_nat_refl. simpl. omega.
+      - subst. rewrite <-beq_nat_refl. simpl. lia.
       - replace (a =? b) with false; simpl. reflexivity.
         symmetry. apply Nat.eqb_neq. auto.
     }
@@ -259,7 +260,7 @@ Lemma length_filter {A} (f : A -> bool) l :
 Proof.
   unfold no.
   induction l; auto. simpl.
-  destruct (f a); simpl; omega.
+  destruct (f a); simpl; lia.
 Qed.
 
 Lemma Zlength_filter {A} (f : A -> bool) l :
@@ -267,7 +268,7 @@ Lemma Zlength_filter {A} (f : A -> bool) l :
 Proof.
   repeat rewrite Zlength_correct.
   rewrite <-(length_filter f l).
-  zify. omega.
+  zify. lia.
 Qed.
 
 Lemma enumerate_no_collisions n : collision (enumerate n) = false.
@@ -278,11 +279,11 @@ Proof.
   clear.
   intros a. induction a; intros b Hb.
   - reflexivity.
-  - simpl. rewrite IHa. 2:omega.
+  - simpl. rewrite IHa. 2:lia.
     replace (b =? a) with false; auto.
     symmetry.
     apply Nat.eqb_neq.
-    omega.
+    lia.
 Qed.
 
 Theorem birthday_paradox :

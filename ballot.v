@@ -41,15 +41,15 @@ Lemma recurrence a b Afirst Bfirst all Afirst_ahead Bfirst_ahead ahead :
   Afirst_ahead + Bfirst_ahead = ahead ->
   (a + b) * ahead = (a - b) * all.
 Proof.
-  destruct a. intros ? ?; exfalso; omega.
+  destruct a. intros ? ?; exfalso; lia.
   destruct b. inversion 1.
   simpl (S a - 1).
   simpl (S b - 1).
-  replace (S a - S b - 1) with (a - S b) by omega.
-  replace (b - 0) with b by omega.
-  replace (a - 0) with a by omega.
+  replace (S a - S b - 1) with (a - S b) by lia.
+  replace (b - 0) with b by lia.
+  replace (a - 0) with a by lia.
   intros _ L HA HB <- IHA IHB <-.
-  apply Nat.mul_cancel_l with (p := (a + S b)). omega.
+  apply Nat.mul_cancel_l with (p := (a + S b)). lia.
   match goal with |- ?x * (?y * ?z) = _ => transitivity (y * (x * z)) end. ring.
   rewrite Nat.mul_add_distr_l. rewrite IHA, IHB.
   rewrite Nat.mul_add_distr_l.
@@ -111,8 +111,8 @@ Notation length := length.
 
 Lemma countb_false l : countb false l = length l - countb true l.
 Proof.
-  cut (countb false l + countb true l = length l). omega.
-  induction l as [| [|] l IHl]; simpl; omega.
+  cut (countb false l + countb true l = length l). lia.
+  induction l as [| [|] l IHl]; simpl; lia.
 Qed.
 
 Definition winb votes := countb false votes <? countb true votes.
@@ -174,10 +174,10 @@ Lemma binomial_lt n p : n < p -> binomial n p = 0.
 Proof.
   revert p.
   induction n; intros [ | p ] H.
-  - omega.
+  - lia.
   - reflexivity.
-  - omega.
-  - simpl. rewrite IHn. 2:omega. rewrite IHn; omega.
+  - lia.
+  - simpl. rewrite IHn. 2:lia. rewrite IHn; lia.
 Qed.
 
 Lemma binomial_0_r n : binomial n 0 = 1.
@@ -187,38 +187,38 @@ Qed.
 
 Lemma binomial_1_r n : binomial n 1 = n.
 Proof.
-  induction n. reflexivity. simpl. rewrite binomial_0_r. omega.
+  induction n. reflexivity. simpl. rewrite binomial_0_r. lia.
 Qed.
 
 Lemma binomial_diag n : binomial n n = 1.
 Proof.
   induction n. reflexivity.
-  simpl. rewrite IHn. rewrite binomial_lt; omega.
+  simpl. rewrite IHn. rewrite binomial_lt; lia.
 Qed.
 
 Lemma binomial_factorial n k : k <= n -> fact k * fact (n - k) * binomial n k = fact n.
 Proof.
   revert k; induction n; intros [ | k].
   - reflexivity.
-  - omega.
-  - intros _. simpl. omega.
+  - lia.
+  - intros _. simpl. lia.
   - intros L. simpl (binomial _ _).
     rewrite Nat.mul_add_distr_l.
     replace (fact (S k) * fact (S n - S k) * binomial n k)
     with ((S k) * (fact k * fact (n - k) * binomial n k))
       by (simpl; ring).
-    rewrite IHn. 2:omega.
-    assert (D : k = n \/ k < n) by omega. destruct D as [D | D].
+    rewrite IHn. 2:lia.
+    assert (D : k = n \/ k < n) by lia. destruct D as [D | D].
     + subst k. rewrite binomial_lt; auto. simpl; ring.
-    + replace (S n - S k) with (S (n - S k)) by omega.
+    + replace (S n - S k) with (S (n - S k)) by lia.
       replace (fact (S k) * fact (S (n - S k)) * binomial n (S k))
       with (S (n - S k) * (fact (S k) * fact (n - S k) * binomial n (S k)))
         by (simpl; ring).
-      rewrite IHn. 2:omega.
+      rewrite IHn. 2:lia.
       rewrite <-Nat.mul_add_distr_r.
       change (fact (S n)) with (S n * fact n).
       apply Nat.mul_cancel_r. apply fact_neq_0.
-      omega.
+      lia.
 Qed.
 
 Lemma binomial_complement n k : k <= n -> binomial n k = binomial n (n - k).
@@ -229,8 +229,8 @@ Proof.
   { apply Nat.mul_cancel_l. subst x. apply Nat.neq_mul_0; split; apply fact_neq_0. }
   subst x.
   rewrite binomial_factorial; auto.
-  rewrite <-(binomial_factorial n (n - k)). 2:omega.
-  replace (n - (n - k)) with k by omega.
+  rewrite <-(binomial_factorial n (n - k)). 2:lia.
+  replace (n - (n - k)) with k by lia.
   ring.
 Qed.
 
@@ -250,7 +250,7 @@ Proof.
   rewrite binomial_factorial.
   rewrite binomial_factorial.
   simpl; ring.
-  omega.
+  lia.
   auto.
 Qed.
 
@@ -332,7 +332,7 @@ Proof.
   rewrite countb_false.
   rewrite Nat.ltb_lt.
   rewrite Nat.eqb_eq in *.
-  omega.
+  lia.
 Qed.
 
 Lemma pickbools_wins_minus p q :
@@ -341,8 +341,8 @@ Lemma pickbools_wins_minus p q :
   (p - q) * length (filter winb (filter (sumtrue p) (pickbools (p + q)))).
 Proof.
   intros L.
-  assert (D : q = p \/ q < p) by omega. destruct D as [D | D].
-  - replace (p - q) with 0 by omega. omega.
+  assert (D : q = p \/ q < p) by lia. destruct D as [D | D].
+  - replace (p - q) with 0 by lia. lia.
   - clear L. f_equal. f_equal. rewrite counting_wins; auto.
 Qed.
   
@@ -353,7 +353,7 @@ Lemma bertrand_ballot_bool_eq p q :
   (p + q) * length (filter (throughout winb) l) =
   (p - q) * length (filter winb l).
 Proof.
-  intros L <-. replace (p - p) with 0 by omega. simpl.
+  intros L <-. replace (p - p) with 0 by lia. simpl.
   match goal with |- ?a * ?b = 0 => cut (b = 0) end. intros ->; auto.
   rewrite pickbools_length.
   transitivity (length (filter (fun _ => false) (pickbools (p + p)))).
@@ -362,11 +362,11 @@ Proof.
     destruct (length x =? p + p) eqn:Hlen; auto. simpl.
     destruct (countb true x =? p) eqn:Hp; auto. simpl.
     rewrite Nat.eqb_eq in *.
-    destruct x. simpl in *. omega.
+    destruct x. simpl in *. lia.
     unfold throughout. simpl.
     unfold winb. rewrite countb_false.
     rewrite Hlen, Hp.
-    replace (p + p - p) with p by omega.
+    replace (p + p - p) with p by lia.
     rewrite Nat.ltb_irrefl.
     reflexivity.
   - generalize (pickbools (p + p)). generalize (list bool). clear.
@@ -387,10 +387,10 @@ Proof.
   induction n; intros p q L Heqn l.
   
   (** the case n = 0 is easy *)
-  { assert (p = 0) by omega. assert (q = 0) by omega. subst; simpl. reflexivity. }
+  { assert (p = 0) by lia. assert (q = 0) by lia. subst; simpl. reflexivity. }
 
   (** the case p = q is easy *)
-  assert (D : q = p \/ q < p) by omega. destruct D as [D | D].
+  assert (D : q = p \/ q < p) by lia. destruct D as [D | D].
   { subst l. rewrite Heqn.
     destruct p as [ | p ]. subst; reflexivity.
     apply (bertrand_ballot_bool_eq (S p) q); auto. }
@@ -399,10 +399,10 @@ Proof.
   destruct p as [ | p]; [ | destruct q as [ | q ] ].
   
   - (** case p = 0: trivial because p > q *)
-    omega.
+    lia.
   
   - (** case q = 0 *)
-    assert (n = p) by omega; subst n. f_equal.
+    assert (n = p) by lia; subst n. f_equal.
     subst l. clear. f_equal. rewrite pickbools_length.
     repeat rewrite filter_filter. apply filter_ext. intros x.
     destruct (length x =? S p) eqn:El. 2:reflexivity.
@@ -410,35 +410,35 @@ Proof.
     unfold sumtrue in Ep.
     rewrite Nat.eqb_eq in *.
     assert (F : countb false x = 0).
-    { rewrite countb_false. omega. }
+    { rewrite countb_false. lia. }
     assert (E : forall x, length x <> 0 -> countb false x = 0 -> winb x = true).
     { clear. intros. unfold winb. rewrite Nat.ltb_lt.
-      rewrite countb_false in *. omega. }
-    rewrite E; auto. 2:omega.
+      rewrite countb_false in *. lia. }
+    rewrite E; auto. 2:lia.
     assert (E' : forall x, length x <> 0 -> countb false x = 0 -> throughout winb x = true).
     {
       unfold throughout.
       clear -E. intros x L F. induction x as [| [ | ] l IHl].
       - tauto.
       - simpl.
-        rewrite E; try omega.
+        rewrite E; try lia.
         destruct l as [ | [ | ] l ].
         + reflexivity.
-        + apply IHl. simpl. omega. auto.
+        + apply IHl. simpl. lia. auto.
         + discriminate.
       - discriminate.
     }
-    apply E'. omega. auto.
+    apply E'. lia. auto.
   
   - (** case p, q > 0 *)
-    pose proof IHn (S p) q ltac:(omega) ltac:(omega) as Hsp.
-    pose proof IHn p (S q) ltac:(omega) ltac:(omega) as Hp.
+    pose proof IHn (S p) q ltac:(lia) ltac:(lia) as Hsp.
+    pose proof IHn p (S q) ltac:(lia) ltac:(lia) as Hp.
     clear IHn.
     
     replace (filter winb l) with l; swap 1 2.
     { subst l. rewrite Heqn. rewrite counting_wins; auto. }
     rewrite Heqn.
-    eapply recurrence; try omega; swap 1 3; swap 2 6.
+    eapply recurrence; try lia; swap 1 3; swap 2 6.
     { subst l. rewrite Heqn. rewrite first_vote_split.
       rewrite app_length. reflexivity. }
     { subst l. rewrite Heqn. rewrite first_vote_split.
@@ -449,7 +449,7 @@ Proof.
       rewrite Heqn. clear.
       rewrite map_length. do 2 rewrite count_sumtrue.
       simpl (_ + _).
-      assert (L : p <= p + S q) by omega. revert L.
+      assert (L : p <= p + S q) by lia. revert L.
       generalize (p + S q); intros n L.
       apply binomial_S. auto.
     
@@ -458,9 +458,9 @@ Proof.
       clear Hsp l.
       simpl in Hp.
       do 2 rewrite map_length.
-      replace (S p - 1 + S q) with (p + S q) by omega.
-      replace (S p - S q - 1) with (p - S q) by omega.
-      rewrite pickbools_wins_minus. 2:omega.
+      replace (S p - 1 + S q) with (p + S q) by lia.
+      replace (S p - S q - 1) with (p - S q) by lia.
+      rewrite pickbools_wins_minus. 2:lia.
       rewrite <-Hp. clear Hp.
       f_equal.
       f_equal.
@@ -477,17 +477,17 @@ Proof.
       destruct (b <? a) eqn:Ea, (b <? S a) eqn:Esa; auto.
       rewrite Nat.ltb_lt in *.
       rewrite Nat.ltb_nlt in *.
-      omega.
+      lia.
     
     + (* throughout winnning, last vote being a false *)
       injection Heqn as ->. clear Hp l.
-      replace (S p - 1 + S q) with (p + S q) by omega.
-      replace (S p - (S q - 1)) with (S p - q) by omega.
+      replace (S p - 1 + S q) with (p + S q) by lia.
+      replace (S p - (S q - 1)) with (S p - q) by lia.
       do 2 rewrite map_length.
       replace ((S p - q) * length (filter (sumtrue (1 + p)) (pickbools (p + S q))))
       with ((S p - q) * length (filter winb (filter (sumtrue (1 + p)) (pickbools (p + S q))))); swap 1 2.
-      { replace (p + S q) with (S p + q) by omega.
-        rewrite pickbools_wins_minus. 2:omega. auto. }
+      { replace (p + S q) with (S p + q) by lia.
+        rewrite pickbools_wins_minus. 2:lia. auto. }
       simpl in *.
       rewrite <-Hsp.
       f_equal.
@@ -507,23 +507,23 @@ Proof.
       repeat rewrite Nat.eqb_eq in *.
       simpl.
       rewrite countb_false.
-      omega.
+      lia.
     
     + (* binomial things *)
       subst l.
       rewrite Heqn. clear.
       rewrite map_length. do 2 rewrite count_sumtrue.
       simpl (_ + _).
-      replace (S q) with (p + S q - p) at 3 by omega.
-      assert (L : p <= p + S q) by omega. revert L.
+      replace (S q) with (p + S q - p) at 3 by lia.
+      assert (L : p <= p + S q) by lia. revert L.
       generalize (p + S q); intros n L.
-      assert (D : p = n \/ p < n) by omega. destruct D as [D | D].
-      * subst p. rewrite binomial_lt. rewrite binomial_diag. omega. omega.
-      * rewrite binomial_complement. 2:omega.
-        rewrite (binomial_complement (S n)). 2:omega.
-        rewrite (binomial_S n (n - S p)). 2:omega.
-        f_equal. omega.
-        f_equal. omega.
+      assert (D : p = n \/ p < n) by lia. destruct D as [D | D].
+      * subst p. rewrite binomial_lt. rewrite binomial_diag. lia. lia.
+      * rewrite binomial_complement. 2:lia.
+        rewrite (binomial_complement (S n)). 2:lia.
+        rewrite (binomial_S n (n - S p)). 2:lia.
+        f_equal. lia.
+        f_equal. lia.
 Qed.
 
 Definition count_votes := count_occ string_dec.
