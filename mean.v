@@ -22,7 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 *)
 
-Require Import Omega Reals Psatz.
+Require Import Lia Reals Psatz.
 
 Open Scope R_scope.
 
@@ -215,14 +215,14 @@ Lemma sum_ext_lt n u v : (forall i, lt i n -> u i = v i) -> sum n u = sum n v.
 Proof.
   revert u v; induction n. auto.
   intros u v E; simpl; rewrite E; auto with *. f_equal. apply IHn.
-  intros i Hi. apply E. omega.
+  intros i Hi. apply E. lia.
 Qed.
 
 Lemma prod_ext_lt n u v : (forall i, lt i n -> u i = v i) -> prod n u = prod n v.
 Proof.
   revert u v; induction n. auto.
   intros u v E; simpl; rewrite E; auto with *. f_equal. apply IHn.
-  intros i Hi. apply E. omega.
+  intros i Hi. apply E. lia.
 Qed.
 
 Lemma sum_plus n m u : sum (n + m) u = sum n u + sum m (shift n u).
@@ -263,8 +263,8 @@ Lemma sum_pos_lt n u : (forall i, lt i n -> 0 <= u i) -> 0 <= sum n u.
 Proof.
   revert u; induction n; auto; intros u p; simpl. lra.
   specialize (IHn (shift 1 u)).
-  assert_specialize IHn. intros i Hi; apply p. omega.
-  specialize (p O). assert_specialize p by omega. lra.
+  assert_specialize IHn. intros i Hi; apply p. lia.
+  specialize (p O). assert_specialize p by lia. lra.
 Qed.
 
 Definition sqrtk k := Nat.iter k sqrt.
@@ -343,7 +343,7 @@ Proof.
   cut (forall i, lt i (pow2 k) -> a i = sum (pow2 k) a / INR (pow2 k)).
   { intros C i j Hi Hj. rewrite (C i Hi), (C j Hj). auto. }
   revert a pa E; induction k; intros a pa; simpl.
-  - intros E i Hi. inversion Hi. field. omega.
+  - intros E i Hi. inversion Hi. field. lia.
   - remember (pow2 k) as n.
     assert (R : (n + (n + 0) = n + n)%nat) by ring; rewrite R; clear R.
     rewrite prod_plus, sum_plus.
@@ -355,13 +355,13 @@ Proof.
     pose proof mean_power_of_two (shift n a) ltac:(intro; apply pa) k as R1.
     rewrite <-Heqn in *.
     rewrite sqrtk_mult in E; try (apply prod_pos; intro; apply pa).
-    replace (n + n)%nat with (n * 2)%nat in E |- *. 2:omega.
+    replace (n + n)%nat with (n * 2)%nat in E |- *. 2:lia.
     rewrite mult_INR in E |- *.
     assert (dhalf : forall x, (x + x) / 2 = x).
     { intros x; unfold Rdiv. rewrite Rmult_plus_distr_r, Rdiv_fold, <-double_var. auto. }
     unfold Rdiv in E |- *.
     assert (INR n <> 0).
-    { assert (n <> O). subst. clear; induction k; simpl; auto. omega. auto with *. }
+    { assert (n <> O). subst. clear; induction k; simpl; auto. lia. auto with *. }
     rewrite Rinv_mult_distr in E |- *; auto with *.
     rewrite <-Rmult_assoc, Rmult_plus_distr_r in E |- *.
     repeat rewrite Rdiv_fold in *.
@@ -379,12 +379,12 @@ Proof.
     rewrite dhalf.
     clear -HL HR.
     intros i li.
-    assert (D : (i < n \/ i >= n)%nat) by omega. destruct D as [D|D].
+    assert (D : (i < n \/ i >= n)%nat) by lia. destruct D as [D|D].
     + apply HL, D.
-    + specialize (HR (i - n)%nat ltac:(omega)).
+    + specialize (HR (i - n)%nat ltac:(lia)).
       exact_eq HR; f_equal.
       unfold shift; f_equal.
-      omega.
+      lia.
 Qed.
 
 Theorem geometric_arithmetic_mean (a : nat -> R) (n : nat) :
@@ -395,7 +395,7 @@ Theorem geometric_arithmetic_mean (a : nat -> R) (n : nat) :
   (prod n a = (sum n a / INR n) ^ n -> forall i, (i < n)%nat -> a i = a O).
 Proof.
   assert (H : exists k, lt n (pow2 k)).
-  { exists n. induction n; simpl; omega. }
+  { exists n. induction n; simpl; lia. }
   intros p pa. destruct H as (k, Hk).
   
   set (alpha := sum n a / INR n).
@@ -412,16 +412,16 @@ Proof.
         * intros (a0, s0) i Hi.
           specialize (IHn _ s0).
           assert_specialize IHn.
-          { intros; apply pa; omega. }
+          { intros; apply pa; lia. }
           destruct i. apply a0.
           specialize (IHn i).
-          assert_specialize IHn. omega.
-          rewrite <-IHn. unfold shift. f_equal. omega.
+          assert_specialize IHn. lia.
+          rewrite <-IHn. unfold shift. f_equal. lia.
         * simpl in s.
           apply Rplus_eq_R0; auto with *.
           apply sum_pos_lt. intros i Hi; specialize (pa (S i)).
-          assert_specialize pa. omega.  exact_eq pa. f_equal.
-          unfold shift. f_equal. omega.
+          assert_specialize pa. lia.  exact_eq pa. f_equal.
+          unfold shift. f_equal. lia.
   }
   
   assert (0 <= alpha). {
@@ -438,28 +438,28 @@ Proof.
   
   assert (R : prod (pow2 k) b = prod n a * alpha ^ (pow2 k - n)).
   {
-    replace (pow2 k) with (n + (pow2 k - n))%nat at 1 by omega.
+    replace (pow2 k) with (n + (pow2 k - n))%nat at 1 by lia.
     rewrite prod_plus. f_equal.
     - apply prod_ext_lt. intros j Hj. unfold b.
-      destruct (le_lt_dec n j). omega. auto.
+      destruct (le_lt_dec n j). lia. auto.
     - generalize (pow2 k - n)%nat as v; intros v.
       assert (L : le n n) by auto; revert L.
       generalize n at 2 3.
       induction v; intros n0 ln0. auto. simpl. f_equal.
-      + unfold shift, b. simpl. destruct (le_lt_dec n n0). auto. omega.
+      + unfold shift, b. simpl. destruct (le_lt_dec n n0). auto. lia.
       + rewrite <-(IHv (plus 1 n0)); auto with *.
-        apply prod_ext. intros x. unfold shift. f_equal. omega.
+        apply prod_ext. intros x. unfold shift. f_equal. lia.
   }
   
   assert (IH : sum (pow2 k) b / INR (pow2 k) = alpha). {
     cut (sum (pow2 k) b = alpha * INR (pow2 k)).
     { intros ->. field. auto with *. }
-    replace (pow2 k) with (n + (pow2 k - n))%nat. 2:omega.
+    replace (pow2 k) with (n + (pow2 k - n))%nat. 2:lia.
     rewrite sum_plus. rewrite plus_INR. rewrite Rmult_plus_distr_l.
     f_equal.
     - unfold alpha. transitivity (sum n a).
       + apply sum_ext_lt. intros i Hi; unfold b.
-        destruct (le_lt_dec n i). omega. auto.
+        destruct (le_lt_dec n i). lia. auto.
       + field. auto with *.
     - generalize (pow2 k - n)%nat as v; intros v.
       assert (L : le n n) by auto; revert L.
@@ -467,9 +467,9 @@ Proof.
       induction v; intros n0 ln0. simpl; ring. simpl sum.
       change (S v) with (plus 1 v). rewrite plus_INR.
       rewrite Rmult_plus_distr_l. f_equal.
-      + unfold shift, b. simpl. destruct (le_lt_dec n n0). ring. omega.
+      + unfold shift, b. simpl. destruct (le_lt_dec n n0). ring. lia.
       + rewrite <-(IHv (plus 1 n0)); auto with *.
-        apply sum_ext. intros x. unfold shift. f_equal. omega.
+        apply sum_ext. intros x. unfold shift. f_equal. lia.
   }
   
   split.
@@ -490,7 +490,7 @@ Proof.
     
     cut (prod (pow2 k) b <= alpha ^ pow2 k). {
       rewrite R.
-      replace (pow2 k) with (n + (pow2 k - n))%nat at 2 by omega.
+      replace (pow2 k) with (n + (pow2 k - n))%nat at 2 by lia.
       rewrite pow_add.
       intros L.
       apply Rmult_le_reg_r in L; auto.
@@ -509,13 +509,13 @@ Proof.
     pose proof mean_power_of_two_eq b pb k as HE.
     assert_specialize HE. {
       rewrite R, E, <-pow_add.
-      replace (n + (pow2 k - n))%nat with (pow2 k) by omega.
+      replace (n + (pow2 k - n))%nat with (pow2 k) by lia.
       rewrite sqrtk_pow2; auto.
     }
     intros i li.
     specialize (HE i O).
-    repeat assert_specialize HE by omega.
+    repeat assert_specialize HE by lia.
     exact_eq HE; f_equal; unfold b.
-    + destruct (le_lt_dec n i). omega. auto.
-    + destruct (le_lt_dec n 0). omega. auto.
+    + destruct (le_lt_dec n i). lia. auto.
+    + destruct (le_lt_dec n 0). lia. auto.
 Qed.

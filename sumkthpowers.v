@@ -74,7 +74,7 @@ destruct (bernoulli_polynomial_derivable_pt_lim n (x+1) eps) as [delta der].
 assumption.
 exists delta.
 intros.
-cutrewrite(x+h+1=x+1+h).
+enough(x+h+1=x+1+h) as ->.
 apply der;
 assumption.
 field.
@@ -270,7 +270,7 @@ assumption.
 unfold sum_f_R0.
 fold sum_f_R0.
 rewrite IHn.
-cutrewrite(INR (S n) ^ r=(INR (S n) ^r * (INR (S r)))/(INR (S r))).
+enough(INR (S n) ^ r=(INR (S n) ^r * (INR (S r)))/(INR (S r))) as ->.
 rewrite kthpowers.
 repeat rewrite<-S_INR.
 field.

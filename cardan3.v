@@ -52,7 +52,7 @@ OPAM 1.2.2 on
 Linux version 4.4.0-96-generic (buildd@lgw01-10) (gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.4) ) #119-Ubuntu SMP Tue Sep 12 14:59:54 UTC 2017
 
 *)
-Require Import Reals Coq.Reals.Rtrigo_def Coquelicot.Coquelicot Coquelicot.ElemFct Fourier.
+Require Import Reals Coq.Reals.Rtrigo_def Coquelicot.Coquelicot Coquelicot.ElemFct Lra.
 
 
 
@@ -94,7 +94,7 @@ Lemma normspos : forall x:R, forall y:R, x<>0 -> 0<x^2+y^2.
 intros.
 apply Rplus_lt_le_0_compat.
  induction (Rcase_abs x).
-  cutrewrite(x^2=(-x)^2).
+  enough (x^2=(-x)^2) as ->.
    apply Rmult_lt_0_compat.
     apply Ropp_0_gt_lt_contravar.
    assumption.
@@ -123,11 +123,11 @@ induction (total_order_T (PI/2) x).
 induction a.
 apply Rlt_not_eq.
 apply cos_lt_0.
-fourier.
+lra.
 apply (Rlt_trans _ PI).
 assumption.
-cutrewrite(3*(PI/2)=PI+PI/2).
-fourier.
+enough(3*(PI/2)=PI+PI/2) as ->.
+lra.
 field.
 exfalso.
 apply H.
@@ -162,17 +162,17 @@ rewrite Heqy.
 apply cos_gt_0.
 apply Rminus_gt.
 apply Rgt_minus in H1.
-cutrewrite(x + PI - - (PI / 2)=(x - - PI) + (PI / 2)).
+enough(x + PI - - (PI / 2)=(x - - PI) + (PI / 2)) as ->.
 apply Rplus_lt_le_0_compat.
 assumption.
 apply Rle_div_r.
-fourier.
-fourier.
+lra.
+lra.
 field.
 
 apply Rgt_minus in b0.
 apply Rminus_gt.
-cutrewrite(PI / 2 - (x + PI)= - (PI / 2) - x ).
+enough(PI / 2 - (x + PI)= - (PI / 2) - x ) as ->.
 assumption.
 field.
 apply H5.
@@ -189,9 +189,9 @@ Qed.
 
 Lemma cos2atan : forall x:R, x<> PI/2 -> x<>-(PI/2) -> -PI < x -> x < PI -> (cos(2*x))=2/(1+(tan x)^2)-1.
 intros.
-cutrewrite((tan(x))^2=(1-(cos(x))^2)/(cos(x))^2).
+enough((tan(x))^2=(1-(cos(x))^2)/(cos(x))^2) as ->.
 rewrite cos_2a.
-cutrewrite(sin(x)*sin(x)=1-(cos(x))²).
+enough(sin(x)*sin(x)=1-(cos(x))²) as ->.
 unfold Rsqr.
 field.
 
@@ -205,11 +205,11 @@ intro.
 apply H4.
 rewrite<-H3.
 field.
-fourier.
+lra.
 fold (Rsqr (sin x)).
 rewrite sin2.
 reflexivity.
-cutrewrite( (cos(x))^2=(cos(x))²).
+enough( (cos(x))^2=(cos(x))²) as ->.
 rewrite<-sin2.
 unfold tan.
 unfold Rsqr.
@@ -225,7 +225,7 @@ intros.
 induction(total_order_T 0 x).
 induction a.
 apply (Rlt_trans _ 0).
-fourier.
+lra.
 apply sqrt_lt_R0.
 apply normspos.
 intro.
@@ -248,9 +248,9 @@ exfalso.
 apply H.
 rewrite b0.
 reflexivity.
-cutrewrite(y*y=(-y)*(-y)).
+enough(y*y=(-y)*(-y)) as ->.
 apply Rmult_lt_0_compat;
-fourier.
+lra.
 field.
 apply Rsqr_incrst_0.
 rewrite Rsqr_sqrt.
@@ -267,7 +267,7 @@ rewrite Rmult_0_l in H0.
 rewrite Rplus_0_r in H0.
 assumption.
 apply normpos.
-fourier.
+lra.
 apply sqrt_pos.
 Qed.
 
@@ -276,7 +276,8 @@ Lemma coordnormb : forall x:R, forall y:R, y<>0 -> 0<sqrt(x^2+y^2)+x.
 intros.
 pose proof coordnorm x y H.
 apply Rgt_minus in H0.
-cutrewrite(sqrt (x ^ 2 + y ^ 2) - - x= sqrt (x ^ 2 + y ^ 2)+x) in H0.
+revert H0.
+enough(sqrt (x ^ 2 + y ^ 2) - - x= sqrt (x ^ 2 + y ^ 2)+x) as ->; intros.
 assumption.
 field.
 Qed.
@@ -297,18 +298,18 @@ rewrite<-Ropp_involutive at 1.
 rewrite<-Ropp_involutive.
 apply Ropp_eq_compat.
 apply Rsqr_inj.
-cutrewrite( - (-1 * sqrt (x * x))=sqrt(x*x)).
+enough ( - (-1 * sqrt (x * x))=sqrt(x*x)) as ->.
 apply sqrt_pos.
 field.
-fourier.
+lra.
 rewrite Rsqr_pow2.
 rewrite Rsqr_pow2.
-cutrewrite(-x=sqrt(x*x)).
+enough(-x=sqrt(x*x)) as ->.
 field.
-cutrewrite(x*x=(-x)²).
+enough(x*x=(-x)²) as ->.
 rewrite sqrt_Rsqr.
 reflexivity.
-fourier.
+lra.
 unfold Rsqr.
 field.
 rewrite cos_0.
@@ -318,16 +319,15 @@ rewrite Rmult_0_l.
 rewrite Rplus_0_r.
 rewrite Rmult_1_r.
 rewrite Rmult_1_l.
-cutrewrite(x*x=x²).
+enough(x*x=x²) as ->.
 rewrite sqrt_Rsqr.
 reflexivity.
+lra.
 unfold Rsqr.
 
-cutrewrite((-x)*(-x)=x*x).
-fourier.
+enough((-x)*(-x)=x*x) as <-.
+lra.
 field.
-unfold Rsqr.
-reflexivity.
 rewrite cos2atan.
 remember (sqrt (x^2+y^2) ) as u.
 rewrite atan_right_inv.
@@ -337,35 +337,36 @@ unfold pow.
 repeat rewrite Rmult_1_r.
 rewrite sqrt_sqrt.
 reflexivity.
-cutrewrite(x*x+y*y=x^2+y^2).
+enough(x*x+y*y=x^2+y^2) as ->.
 apply normpos.
 field.
 
-cutrewrite((2 / (1 + (y / (x + u)) ^ 2) - 1) * u=(u^2 + 2*u*x + x^2 - y^2)*u/(u^2 + 2*u*x + x^2+y^2)).
+enough((2 / (1 + (y / (x + u)) ^ 2) - 1) * u=(u^2 + 2*u*x + x^2 - y^2)*u/(u^2 + 2*u*x + x^2+y^2)) as ->.
 rewrite H at 1.
 assert(x ^ 2 + y ^ 2 + 2 * u * x + x ^ 2 - y ^ 2=2*x*(u+x)).
 field.
 rewrite H0.
-cutrewrite(u ^ 2 + 2 * u * x + x ^ 2 + y ^ 2=2*u^2+2*x*u).
+enough(u ^ 2 + 2 * u * x + x ^ 2 + y ^ 2=2*u^2+2*x*u) as ->.
 field.
-cutrewrite(2*u^2+2*x*u=2*u*(u+x)).
+enough(2*u^2+2*x*u=2*u*(u+x)) as ->.
 apply Rmult_integral_contrapositive.
 split.
 apply Rmult_integral_contrapositive.
 split.
-admit (* apply Qreals.IZR_nz. *).
+apply Qreals.IZR_nz.
 rewrite Hequ.
 rewrite<-sqrt_0.
 intro.
 apply sqrt_inj in H1.
 pose proof normspos y x b.
-cutrewrite(y^2+x^2=x^2+y^2) in H2.
+revert H2.
+enough(y^2+x^2=x^2+y^2) as ->; intros.
 rewrite H1 in H2.
 apply (Rlt_irrefl 0).
 assumption.
 field.
 apply normpos.
-info_auto with *.
+auto with *.
 
 pose proof coordnormb x y b.
 rewrite<-Hequ in H1.
@@ -377,18 +378,18 @@ rewrite H.
 field.
 field.
 split.
-cutrewrite(u ^ 2 + 2 * u * x + x ^ 2 + y ^ 2 =2*u^2+2*u*x).
-cutrewrite(2 * u ^ 2 + 2 * u * x=2*u*(x+u)).
+enough(u ^ 2 + 2 * u * x + x ^ 2 + y ^ 2 =2*u^2+2*u*x) as ->.
+enough(2 * u ^ 2 + 2 * u * x=2*u*(x+u)) as ->.
 apply Rmult_integral_contrapositive.
 split.
 apply Rmult_integral_contrapositive.
 split.
-admit. (* apply Qreals.IZR_nz. *)
+apply Qreals.IZR_nz.
 rewrite Hequ.
 apply Rgt_not_eq.
 apply sqrt_lt_R0.
 pose proof normspos y x b.
-cutrewrite(x^2+y^2=y^2+x^2).
+enough(x^2+y^2=y^2+x^2) as ->.
 assumption.
 field.
 apply Rgt_not_eq.
@@ -408,7 +409,7 @@ apply Rlt_not_eq.
 apply atan_bound.
 apply Rgt_not_eq.
 apply Rlt_gt.
-cutrewrite(-(PI/2)=-PI/2).
+enough(-(PI/2)=-PI/2) as ->.
 apply atan_bound.
 field.
 apply(Rlt_trans _ (-PI/2)).
@@ -425,7 +426,7 @@ assert (PI-PI/2=PI/2).
 field.
 rewrite H.
 apply PI2_RGT_0.
-Admitted.
+Qed.
 
 Lemma sinarg : forall x:R, forall y:R, sin(rargument x y)*sqrt(x^2+y^2)=y.
 assert(forall u:R, forall v:R, forall w:R, ((0<=u /\ 0<=w) \/ (u<=0 /\ w<=0)) -> 0<=v -> u²*v²=w² -> u*v=w).
@@ -463,7 +464,7 @@ right.
 split.
 unfold rargument.
 induction (Reqdec y).
-fourier.
+lra.
 left.
 rewrite<-Ropp_involutive at 1.
 apply Ropp_0_lt_gt_contravar.
@@ -471,14 +472,14 @@ rewrite<-sin_neg.
 apply sin_gt_0.
 rewrite Ropp_mult_distr_r.
 apply Rmult_lt_0_compat.
-fourier.
+lra.
 rewrite<-atan_opp.
 rewrite<-atan_0.
 apply atan_increasing.
 rewrite<-Ropp_div.
 apply Rdiv_lt_0_compat.
-fourier.
-cutrewrite(x + sqrt (x ^ 2 + y ^ 2)=sqrt (x ^ 2 + y ^ 2)+x).
+lra.
+enough(x + sqrt (x ^ 2 + y ^ 2)=sqrt (x ^ 2 + y ^ 2)+x) as ->.
 apply coordnormb.
 assumption.
 field.
@@ -489,26 +490,26 @@ intro.
 apply H0.
 intro.
 apply (Rmult_gt_reg_l (/2)).
-fourier.
-cutrewrite(/ 2 * (2 * atan z)=atan z).
-cutrewrite(/ 2 * - PI=-PI/2).
+lra.
+enough(/ 2 * (2 * atan z)=atan z) as ->.
+enough(/ 2 * - PI=-PI/2) as ->.
 apply atan_bound.
 field.
 field.
-fourier.
+lra.
 left.
 split.
 unfold rargument.
 induction (Reqdec y).
 induction (Rcase_abs x).
 rewrite sin_PI.
-fourier.
+lra.
 rewrite sin_0.
-fourier.
+lra.
 left.
 apply sin_gt_0.
 apply Rmult_lt_0_compat.
-fourier.
+lra.
 rewrite<-atan_0.
 apply atan_increasing.
 apply Rdiv_lt_0_compat.
@@ -516,7 +517,7 @@ destruct b.
 assumption.
 exfalso.
 apply (b0 H0).
-cutrewrite(x + sqrt (x ^ 2 + y ^ 2)=sqrt (x ^ 2 + y ^ 2)+x).
+enough(x + sqrt (x ^ 2 + y ^ 2)=sqrt (x ^ 2 + y ^ 2)+x) as ->.
 apply coordnormb.
 assumption.
 field.
@@ -525,13 +526,13 @@ intro.
 apply H0.
 intro.
 apply (Rmult_lt_reg_r (/2)).
-fourier.
-cutrewrite((2 * atan z)*/2=atan z).
-cutrewrite(PI*/2=PI/2).
+lra.
+enough((2 * atan z)*/2=atan z) as ->.
+enough(PI*/2=PI/2) as ->.
 apply atan_bound.
 field.
 field.
-fourier.
+lra.
 apply sqrt_pos.
 rewrite sin2.
 assert(forall u v w:R, v²-(u*v)²=w² ->(1-u²)*v²=w²).
@@ -701,8 +702,8 @@ unfold fst;
 unfold snd;
 apply HHH;
 field.
-info_auto with *.
-info_auto with *.
+auto with *.
+auto with *.
 
 f_equal.
 unfold fst.
@@ -774,7 +775,7 @@ induction(Rcase_abs (- x)).
 unfold RtoC in a.
 unfold Re in a.
 unfold fst in a.
-fourier.
+lra.
 unfold snd.
 unfold Rdiv.
 rewrite Rmult_0_l.
@@ -818,7 +819,7 @@ unfold RtoC.
 unfold fst.
 induction(Reqdec (snd (x,0))).
 induction(Rcase_abs x).
-fourier.
+lra.
 unfold Cmult.
 unfold snd.
 unfold Rdiv.
@@ -872,15 +873,15 @@ repeat rewrite Rminus_0_r.
 repeat rewrite Rmult_1_r.
 repeat rewrite Rmult_1_l.
 unfold Rminus.
-cutrewrite((sqrt 3 / 2 * (sqrt 3 / 2))%R=(3/4)%R).
+enough((sqrt 3 / 2 * (sqrt 3 / 2))%R=(3/4)%R) as ->.
 f_equal;
 unfold fst;
 unfold snd;
 field.
-cutrewrite((sqrt 3 / 2 * (sqrt 3 / 2)%R)%R=((sqrt 3*sqrt 3)%R/(2*2)%R)%R).
+enough((sqrt 3 / 2 * (sqrt 3 / 2)%R)%R=((sqrt 3*sqrt 3)%R/(2*2)%R)%R) as ->.
 rewrite sqrt_sqrt.
 field.
-fourier.
+lra.
 field.
 Qed.
 
@@ -898,8 +899,8 @@ pow (z+u) 3+a*pow (z+u) 2+b*(z+u)+c
 =pow z 3+(a+3*u)*pow z 2+(b+2*u*a+3*pow u 2)*z+(c+b*u+a*pow u 2+pow u 3).
 intros.
 unfold pow.
-cutrewrite(RtoC 3=(1+1+1)).
-cutrewrite(RtoC 2=1+1).
+enough(RtoC 3=(1+1+1)) as ->.
+enough(RtoC 2=1+1) as ->.
 repeat rewrite Cmult_plus_distr_l.
 repeat rewrite Cmult_plus_distr_r.
 repeat rewrite (Cmult_1_r).
@@ -929,7 +930,9 @@ reflexivity.
 unfold RtoC in H0.
 rewrite H0 in H1.
 unfold fst in H1.
-cutrewrite (0=INR 0) in H1.
+revert H1.
+enough (0=INR 0) as ->.
+intros H1.
 apply INR_eq in H1.
 apply H.
 rewrite H1.
@@ -998,7 +1001,7 @@ unfold fst.
 reflexivity.
 rewrite H in H0.
 unfold fst in H0.
-fourier.
+lra.
 
 assert(RtoC 2<>RtoC 0) as neq0_2.
 unfold RtoC.
@@ -1008,7 +1011,7 @@ unfold fst.
 reflexivity.
 rewrite H in H0.
 unfold fst in H0.
-fourier.
+lra.
 
 
 assert(RtoC 3<>RtoC 0) as neq0_3.
@@ -1019,7 +1022,7 @@ unfold fst.
 reflexivity.
 rewrite H in H0.
 unfold fst in H0.
-fourier.
+lra.
 
 
 assert(forall z0:C, z0<>0 -> /z0 <> 0) as invnot0.
@@ -1123,18 +1126,18 @@ repeat rewrite Cmult_plus_distr_l.
 repeat rewrite Cmult_plus_distr_r.
 repeat rewrite Cmult_plus_distr_l.
 repeat rewrite Cmult_plus_distr_r.
-cutrewrite( (alpha * CJ * (alpha * pow CJ 2) + beta * pow CJ 2 * (alpha * pow CJ 2) +
+enough( (alpha * CJ * (alpha * pow CJ 2) + beta * pow CJ 2 * (alpha * pow CJ 2) +
  (alpha * CJ * (beta * CJ) + beta * pow CJ 2 * (beta * CJ)))
 =(alpha * alpha *(CJ * pow CJ 2) + beta  * alpha * ( pow CJ 2  * pow CJ 2) +
- (alpha * beta * (CJ * CJ) + beta * beta * (CJ * pow CJ 2)))).
-cutrewrite(CJ*pow CJ 2=1).
-cutrewrite(CJ*CJ=-CJ-1).
-cutrewrite((pow CJ 2)*(pow CJ 2)=CJ).
+ (alpha * beta * (CJ * CJ) + beta * beta * (CJ * pow CJ 2)))) as ->.
+enough(CJ*pow CJ 2=1) as ->.
+enough(CJ*CJ=-CJ-1) as ->.
+enough((pow CJ 2)*(pow CJ 2)=CJ) as ->.
 rewrite CJ2.
-cutrewrite(p=-(1+1+1)*alpha*beta).
+replace p with (-(1+1+1)*alpha*beta).
 field.
 unfold beta.
-cutrewrite( (1+1+1)=3).
+enough( (1+1+1)=3) as ->.
 field.
 split.
 
@@ -1164,9 +1167,7 @@ apply CJ2.
 unfold pow.
 rewrite Cmult_1_r.
 reflexivity.
-etransitivity.
-Focus 2.
-apply CJ3.
+etransitivity;[|apply CJ3].
 unfold pow.
 reflexivity.
 field.
@@ -1174,18 +1175,18 @@ rewrite coeffp.
 assert(q=- (z1 * z2 * z3)) as coeffq.
 unfold z1,z2,z3.
 
-cutrewrite(q=-(CJ*(pow CJ 2)*alpha*alpha*alpha
+replace q with (-(CJ*(pow CJ 2)*alpha*alpha*alpha
 +CJ*(pow CJ 2)*beta*beta*beta
 +(CJ*CJ+(pow CJ 2)*(pow CJ 2)+CJ*(pow CJ 2))*alpha*alpha*beta
 +(CJ*(pow CJ 2)+CJ*CJ+(pow CJ 2)*(pow CJ 2))*alpha*beta*beta)).
 field.
-cutrewrite(CJ*pow CJ 2=1).
-cutrewrite(CJ * CJ=-CJ-1).
-cutrewrite(pow CJ 2 * pow CJ 2=CJ).
-cutrewrite(q=-(pow alpha 3+pow beta 3)).
+enough(CJ*pow CJ 2=1) as ->.
+enough(CJ * CJ=-CJ-1) as ->.
+enough(pow CJ 2 * pow CJ 2=CJ) as ->.
+replace q with (-(pow alpha 3+pow beta 3)); [|apply eq_sym].
 unfold pow.
 field.
-cutrewrite(pow beta 3=(-pow (p/3) 3)/(pow alpha 3)).
+enough(pow beta 3=(-pow (p/3) 3)/(pow alpha 3)) as ->.
 unfold alpha at 1.
 rewrite cubicroot3.
 
@@ -1267,9 +1268,7 @@ repeat rewrite Cmult_1_r.
 reflexivity.
 apply CJ2.
 
-etransitivity.
-Focus 2.
-apply CJ3.
+etransitivity; [|apply CJ3].
 unfold pow.
 reflexivity.
 
@@ -1320,4 +1319,3 @@ field.
 Qed.
 
 (* Print Assumptions Cardan_Tartaglia. *)
-

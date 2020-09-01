@@ -26,6 +26,7 @@ Require Import Lists.List.
 Require Import ZArith.
 Require Import Setoid.
 Require Import Coq.Classes.Morphisms.
+Require Import Lia.
 
 Open Scope Z_scope.
 Import ListNotations.
@@ -72,7 +73,7 @@ Notation " # " := cardinal.
 
 Lemma cardinal_union_lemma A B : # (A ∪ B) = # A + # B - # (A ∩ B).
 Proof.
-  cut (# (A ∪ B) + # (A ∩ B) = # A + # B). omega.
+  cut (# (A ∪ B) + # (A ∩ B) = # A + # B). lia.
   unfold cardinal. repeat rewrite <-Nat2Z.inj_add. f_equal.
   unfold binary_intersection, binary_union in *.
   induction enum_X as [| x l IHl]. reflexivity.
@@ -85,7 +86,7 @@ Lemma cardinal_binary_union A B :
   cardinal A + cardinal B -
     cardinal (binary_intersection A B).
 Proof.
-  rewrite <-cardinal_union_lemma. omega.
+  rewrite <-cardinal_union_lemma. lia.
 Qed.
 
 Definition list_union (A : list set) :=
@@ -210,7 +211,7 @@ Qed.
 
 Lemma sum_app l1 l2 : sum (l1 ++ l2) = sum l1 + sum l2.
 Proof.
-  induction l1. reflexivity. simpl. omega.
+  induction l1. reflexivity. simpl. lia.
 Qed.
 
 Lemma filter_app {A} f (l1 l2 : list A) :
