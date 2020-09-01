@@ -1,0 +1,4 @@
+(coq.theory
+ (name Coq100)
+ (package coq-coq100)
+ (synopsis "Coq theorems from the list of 100 famous theorems"))

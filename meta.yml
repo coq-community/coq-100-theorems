@@ -1,0 +1,74 @@
+---
+fullname: 100 famous theorems proved using Coq
+shortname: coq100
+organization: coq-community
+community: true
+travis: true
+
+synopsis: Coq theorems from the list of 100 famous theorems
+
+description: |-
+  [Freek Wiedijk's webpage](http://www.cs.ru.nl/~freek/100/) lists
+  [100 famous theorems](http://pirate.shu.edu/~kahlnath/Top100.html)
+  and how many of those have been formalised using proof assistants.
+  This repository keeps track of the statements that have been proved
+  using the [Coq proof assistant](https://coq.inria.fr/).
+
+  You can see the list on [this webpage](https://madiot.fr/coq100).
+
+authors:
+- name: Jean-Marie Madiot
+- name: Frédéric Chardard
+
+maintainers:
+- name: Jean-Marie Madiot
+  nickname: jmadiot
+
+opam-file-maintainer: palmskog@gmail.com
+
+opam-file-version: dev
+
+license:
+  fullname: MIT License
+  identifier: MIT
+
+supported_coq_versions:
+  text: 8.10 or later
+  opam: '{(>= "8.10" & < "8.13~") | (= "dev")}'
+
+tested_coq_nix_versions:
+- version_or_url: '8.12'
+- version_or_url: '8.11'
+- version_or_url: '8.10'
+
+tested_coq_opam_versions:
+- version: dev
+
+dependencies:
+- opam:
+    name: coq-coquelicot
+    version: '{>= "3.1.0"}'
+  nix: coquelicot
+  description: |-
+    [Coquelicot 3.1.0 or later](http://coquelicot.saclay.inria.fr)
+
+namespace: Coq100
+
+build: |-
+ ## Building instructions
+
+ To build all theorems that are hosted in this repository,
+ run the following commands:
+
+ ``` shell
+ git clone https://github.com/coq-community/coq100
+ cd coq100
+ make   # or make -j <number-of-cores-on-your-machine>
+ ```
+
+keywords:
+- name: famous theorems
+
+categories:
+- name: Mathematics/Algebra
+---
