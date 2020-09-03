@@ -34,7 +34,6 @@ in the field of complex numbers.
 __A proof that Ferrari method solves the general quartic equation in the 
 field of complex numbers.
 
-
 This file was checked by Coq without error with following configuration:
 base-bigarray          base
 base-threads           base
