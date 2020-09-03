@@ -634,30 +634,24 @@ Lemma hexamy_prop: pappus_strong -> forall A B C D E F,
 <div>
 <p class='statementinfo'>
 <strong class='author'>Frédéric Chardard</strong>
-(in file <a class='location' href="cardan3.v">cardan3.v</a>):
+(in file <a class='location' href="cardan_ferrari.v">cardan3.v</a>):
 <pre class='comment'></pre>
-<pre class='statement'>Theorem Cardan_Tartaglia : forall a1 a2 a3 :C,
-    let s := -a1 / 3 in
-    let p := a2 + 2 * s * a1 + 3 * pow s 2 in
-    let q := a3 + a2 * s + a1 * pow s 2 + pow s 3 in
-    (p <> 0 ->
-     let Delta := pow (q / 2) 2 + pow (p / 3) 3 in
-     let alpha := cubicroot (- (q / 2) + nroot 2 Delta) in
-     let beta := - (p / 3) / alpha in
-     let z1 := alpha + beta in
-     let z2 := alpha * CJ + beta * pow CJ 2 in
-     let z3 := alpha * pow CJ 2 + beta * CJ in
-     forall u : C,
-       (u - (s + z1)) * (u - (s + z2)) * (u - (s + z3))
-       = pow u 3 + a1 * pow u 2 + a2 * u + a3)
-    /\
-    (p = 0 ->
-     let z1 := - cubicroot q in
-     let z2 := z1 * CJ in
-     let z3 := z1 * pow CJ 2 in
-     forall u : C,
-       (u - (s + z1)) * (u - (s + z2)) * (u - (s + z3))
-       = pow u 3 + a1 * pow u 2 + a2 * u + a3).
+<pre class='statement'>
+Definition Cardan_Tartaglia_formula:=fun (a1:C) (a2:C) (a3:C) (n:nat) =>
+let s:=-a1/3 in 
+let p:=a2+2*s*a1+3*Cpow s 2 in
+let q:=a3+a2*s+a1*Cpow s 2+Cpow s 3 in
+let Delta:=(Cpow (q/2) 2)+(Cpow (p/3) 3) in
+let alpha : C :=if(Ceq_dec p 0) then (RtoC 0) else (cubicroot (-(q/2)+Csqrt Delta)) in
+let beta:=if(Ceq_dec p 0) then -cubicroot q else -(p/3)/alpha in
+s+(alpha*Cpow CJ n+beta*Cpow CJ (n+n)).
+
+
+Theorem Cardan_Tartaglia : forall a1 a2 a3 :C,
+let u1:=(Cardan_Tartaglia_formula a1 a2 a3 0) in
+let u2:=(Cardan_Tartaglia_formula a1 a2 a3 1) in
+let u3:=(Cardan_Tartaglia_formula a1 a2 a3 2) in
+forall u:C, (u-u1)*(u-u2)*(u-u3)=Cpow u 3+a1*Cpow u 2+a2*u+a3.
 </pre>
 </p>
 </div>
@@ -765,7 +759,35 @@ Theorem Newton : forall n a b, (a + b) ^ n == newton_sum n a b.</pre>
 
 <h3 id='46' class='notformalizedyet'><a href='http://www.cs.ru.nl/~freek/100/#46'>46. The Solution of the General Quartic Equation</a></h3>
 <div>
-<span class="unknown">No known Coq formalization</span>
+<p class='statementinfo'>
+<strong class='author'>Frédéric Chardard</strong>
+(in <a class='location' href="cardan_ferrari.v">cardan_ferrari.v</a>):
+<pre class='comment'>For the non-constructive type R</pre>
+<pre class='statement'>
+Theorem Ferrari_formula: forall (a:C) (b:C) (c:C) (d:C), 
+let s:=-a/4 in 
+let p:= b+3*s*a+6*Cpow s 2 in
+let q:= c+2*b*s+3*a*Cpow s 2+4*Cpow s 3 in
+let r:= d+c*s+b*Cpow s 2+a*Cpow s 3+Cpow s 4 in
+let lambda:=Cardan_Tartaglia_formula (-p/2) (-r) (r*p/2-/8*Cpow q 2) 0 in
+let A:=Csqrt(2*lambda-p) in
+let cond:=(Ceq_dec (2*lambda) p) in
+let B:=if cond then (RtoC 0) else (-q/(2*A)) in
+let z1:=if cond then Csqrt (binom_solution p r 0) 
+                else binom_solution A (B+lambda) 0 in
+let z2:=if cond then -Csqrt (binom_solution p r 0) 
+                else binom_solution A (B+lambda) 1 in
+let z3:=if cond then Csqrt (binom_solution p r 1) 
+                else binom_solution (-A) (-B+lambda) 0 in
+let z4:=if cond then -Csqrt (binom_solution p r 1) 
+                else binom_solution (-A) (-B+lambda) 1 in
+let u1:=z1+s in
+let u2:=z2+s in
+let u3:=z3+s in
+let u4:=z4+s in
+forall u:C, (u-u1)*(u-u2)*(u-u3)*(u-u4)=Cpow u 4+a*Cpow u 3+b*Cpow u 2+c*u+d.
+</pre>
+</p>
 </div>
 
 
