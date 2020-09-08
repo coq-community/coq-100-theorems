@@ -1,7 +1,7 @@
 (*
 MIT License
 
-Copyright (c) 2017 Frédéric Chardard, Institut Camille Jordan /
+Copyright (c) 2017-2020 Frédéric Chardard, Institut Camille Jordan /
 Université Jean Monnet de Saint-Etienne
 
 Permission is hereby granted, free of charge, to any person obtaining a copy 
@@ -34,6 +34,7 @@ in the field of complex numbers.
 __A proof that Ferrari method solves the general quartic equation in the 
 field of complex numbers.
 
+
 This file was checked by Coq without error with following configuration:
 base-bigarray          base
 base-threads           base
@@ -63,6 +64,7 @@ ocamlfind              1.8.1       A library manager for OCaml
 
 on Linux empmeticj012 5.4.0-42-generic #46-Ubuntu SMP Fri Jul 10 00:24:02 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
 (Ubuntu 20.04.1 LTS)
+with OPAM 2.0.5.
 *)
 
 Require Import Reals Coq.Reals.Rtrigo_def Coquelicot.Coquelicot Coquelicot.ElemFct Lra.
@@ -132,7 +134,7 @@ induction (total_order_T x 0) as [xneg|xspos].
    right.
    apply Rlt_neq.
    assumption.
-Defined.
+Qed.
 
 
 Lemma normpos : forall x:R, forall y:R, 0<=x^2+y^2.
@@ -256,9 +258,10 @@ destruct z as (u,v).
 unfold Im,Re,fst,snd.
 unfold Rle.
 destruct (total_order_T u 0) as [uneg|uspos];
-try destruct uneg as [usneg|u0];
-destruct (Reqdec v) as [veq0|vneq0];
-auto.
+  try destruct uneg as [usneg|u0];
+  destruct (Reqdec v) as [veq0|vneq0];
+  auto.
+
 Qed.
 
 
@@ -273,7 +276,7 @@ let b:=(if (Rneg_or_not z)
 
 Lemma Csqrt_Cpow2 : forall z: C, (Csqrt z)*(Csqrt z)=z.
   intro.
-  unfold Cmult.  
+  unfold Cmult.
   pose (fst (Csqrt z)) as u.
   pose (snd (Csqrt z)) as v.
 
@@ -673,6 +676,31 @@ rewrite CJ2.
 field.
 Qed.
 
+Lemma Cval2 : RtoC 2=RtoC 1+RtoC 1.
+unfold Cplus,fst,snd,RtoC.
+f_equal;
+field.
+Qed.
+Lemma Cval3 : RtoC 3=RtoC 1+RtoC 1+RtoC 1.
+unfold Cplus,fst,snd,RtoC.
+f_equal;
+field.
+Qed.
+Lemma Cval4: (RtoC 4=(RtoC 1+RtoC 1)*(RtoC 1+RtoC 1)).
+unfold Cplus,Cmult,fst,snd,RtoC.
+f_equal;
+field.
+Qed.
+Lemma Cval6 : RtoC 6=(RtoC 1+RtoC 1+RtoC 1)*(RtoC 1+RtoC 1).
+unfold Cmult,Cplus,fst,snd,RtoC.
+f_equal;
+field.
+Qed.
+Lemma Cval8 : RtoC 8=(RtoC 1+RtoC 1)*(RtoC 1+RtoC 1)*(RtoC 1+RtoC 1).
+unfold Cmult,Cplus,fst,snd,RtoC.
+f_equal;
+field.
+Qed.
 
 
 Lemma shiftdeg3 : forall u:C, forall a b c:C, forall z:C, 
@@ -680,15 +708,9 @@ Cpow (z+u) 3+a*Cpow (z+u) 2+b*(z+u)+c
 =Cpow z 3+(a+3*u)*Cpow z 2+(b+2*u*a+3*Cpow u 2)*z+(c+b*u+a*Cpow u 2+Cpow u 3).
 intros.
 unfold Cpow.
-replace (RtoC 3) with (1+1+1).
-replace (RtoC 2) with (1+1).
+rewrite Cval3.
+rewrite Cval2.
 field.
-Cfequal.
-f_equal;
-  field.
-Cfequal.
-f_equal;
-  field.
 Qed.
 
 Lemma permprod: forall e f g:C,  g*f*e=e*g*f.
@@ -826,6 +848,7 @@ assert((Cpow alpha 3)<>0) as alpha3neq0.
 unfold alpha.
 rewrite cubicroot3.
 
+
 apply( (f_notequal _ _ (fun z => (q/2)+z) )).
 rewrite Cplus_assoc.
 Csimpl.
@@ -880,21 +903,18 @@ unfold Cminus.
 developall.
 
 transitivity(-(3*alpha*beta)).
-replace (RtoC 3) with (1+1+1).
-developall.
+rewrite Cval3.
 field.
-unfold RtoC,Cplus,fst,snd.
-f_equal;field.
 unfold beta.
 field.
 split;
 assumption.
 
-
 unfold z1,z2,z3.
 developall.
 rewrite CJ3.
 rewrite CJ2.
+developall.
 
 transitivity(-(Cpow alpha 3+Cpow beta 3)).
 unfold Cpow.
@@ -919,23 +939,12 @@ rewrite cubicroot3.
 developall.
 
 rewrite Csqrt_Cpow2.
+generalize (Csqrt Delta).
+intro.
 unfold Delta,Cpow.
-pose (q/2) as qhalf.
-fold qhalf.
-replace q with (qhalf*(1+1)).
+rewrite Cval2.
 field.
-assumption.
-unfold qhalf.
-unfold Cdiv.
-rewrite<-Cmult_assoc.
-replace(1+1)%C with (RtoC 2).
-rewrite Cinv_l.
-rewrite Cmult_1_r.
-reflexivity.
-assumption.
-unfold RtoC,Cplus,fst,snd.
-f_equal;
-  field.
+split;nneq0.
 
 assumption.
 assumption.
@@ -949,23 +958,11 @@ Cpow (z+u) 4+a*Cpow (z+u) 3+b*Cpow (z+u) 2+c*(z+u)+d
  +(c+2*b*u+3*a*Cpow u 2+4*Cpow u 3)*z+(d+c*u+b*Cpow u 2+a*Cpow u 3+Cpow u 4).
 intros.
 unfold Cpow.
-replace (RtoC 6) with (1+1+1+1+1+1).
-replace (RtoC 4) with (1+1+1+1).
-replace (RtoC 3) with (1+1+1).
-replace (RtoC 2) with (1+1).
+rewrite Cval6.
+rewrite Cval4.
+rewrite Cval3.
+rewrite Cval2.
 field.
-Cfequal.
-f_equal;
-  field.
-Cfequal.
-f_equal;
-  field.
-Cfequal.
-f_equal;
-  field.
-Cfequal.
-f_equal;
-  field.
 Qed.
 
 Definition binom_solution:= fun (b:C) (c:C) (n:nat) =>
@@ -988,12 +985,9 @@ destruct f,g.
 unfold RtoC,Cmult,Copp,Cplus,fst,snd.
 f_equal;field.
 rewrite aux1.
-replace (RtoC 2) with (RtoC 1+ RtoC 1).
+rewrite Cval2.
 field.
 nneq0.
-unfold RtoC,Cplus,fst,snd.
-f_equal.
-apply Rplus_0_r.
 
 repeat rewrite Cmult_1_r.
 assert(forall u v :C, (u+v)*(u+v*-1)=u*u-v*v) as diffsq.
@@ -1041,20 +1035,6 @@ rewrite (Cplus_comm _ w).
 rewrite diff.
 rewrite Cplus_0_r.
 reflexivity.
-
-
-assert(RtoC 2=RtoC 1+RtoC 1) as val2.
-unfold Cplus,fst,snd,RtoC.
-f_equal;
-field.
-assert(RtoC 4=RtoC 1+RtoC 1+RtoC 1+RtoC 1) as val4.
-unfold Cplus,fst,snd,RtoC.
-f_equal;
-field.
-assert(RtoC 8=RtoC 1+RtoC 1+RtoC 1+RtoC 1+RtoC 1+RtoC 1+RtoC 1+RtoC 1) as val8.
-unfold Cplus,fst,snd,RtoC.
-f_equal;
-field.
 
 intros.
 unfold u1,u2,u3,u4.
@@ -1151,7 +1131,7 @@ transitivity (Cpow z 4+(-(A*A)+2*lambda)*Cpow z 2
 
 unfold Cpow.
 
-rewrite val2.
+rewrite Cval2.
 field.
 
 replace (A*B) with (-q/2).
@@ -1167,11 +1147,11 @@ nneq0.
 apply cancelm.
 rewrite<-(Cmult_0_r (/(lambda-p/2))).
 rewrite Hlambda.
-rewrite val8.
-rewrite val4.
-rewrite val2.
+rewrite Cval8.
+rewrite Cval4.
+rewrite Cval2.
 unfold Cpow.
-field.
+field;
 split.
 nneq0.
 split.
@@ -1187,8 +1167,8 @@ f_equal;field.
 nneq0.
 unfold B.
 unfold Cdiv.
-rewrite val2.
-rewrite val4.
+rewrite Cval2.
+rewrite Cval4.
 field.
 split.
 assumption.
