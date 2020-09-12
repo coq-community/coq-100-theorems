@@ -1516,12 +1516,16 @@ Theorem birthday_paradox_min :
 <h3 id='95' class='formalized'><a href='http://www.cs.ru.nl/~freek/100/#95'>95. Ptolemy’s Theorem</a></h3>
 <div>
 <p class='statementinfo'>
-<strong class='author'>Tuan Minh Pham</strong>
-<span class='location'>(<a href="http://hal.inria.fr/inria-00585203">link to the publication on HAL</a></span>):
-<!-- <pre class='comment'></pre> -->
-<pre class='statement'>forall (O A B C D : PO) (r: R),
-convexQuad A B C D ? concyclic O r A B C D ?
-AD ? BC + AB ? CD = AC ? BD.</pre>
+<strong class='author'>Tuan-Minh Pham</strong>
+(in <a class='location' href="https://github.com/coq-community/HighSchoolGeometry/blob/master/Ptolemee.v">HighSchoolGeometry/Ptolemee</a>):
+<pre class='comment'></pre>
+<pre class='statement'>Theorem Ptolemee:
+ forall (A B C D : PO),
+ orient A B C -> orient A B D ->
+ orient C D A -> orient C D B ->
+ sont_cocycliques A B C D ->
+ (distance A B  * distance C D) + (distance B C * distance D A) =
+ distance A C  * distance B D.</pre>
 </p>
 </div>
 
