@@ -92,7 +92,7 @@ Lemma Q_countable: CountableT Q.</pre>
 <div>
 <p class='statementinfo'>
 <strong class='author'>Frédérique Guilhot</strong>
-(in <a class='location' href="https://github.com/thery/HighSchoolGeometry/blob/master/euclidien_classiques.v">HighSchoolGeometry/euclidien_classiques</a>):
+(in <a class='location' href="https://github.com/coq-community/HighSchoolGeometry/blob/master/euclidien_classiques.v">HighSchoolGeometry/euclidien_classiques</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Theorem Pythagore :
  forall A B C : PO,
@@ -438,7 +438,7 @@ Lemma arctan_series : forall c : IR,
 <div>
 <p class='statementinfo'>
 <strong class='author'>Frédérique Guilhot</strong>
-(in <a class='location' href="https://github.com/thery/HighSchoolGeometry/blob/master/angles_vecteurs.v">HighSchoolGeometry/angles_vecteurs</a>):
+(in <a class='location' href="https://github.com/coq-community/HighSchoolGeometry/blob/master/angles_vecteurs.v">HighSchoolGeometry/angles_vecteurs</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Theorem somme_triangle :
  forall A B C : PO,
@@ -1047,7 +1047,7 @@ Theorem Hopital_g0_Lfin_right : limit1_in (fun x ⇒ f x / g x) (open_interval a
 <div>
 <p class='statementinfo'>
 <strong class='author'>Frédérique Guilhot</strong>
-(in <a class='location' href="https://github.com/thery/HighSchoolGeometry/blob/master/isocele.v">HighSchoolGeometry/isocele</a>):
+(in <a class='location' href="https://github.com/coq-community/HighSchoolGeometry/blob/master/isocele.v">HighSchoolGeometry/isocele</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Lemma isocele_angles_base :
  isocele A B C -> cons_AV (vec B C) (vec B A) = cons_AV (vec C A) (vec C B).</pre>
@@ -1321,7 +1321,7 @@ Cauchy_Schwarz_inequality
 <h3 id='84' class='formalized'><a href='http://www.cs.ru.nl/~freek/100/#84'>84. Morley’s Theorem</a></h3>
 <div>
 <strong class='author'>Frédérique Guilhot</strong>
-(in <a class='location' href="https://github.com/thery/HighSchoolGeometry/blob/master/exercice_morley.v">HighSchoolGeometry/exercice_morley</a>):
+(in <a class='location' href="https://github.com/coq-community/HighSchoolGeometry/blob/master/exercice_morley.v">HighSchoolGeometry/exercice_morley</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Theorem Morley:
  forall (a b c : R) (A B C P Q T : PO),
@@ -1370,7 +1370,7 @@ Cauchy_Schwarz_inequality
 <div>
 <p class='statementinfo'>
 <strong class='author'>Frédérique Guilhot</strong>
-(in <a class='location' href="https://github.com/thery/HighSchoolGeometry/blob/master/affine_classiques.v">HighSchoolGeometry/affine_classiques</a>):
+(in <a class='location' href="https://github.com/coq-community/HighSchoolGeometry/blob/master/affine_classiques.v">HighSchoolGeometry/affine_classiques</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Theorem Desargues :
  forall A B C A1 B1 C1 S : PO,
@@ -1499,7 +1499,7 @@ Theorem birthday_paradox_min :
 <div>
 <p class='statementinfo'>
 <strong class='author'>Frédérique Guilhot</strong>
-(in <a class='location' href="https://github.com/thery/HighSchoolGeometry/blob/master/metrique_triangle.v">HighSchoolGeometry/metrique_triangle</a>):
+(in <a class='location' href="https://github.com/coq-community/HighSchoolGeometry/blob/master/metrique_triangle.v">HighSchoolGeometry/metrique_triangle</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Theorem Al_Kashi :
  forall (A B C : PO) (a : R),
@@ -1516,12 +1516,16 @@ Theorem birthday_paradox_min :
 <h3 id='95' class='formalized'><a href='http://www.cs.ru.nl/~freek/100/#95'>95. Ptolemy’s Theorem</a></h3>
 <div>
 <p class='statementinfo'>
-<strong class='author'>Tuan Minh Pham</strong>
-<span class='location'>(<a href="http://hal.inria.fr/inria-00585203">link to the publication on HAL</a></span>):
-<!-- <pre class='comment'></pre> -->
-<pre class='statement'>forall (O A B C D : PO) (r: R),
-convexQuad A B C D ? concyclic O r A B C D ?
-AD ? BC + AB ? CD = AC ? BD.</pre>
+<strong class='author'>Tuan-Minh Pham</strong>
+(in <a class='location' href="https://github.com/coq-community/HighSchoolGeometry/blob/master/Ptolemee.v">HighSchoolGeometry/Ptolemee</a>):
+<pre class='comment'></pre>
+<pre class='statement'>Theorem Ptolemee:
+ forall (A B C D : PO),
+ orient A B C -> orient A B D ->
+ orient C D A -> orient C D B ->
+ sont_cocycliques A B C D ->
+ (distance A B  * distance C D) + (distance B C * distance D A) =
+ distance A C  * distance B D.</pre>
 </p>
 </div>
 
