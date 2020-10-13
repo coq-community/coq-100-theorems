@@ -55,7 +55,7 @@
 <div>
 <p class='statementinfo'>
 <strong class='author'>Herman Geuvers et al.</strong>
-(in <a class='location' href="https://github.com/c-corn/corn/blob/master/fta/FTA.v#L187">C-CoRN/fta/FTA</a>):
+(in <a class='location' href="https://github.com/coq-community/corn/blob/master/fta/FTA.v#L188">C-CoRN/fta/FTA</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Lemma FTA : forall f : CCX, nonConst _ f -> {z : CC | f ! z [=] [0]}.</pre>
 </p>
@@ -245,7 +245,7 @@ inv_qhmap : see Euler1.v</pre>
 <div>
 <p class='statementinfo'>
 <strong class='author'>Luís Cruz-Filipe</strong>
-(in <a class='location' href="https://github.com/c-corn/corn/blob/master/ftc/FTC.v#L181">C-CoRN/ftc/FTC</a>):
+(in <a class='location' href="https://github.com/coq-community/corn/blob/master/ftc/FTC.v#L181">C-CoRN/ftc/FTC</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Theorem FTC1 : Derivative J pJ G F.
 Theorem FTC2 : {c : IR | Feq J (G{-}G0) [-C-]c}.</pre>
@@ -284,7 +284,7 @@ Lemma Cexp_mult : forall a n, Cexp (INC n * a) = (Cexp a) ^ n.</pre>
 <div>
 <p class='statementinfo'>
 <strong class='author'>Valentin Blot</strong>
-(see <a href="https://valentinblot.org/pro/">Valentin's website</a> or directly the <a class='location' href="https://valentinblot.org/pro/M1_sources.tar.gz">.tar.gz of the proof</a>):
+(in <a class='location' href="https://github.com/coq-community/corn/blob/master/liouville/Liouville.v">C-CoRN/liouville/Liouville</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Theorem Liouville_theorem2 :
     {n : nat | {C : IR | Zero [<] C | forall (x : Q),
@@ -346,7 +346,7 @@ Theorem R_uncountable_strong : forall (f : nat -> R) (x y : R),
   x < y -> {l : R | forall n, l <> f n & x <= l <= y}.</pre>
 </p>
 <strong class='author'>C-CoRN team</strong>
-(in <a class='location' href="https://github.com/c-corn/corn/blob/master/reals/RealCount.v#L362">C-CoRN/reals/RealCount</a>):
+(in <a class='location' href="https://github.com/coq-community/corn/blob/master/reals/RealCount.v#L362">C-CoRN/reals/RealCount</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Theorem reals_not_countable :
   forall (f : nat -> IR), {x :IR | forall n : nat, x [#] (f n)}.
@@ -419,7 +419,7 @@ Definition Alt_PI : R := 4 * (let (a,_) := exist_PI in a).
 Theorem Alt_PI_eq : Alt_PI = PI.</pre>
 </p>
 <strong class='author'>Luís Cruz-Filipe</strong>
-(in <a class='location' href="https://github.com/c-corn/corn/blob/master/transc/MoreArcTan.v#L553">C-CoRN/transc/MoreArcTan</a>):
+(in <a class='location' href="https://github.com/coq-community/corn/blob/master/transc/MoreArcTan.v#L553">C-CoRN/transc/MoreArcTan</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Lemma ArcTan_one : ArcTan One[=]Pi[/]FourNZ.
 
@@ -616,7 +616,7 @@ Lemma hexamy_prop: pappus_strong -> forall A B C D E F,
 <div>
 <p class='statementinfo'>
 <strong class='author'>Luís Cruz-Filipe</strong>
-(in <a class='location' href="https://github.com/c-corn/corn/blob/master/ftc/Taylor.v#L355">C-CoRN/ftc/Taylor</a>):
+(in <a class='location' href="https://github.com/coq-community/corn/blob/master/ftc/Taylor.v#L355">C-CoRN/ftc/Taylor</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Theorem Taylor : forall e, Zero [<] e -> forall Hb',
   {c : IR | Compact (Min_leEq_Max a b) c |
@@ -1073,7 +1073,7 @@ Lemma isosceles_conga :
 <div>
 <p class='statementinfo'>
 <strong class='author'>Luís Cruz-Filipe</strong>
-(in <a class='location' href="https://github.com/c-corn/corn/blob/master/ftc/MoreFunSeries.v#L994">C-CoRN/ftc/MoreFunSeries</a>):
+(in <a class='location' href="https://github.com/coq-community/corn/blob/master/ftc/MoreFunSeries.v#L994">C-CoRN/ftc/MoreFunSeries</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Lemma fun_power_series_conv_IR :
   fun_series_convergent_IR
@@ -1224,7 +1224,7 @@ Lemma nat_ind :
 <div>
 <p class='statementinfo'>
 <strong class='author'>Luís Cruz-Filipe</strong>
-(in <a class='location' href="https://github.com/c-corn/corn/blob/master/ftc/Rolle.v#L689">C-CoRN/ftc/Rolle</a>):
+(in <a class='location' href="https://github.com/coq-community/corn/blob/master/ftc/Rolle.v#L689">C-CoRN/ftc/Rolle</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Theorem Law_of_the_Mean : forall a b, I a -> I b -> forall e, Zero [<] e ->
  {x : IR | Compact (Min_leEq_Max a b) x | forall Ha Hb Hx,
