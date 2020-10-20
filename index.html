@@ -234,7 +234,7 @@ inv_qhmap : see Euler1.v</pre>
 <div>
 <p class='statementinfo'>
 <strong class='author'>Jean-Marie Madiot</strong>
-(<a class='location' href="https://coqtail.github.io/doc/Coqtail.Reals.Rzeta2.html">in Coqtail/Reals/Rzeta2</a>):
+(in <a class='location' href="https://github.com/coq-community/coqtail-math/blob/master/Reals/Rzeta2.v">coqtail-math/Reals/Rzeta2</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Theorem zeta2_pi_2_6 : Rser_cv (fun n => 1 / (n + 1) ^ 2) (PI ^ 2 / 6).</pre>
 </p>
@@ -271,8 +271,7 @@ Theorem FTC2 : {c : IR | Feq J (G{-}G0) [-C-]c}.</pre>
 <div>
 <p class='statementinfo'>
 <strong class='author'>Coqtail team</strong>
-(<a class='location' href="https://coqtail.github.io/doc/Coqtail.Complex.Cexp.html">in Coqtail/Complex/Cexp</a>):
-<!-- <span class='location'>(http://coqtail.sourceforge.net/main.php?page=3&doc=Complex.Cexp)</span>: -->
+(in <a class='location' href="https://github.com/coq-community/coqtail-math/blob/master/Complex/Cexp.v">coqtail-math/Complex/Cexp</a>):
 <pre class='comment'>De Moivre's formula is easily deduced from Euler's formula thanks to e^(n*z)=(e^z)^n.</pre>
 <pre class='statement'>Lemma Cexp_trigo_compat : forall a, Cexp (0 +i a) = cos a +i sin a.
 Lemma Cexp_mult : forall a n, Cexp (INC n * a) = (Cexp a) ^ n.</pre>
@@ -297,7 +296,7 @@ Lemma Cexp_mult : forall a n, Cexp (INC n * a) = (Cexp a) ^ n.</pre>
 <div>
 <p class='statementinfo'>
 <strong class='author'>Guillaume Allais, Jean-Marie Madiot</strong>
-(in <a class='location' href="https://coqtail.github.io/doc/Coqtail.Arith.Lagrange_four_square.html">Coqtail/Arith/Lagrange_four_square</a>):
+(in <a class='location' href="https://github.com/coq-community/coqtail-math/blob/master/Arith/Lagrange_four_square.v">coqtail-math/Arith/Lagrange_four_square</a>):
 <pre class='comment'>"{a | P}" means "there exists a such that P" but in a constructive setting. Indeed, from the proof, we can extract a program computing a, b, c, d from n.</pre>
 <pre class='statement'>Theorem lagrange_4_square_theorem : forall n, 0 <= n ->
   { a : _ & { b: _ & { c : _ & { d |
@@ -337,7 +336,7 @@ also done in ssreflect available as an <a class='location' href="http://coq.io/o
 <div>
 <p class='statementinfo'>
 <strong class='author'>Pierre-Marie Pédrot</strong>
-(in <a class='location' href="https://coqtail.github.io/doc/Coqtail.Reals.Logic.Runcountable.html">Coqtail/Reals/Logic/Runcountable</a>):
+(in <a class='location' href="https://github.com/coq-community/coqtail-math/blob/master/Reals/Logic/Runcountable.v">coqtail-math/Reals/Logic/Runcountable</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Theorem R_uncountable : forall (f : nat -> R),
   {l : R | forall n, l <> f n}.
@@ -604,7 +603,7 @@ Lemma hexamy_prop: pappus_strong -> forall A B C D E F,
 <div>
 <p class='statementinfo'>
 <strong class='author'>Coqtail</strong>
-<a href="https://coqtail.github.io/doc/Coqtail.Reals.Rseries.Rseries_RiemannInt.html" class='location'>(Coqtail/Reals/Rseries/Rseries_RiemannInt)</a>:
+(in <a href="https://github.com/coq-community/coqtail-math/blob/master/Reals/Rseries/Rseries_RiemannInt.v" class='location'>coqtail-math/Reals/Rseries/Rseries_RiemannInt</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Lemma harmonic_series_equiv : (sum_f_R0 (fun n ⇒ / (S n))) ~ (fun n ⇒ ln (S (S n))).
 </pre>
@@ -711,7 +710,7 @@ camlp5.7.03 conf-gtksourceview.2 conf-m4.1 coq.8.7.0 coq-coquelicot.3.0.1 coq-ma
 <div>
 <p class='statementinfo'>
 <strong class='author'>Coqtail</strong>
-(in <a href="https://coqtail.github.io/doc/Coqtail.Reals.Triangular.html" class='location'>Coqtail/Reals/Triangular</a>):
+(in <a href="https://github.com/coq-community/coqtail-math/blob/master/Reals/Triangular.v" class='location'>coqtail-math/Reals/Triangular</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Lemma sum_reciprocal_triangular : Rser_cv (fun n => / triangle (S n)) 2.</pre>
 </p>
@@ -743,7 +742,7 @@ camlp5.7.03 conf-gtksourceview.2 conf-m4.1 coq.8.7.0 coq-coquelicot.3.0.1 coq-ma
  sum_nm n 0 (fun k : nat => binomial n k * (power a (n - k) * power b k)).</pre>
 </p>
 <strong class='author'>Jean-Marie Madiot</strong>
-(in <a class='location' href="https://github.com/coqtail/coqtail/blob/master/src/Hierarchy/Commutative_ring_binomial.v#L271">Coqtail/Hierarchy/Commutative_ring_binomial</a>):
+(in <a class='location' href="https://github.com/coq-community/coqtail-math/blob/master/Hierarchy/Commutative_ring_binomial.v#L271">coqtail-math/Hierarchy/Commutative_ring_binomial</a>):
 <pre class='comment'>For any commutative ring X.</pre>
 <pre class='statement'>Definition newton_sum n a b : X :=
   CRsum (fun k => (Nbinomial n k) ** (a ^ k) * (b ^ (n - k))) n.
@@ -1020,8 +1019,8 @@ Lemma Zis_gcd_bezout : forall a b d:Z, Zis_gcd a b d -> Bezout a b d.</pre>
 <h3 id='64' class='formalized'><a href='http://www.cs.ru.nl/~freek/100/#64'>64. L’Hopital’s Rule</a></h3>
 <div>
 <p class='statementinfo'>
-<strong class='author'>Sylvain Dailler (Coqtail)</strong>
-(in <a class='location' href="https://coqtail.github.io/doc/Coqtail.Reals.Hopital.html">Coqtail/Reals/Hopital</a>):
+<strong class='author'>Sylvain Dailler</strong>
+(in <a class='location' href="https://github.com/coq-community/coqtail-math/blob/master/Reals/Hopital.v">coqtail-math/Reals/Hopital</a>):
 <pre class='comment'>Many other versions in the file, for example depending on whether the limits are finite or not.</pre>
 <pre class='statement'>Variables f g : R → R.
 Variables a b L : R.
@@ -1452,7 +1451,7 @@ Lemma edivpP m d : edivp_spec m d (edivp m d).
 <div>
 <p class='statementinfo'>
 <strong class='author'>Coqtail team</strong>
-(<a class='location' href="https://coqtail.github.io/doc/Coqtail.Reals.RStirling.html#Stirling_equiv">Coqtail/Reals/RStirling</a>):
+(<a class='location' href="https://github.com/coq-community/coqtail-math/blob/master/Reals/RStirling.v">coqtail-math/Reals/RStirling</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Lemma Stirling_equiv :
   Rseq_fact ~ (fun n => sqrt (2 × PI) × (INR n) ^ n × exp (- (INR n)) × sqrt (INR n)).</pre>
