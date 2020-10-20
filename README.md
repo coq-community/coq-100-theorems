@@ -27,17 +27,6 @@ using the [Coq proof assistant](https://coq.inria.fr/).
 
 You can see the list on [this webpage](https://madiot.fr/coq100).
 
-This repository also contains the proofs of some of the theorems:
-- [ballot.v](ballot.v) for the [Ballot Theorem](https://en.wikipedia.org/wiki/Bertrand%27s_ballot_theorem)
-- [birthday.v](birthday.v) for the [Birthday Problem](https://en.wikipedia.org/wiki/Birthday_problem)
-- [cardan_ferrari.v](cardan_ferrari.v) for The Solution of a [Cubic](https://en.wikipedia.org/wiki/Cubic_equation) and the Solution of a [Quartic](https://en.wikipedia.org/wiki/Quartic_equation)
-- [div3.v](div3.v) for [Divisibility by 3 Rule](https://en.wikipedia.org/wiki/Divisibility_rule#Divisibility_by_3_or_9)
-- [inclusionexclusion.v](inclusionexclusion.v) for the [Inclusion/Exclusion Principle](https://en.wikipedia.org/wiki/Inclusion%E2%80%93exclusion_principle#Statement)
-- [konigsberg_bridges.v](konigsberg_bridges.v) for the [Konigsberg Bridges Problem](https://en.wikipedia.org/wiki/Seven_Bridges_of_K%C3%B6nigsberg)
-- [mean.v](mean.v) for the [Arithmetic Mean/Geometric Mean](https://en.wikipedia.org/wiki/Inequality_of_arithmetic_and_geometric_means#The_inequality)
-- [sumarith.v](sumarith.v) for [Sum of an arithmetic series](https://en.wikipedia.org/wiki/Arithmetic_progression#Sum)
-- [sumkthpowers.v](sumkthpowers.v) for [Sum of kth powers](https://en.wikipedia.org/wiki/Bernoulli_polynomials#Sums_of_pth_powers)
-
 ## Meta
 
 - Author(s):
@@ -63,4 +52,16 @@ cd coq100
 make   # or make -j <number-of-cores-on-your-machine>
 ```
 
+## Included proofs
+
+This repository also contains Coq proofs of some of the 100 theorems:
+- [ballot.v](ballot.v) for the [Ballot Theorem](https://en.wikipedia.org/wiki/Bertrand%27s_ballot_theorem)
+- [birthday.v](birthday.v) for the [Birthday Problem](https://en.wikipedia.org/wiki/Birthday_problem)
+- [cardan_ferrari.v](cardan_ferrari.v) for The Solution of a [Cubic](https://en.wikipedia.org/wiki/Cubic_equation) and the Solution of a [Quartic](https://en.wikipedia.org/wiki/Quartic_equation)
+- [div3.v](div3.v) for [Divisibility by 3 Rule](https://en.wikipedia.org/wiki/Divisibility_rule#Divisibility_by_3_or_9)
+- [inclusionexclusion.v](inclusionexclusion.v) for the [Inclusion/Exclusion Principle](https://en.wikipedia.org/wiki/Inclusion%E2%80%93exclusion_principle#Statement)
+- [konigsberg_bridges.v](konigsberg_bridges.v) for the [Konigsberg Bridges Problem](https://en.wikipedia.org/wiki/Seven_Bridges_of_K%C3%B6nigsberg)
+- [mean.v](mean.v) for the [Arithmetic Mean/Geometric Mean](https://en.wikipedia.org/wiki/Inequality_of_arithmetic_and_geometric_means#The_inequality)
+- [sumarith.v](sumarith.v) for [Sum of an arithmetic series](https://en.wikipedia.org/wiki/Arithmetic_progression#Sum)
+- [sumkthpowers.v](sumkthpowers.v) for [Sum of kth powers](https://en.wikipedia.org/wiki/Bernoulli_polynomials#Sums_of_pth_powers)
 
