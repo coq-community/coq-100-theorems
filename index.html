@@ -44,7 +44,7 @@
 <div>
 <p class='statementinfo'>
 <strong class='author'>many versions</strong>
-(e.g., <a class='location' href="https://github.com/coq-community/qarith-stern-brocot/blob/master/theories/sqrt2.v">one in qarith-stern-brocot/sqrt2</a>):
+(e.g., in <a class='location' href="https://github.com/coq-community/qarith-stern-brocot/blob/master/theories/sqrt2.v">qarith-stern-brocot/theories/sqrt2</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Theorem sqrt2_not_rational : forall p q : nat, q <> 0 -> p * p = 2 * (q * q) -> False.</pre>
 </p>
@@ -55,7 +55,7 @@
 <div>
 <p class='statementinfo'>
 <strong class='author'>Herman Geuvers et al.</strong>
-(in <a class='location' href="https://github.com/coq-community/corn/blob/master/fta/FTA.v#L188">C-CoRN/fta/FTA</a>):
+(in <a class='location' href="https://github.com/coq-community/corn/blob/master/fta/FTA.v#L188">corn/fta/FTA</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Lemma FTA : forall f : CCX, nonConst _ f -> {z : CC | f ! z [=] [0]}.</pre>
 </p>
@@ -66,7 +66,7 @@
 <div>
 <p class='statementinfo'>
 <strong class='author'>Milad Niqui</strong>
-(in <a class='location' href="https://github.com/coq-community/qarith-stern-brocot/blob/master/theories/Q_denumerable.v">qarith-stern-brocot/Q_denumerable</a>):
+(in <a class='location' href="https://github.com/coq-community/qarith-stern-brocot/blob/master/theories/Q_denumerable.v">qarith-stern-brocot/theories/Q_denumerable</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Theorem Q_is_denumerable: is_denumerable Q.
 
@@ -80,7 +80,7 @@ Definition same_cardinality (A:Set) (B:Set) :=
 Definition is_denumerable A := same_cardinality A nat.</pre>
 </p>
 <strong class='author'>Daniel Schepler</strong>
-(in <a class='location' href="https://github.com/coq-community/zorns-lemma/blob/master/CountableTypes.v">coq-community/zorns-lemma/CountableTypes</a>):
+(in <a class='location' href="https://github.com/coq-community/zorns-lemma/blob/master/CountableTypes.v">zorns-lemma/CountableTypes</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Inductive CountableT (X:Type) : Prop :=
   | intro_nat_injection: forall f:X->nat, injective f -> CountableT X.
@@ -135,7 +135,7 @@ Lemma pythagoras :
 <div>
 <p class='statementinfo'>
 <strong class='author'>Russell O'Connor</strong>
-(<a class='location' href="https://github.com/coq-contribs/goedel/blob/master/goedel1.v">in contribs/Goedel/goedel1</a>,
+(in <a class='location' href="https://github.com/coq-contribs/goedel/blob/master/goedel1.v">goedel/goedel1</a>,
 see <a class='location' href="http://r6.ca/Goedel/goedel1.html">description on r6.ca</a> and proof archive: <a href="http://r6.ca/Goedel/Goedel20050512.tar.gz">Goedel20050512.tar.gz</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Theorem Goedel'sIncompleteness1st :
@@ -145,7 +145,7 @@ see <a class='location' href="http://r6.ca/Goedel/goedel1.html">description on r
    ~ SysPrf T (notH f) /\ (forall v : nat, ~ In v (freeVarFormula LNN f)).</pre>
 </p>
 <strong class='author'>Russell O'Connor</strong>
-(<a class='location' href="https://github.com/coq-contribs/goedel/blob/master/goedel2.v">in contribs/Goedel/goedel2</a>):
+(in <a class='location' href="https://github.com/coq-contribs/goedel/blob/master/goedel2.v">goedel/goedel2</a>):
 <pre class='comment'>Russell O'Connor proved the theorem under the assumption of the last two Hilbert-Bernays-Loeb derivability conditions.</pre>
 <pre class='statement'>Hypothesis HBL2 : forall f, SysPrf T (impH (box f) (box (box f))).
 Hypothesis HBL3 : forall f g, SysPrf T (impH (box (impH f g)) (impH (box f) (box g))).
@@ -216,7 +216,7 @@ SysPrf T Con -> Inconsistent LNT T.</pre>
 <div>
 <p class='statementinfo'>
 <strong class='author'>Jean-François Dufourd</strong>
-(in <a class='location' href="https://github.com/coq-contribs/euler-formula/blob/master/Euler3.v">contribs/EulerFormula/Euler3</a>):
+(in <a class='location' href="https://github.com/coq-contribs/euler-formula/blob/master/Euler3.v">euler-formula/Euler3</a>):
 <pre class='comment'>nc : number of connected components
 nv : number of vertices
 ne : number of edges
@@ -245,7 +245,7 @@ inv_qhmap : see Euler1.v</pre>
 <div>
 <p class='statementinfo'>
 <strong class='author'>Luís Cruz-Filipe</strong>
-(in <a class='location' href="https://github.com/coq-community/corn/blob/master/ftc/FTC.v#L181">C-CoRN/ftc/FTC</a>):
+(in <a class='location' href="https://github.com/coq-community/corn/blob/master/ftc/FTC.v#L181">corn/ftc/FTC</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Theorem FTC1 : Derivative J pJ G F.
 Theorem FTC2 : {c : IR | Feq J (G{-}G0) [-C-]c}.</pre>
@@ -283,7 +283,7 @@ Lemma Cexp_mult : forall a n, Cexp (INC n * a) = (Cexp a) ^ n.</pre>
 <div>
 <p class='statementinfo'>
 <strong class='author'>Valentin Blot</strong>
-(in <a class='location' href="https://github.com/coq-community/corn/blob/master/liouville/Liouville.v">C-CoRN/liouville/Liouville</a>):
+(in <a class='location' href="https://github.com/coq-community/corn/blob/master/liouville/Liouville.v">corn/liouville/Liouville</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Theorem Liouville_theorem2 :
     {n : nat | {C : IR | Zero [<] C | forall (x : Q),
@@ -309,8 +309,7 @@ Lemma Cexp_mult : forall a n, Cexp (INC n * a) = (Cexp a) ^ n.</pre>
 <div>
 <p class='statementinfo'>
 <strong class='author'>Laurent Théry</strong>
-<!-- http://www.lix.polytechnique.fr/coq/pylons/contribs/files/SumOfTwoSquare/trunk/SumOfTwoSquare.TwoSquares.html -->
-(in <a class='location' href="https://github.com/coq-contribs/sum-of-two-square/blob/master/TwoSquares.v#L641">contribs/sum-of-two-square/TwoSquares</a>):  
+(in <a class='location' href="https://github.com/coq-contribs/sum-of-two-square/blob/master/TwoSquares.v#L641">sum-of-two-square/TwoSquares</a>):
 <pre class='comment'></pre>
 <pre class='statement'>
 Definition sum_of_two_squares :=
@@ -345,7 +344,7 @@ Theorem R_uncountable_strong : forall (f : nat -> R) (x y : R),
   x < y -> {l : R | forall n, l <> f n & x <= l <= y}.</pre>
 </p>
 <strong class='author'>C-CoRN team</strong>
-(in <a class='location' href="https://github.com/coq-community/corn/blob/master/reals/RealCount.v#L362">C-CoRN/reals/RealCount</a>):
+(in <a class='location' href="https://github.com/coq-community/corn/blob/master/reals/RealCount.v#L362">corn/reals/RealCount</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Theorem reals_not_countable :
   forall (f : nat -> IR), {x :IR | forall n : nat, x [#] (f n)}.
@@ -358,7 +357,7 @@ Theorem R_uncountable_strong : forall (f : nat -> R) (x y : R),
 <div>
 <p class='statementinfo'>
 <strong class='author'>David Delahaye</strong>
-(in <a class='location' href="https://github.com/coq-contribs/fermat4/blob/master/Pythagorean.v">contribs/Fermat4/Pythagorean</a>):
+(in <a class='location' href="https://github.com/coq-contribs/fermat4/blob/master/Pythagorean.v">fermat4/Pythagorean</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Lemma pytha_thm3 : forall a b c : Z,
   is_pytha a b c -> Zodd a ->
@@ -381,12 +380,12 @@ Theorem R_uncountable_strong : forall (f : nat -> R) (x y : R),
 <div>
 <p class='statementinfo'>
 <strong class='author'>Hugo Herbelin</strong>
-(in <a class='location' href="https://github.com/coq-contribs/schroeder/blob/master/Schroeder.v">contribs/schroeder/Schroeder</a>):
+(in <a class='location' href="https://github.com/coq-contribs/schroeder/blob/master/Schroeder.v">schroeder/Schroeder</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Theorem Schroeder : A <=_card B -> B <=_card A -> A =_card B.</pre>
 </p>
 <strong class='author'>Daniel Schepler</strong>
-(in <a class='location' href="https://github.com/coq-community/zorns-lemma/blob/master/CSB.v">coq-community/zorns-lemma/CSB</a>):
+(in <a class='location' href="https://github.com/coq-community/zorns-lemma/blob/master/CSB.v">zorns-lemma/CSB</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Section CSB.
 Variable X Y:Type.
@@ -418,7 +417,7 @@ Definition Alt_PI : R := 4 * (let (a,_) := exist_PI in a).
 Theorem Alt_PI_eq : Alt_PI = PI.</pre>
 </p>
 <strong class='author'>Luís Cruz-Filipe</strong>
-(in <a class='location' href="https://github.com/coq-community/corn/blob/master/transc/MoreArcTan.v#L553">C-CoRN/transc/MoreArcTan</a>):
+(in <a class='location' href="https://github.com/coq-community/corn/blob/master/transc/MoreArcTan.v#L553">corn/transc/MoreArcTan</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Lemma ArcTan_one : ArcTan One[=]Pi[/]FourNZ.
 
@@ -502,7 +501,7 @@ It is shown that the sum of angles is two rights is equivalent to other versions
 <div>
 <p class='statementinfo'>
 <strong class='author'>Magaud and Narboux</strong>
-(in <a class='location' href="https://github.com/coq-contribs/projective-geometry/blob/master/Plane/hexamys.v">contribs/projective-geometry/Plane/hexamys</a>):
+(in <a class='location' href="https://github.com/coq-contribs/projective-geometry/blob/master/Plane/hexamys.v">projective-geometry/Plane/hexamys</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Definition is_hexamy A B C D E F :=
   (A<>B / A<>C / A<>D / A<>E / A<>F /
@@ -573,7 +572,7 @@ Lemma hexamy_prop: pappus_strong -> forall A B C D E F,
 <div>
 <p class='statementinfo'>
 <strong class='author'>Frédéric Blanqui</strong>
-(in <a class='location' href="http://color.inria.fr/doc/CoLoR.Util.Set.Ramsey.html">CoLoR/Util/Set/Ramsey</a>):
+(in <a class='location' href="https://github.com/fblanqui/color/blob/master/Util/Set/Ramsey.v">color/Util/Set/Ramsey</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Theorem ramsey A (W : set A) n (P : Pinf W) B : forall (C : Pf B)
   (f : Pcard P (S n) -> elts C), Proper (Pcard_equiv ==> elts_eq) f ->
@@ -586,9 +585,9 @@ Lemma hexamy_prop: pappus_strong -> forall A B C D E F,
 <div>
 <p class='statementinfo'>
 <strong class='author'>Georges Gonthier, Benjamin Werner</strong>
-(on <a class='location' href="https://github.com/kik/Four-Color-Theorem-Maintenance/blob/master/coq/fourcolor.v">github</a>):
+(in <a class='location' href="https://github.com/math-comp/fourcolor/blob/master/theories/fourcolor.v">fourcolor/theories/fourcolor</a>):
 <pre class='comment'></pre>
-<pre class='statement'>Theorem four_color : forall m : map R, simple_map m -> map_colorable 4 m.</pre>
+<pre class='statement'>Theorem four_color m : simple_map m -> colorable_with 4 m.</pre>
 </p>
 </div>
 
@@ -615,7 +614,7 @@ Lemma hexamy_prop: pappus_strong -> forall A B C D E F,
 <div>
 <p class='statementinfo'>
 <strong class='author'>Luís Cruz-Filipe</strong>
-(in <a class='location' href="https://github.com/coq-community/corn/blob/master/ftc/Taylor.v#L355">C-CoRN/ftc/Taylor</a>):
+(in <a class='location' href="https://github.com/coq-community/corn/blob/master/ftc/Taylor.v#L355">corn/ftc/Taylor</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Theorem Taylor : forall e, Zero [<] e -> forall Hb',
   {c : IR | Compact (Min_leEq_Max a b) c |
@@ -690,7 +689,7 @@ forall u:C, (u-u1)*(u-u2)*(u-u3)=Cpow u 3+a1*Cpow u 2+a2*u+a3.
 <div>
 <p class='statementinfo'>
 <strong class='author'>Daniel de Rauglaudre</strong>
-(on <a class='location' href="https://gforge.inria.fr/plugins/scmgit/cgi-bin/gitweb.cgi?p=puiseuxth/puiseuxth.git;a=blob;f=coq/Puiseux.v;h=af46c812b5cb9527d82570db34e5a8bdd703fceb;hb=HEAD">gforge</a> (use login anonsvn / anonsvn if needed)):
+(in <a class='location' href="https://github.com/roglo/puiseuxth/blob/master/coq/Puiseux.v">puiseuxth/coq/Puiseux</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Theorem puiseux_series_algeb_closed : ∀ (α : Type) (R : ring α) (K : field R),
   algeb_closed_field K
@@ -729,7 +728,7 @@ forall u:C, (u-u1)*(u-u2)*(u-u3)=Cpow u 3+a1*Cpow u 2+a2*u+a3.
     (x + y) ^ n = sum_f_R0 (fun i:nat => C n i * x ^ i * y ^ (n - i)) n.</pre>
 </p>
 <strong class='author'>Laurent Thery & Jose C. Almeida</strong>
-(in <a class='location' href="https://github.com/coq-contribs/rsa/blob/master/Binomials.v">contribs/RSA/Binomials</a>):
+(in <a class='location' href="https://github.com/coq-contribs/rsa/blob/master/Binomials.v">RSA/Binomials</a>):
 <pre class='comment'>For the type nat</pre>
 <pre class='statement'>Theorem exp_Pascal :
  forall a b n : nat,
@@ -757,7 +756,7 @@ Theorem Newton : forall n a b, (a + b) ^ n == newton_sum n a b.</pre>
 <div>
 <p class='statementinfo'>
 <strong class='author'>Frédéric Chardard</strong>
-(in <a class='location' href="cardan_ferrari.v">cardan_ferrari.v</a>):
+(in <a class='location' href="https://github.com/coq-community/coq100/blob/master/cardan_ferrari.v">coq100/cardan_ferrari</a>):
 <pre class='comment'>For the non-constructive type R</pre>
 <pre class='statement'>
 Theorem Ferrari_formula: forall (a:C) (b:C) (c:C) (d:C), 
@@ -827,7 +826,7 @@ Distributed under the terms of CeCILL-B.</pre>
 <pre class='statement'>Theorem Wilson : forall p, p > 1 -> prime p = (p %| ((p.-1)`!).+1).</pre>
 </p>
 <strong class='author'>Laurent Théry</strong>
-(in <a class='location' href="https://github.com/coq-contribs/sum-of-two-square/blob/master/Wilson.v">contribs/sum-of-two-square/Wilson</a>):
+(in <a class='location' href="https://github.com/coq-contribs/sum-of-two-square/blob/master/Wilson.v">sum-of-two-square/Wilson</a>):
 <pre class='comment'>licence: LGPL</pre>
 <pre class='statement'>Theorem wilson: forall p, prime p ->  Zis_mod (Zfact (p - 1)) (- 1) p.</pre>
 </p>
@@ -843,7 +842,7 @@ Distributed under the terms of CeCILL-B.</pre>
 <pre class='statement'>Lemma card_powerset (T : finType) (A : {set T}) : #|powerset A| = 2 ^ #|A|.</pre>
 </p>
 <strong class='author'>Pierre Letouzey</strong>
-(in <a class='location' href="https://gforge.inria.fr/scm/viewvc.php/coq-contribs/trunk/Orsay/FSets/PowerSet.v?view=markup#l214">contribs/FSets/PowerSet</a>):
+(in <a class='location' href="https://github.com/coq-contribs/fsets/blob/master/PowerSet.v#L214">fsets/PowerSet</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Lemma powerset_cardinal:
   forall s, MM.cardinal (powerset s) = two_power (M.cardinal s).</pre>
@@ -916,7 +915,7 @@ Theorem HermiteLindemann (x : complexR) :
 <div>
 <p class='statementinfo'>
 <strong class='author'>Julien Narboux</strong>
-(in <a class='location' href="http://dpt-info.u-strasbg.fr/~narboux/AreaMethod/AreaMethod.pythagoras_difference_lemmas.html#herron_qin">AreaMethod/pythagoras_difference_lemmas</a>):
+(in <a class='location' href="https://github.com/coq-contribs/area-method/blob/master/pythagoras_difference_lemmas.v">area-method/pythagoras_difference_lemmas</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Definition Py A B C := A**B * A**B + B**C * B**C - A**C * A**C.
 
@@ -930,7 +929,7 @@ Lemma herron_qin : forall A B C,
 <div>
 <p class='statementinfo'>
 <strong class='author'>Pierre Letouzey</strong>
-(in <a class='location' href="https://gforge.inria.fr/scm/viewvc.php/coq-contribs/trunk/Orsay/FSets/PowerSet.v?view=markup#l261">contribs/FSets/PowerSet</a>):
+(in <a class='location' href="https://github.com/coq-contribs/fsets/blob/master/PowerSet.v#L261">fsets/PowerSet</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Lemma powerset_k_cardinal : forall s k, 
   MM.cardinal (powerset_k s k) = binomial (M.cardinal s) k.
@@ -974,7 +973,7 @@ Lemma Zis_gcd_bezout : forall a b d:Z, Zis_gcd a b d -> Bezout a b d.</pre>
 <div>
 <p class='statementinfo'>
 <strong class='author'>Julien Narboux</strong>
-(in <a class='location' href="http://www.lix.polytechnique.fr/coq/distrib/V8.2rc1/contribs/AreaMethod.examples_2.html">contribs/AreaMethod/examples_2</a>):
+(in <a class='location' href="https://github.com/coq-contribs/area-method/blob/master/examples_2.v">area-method/examples_2</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Theorem Ceva :
  forall A B C D E F G P : Point,
@@ -1067,7 +1066,7 @@ Lemma isosceles_conga :
 <div>
 <p class='statementinfo'>
 <strong class='author'>Luís Cruz-Filipe</strong>
-(in <a class='location' href="https://github.com/coq-community/corn/blob/master/ftc/MoreFunSeries.v#L994">C-CoRN/ftc/MoreFunSeries</a>):
+(in <a class='location' href="https://github.com/coq-community/corn/blob/master/ftc/MoreFunSeries.v#L994">corn/ftc/MoreFunSeries</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Lemma fun_power_series_conv_IR :
   fun_series_convergent_IR
@@ -1218,7 +1217,7 @@ Lemma nat_ind :
 <div>
 <p class='statementinfo'>
 <strong class='author'>Luís Cruz-Filipe</strong>
-(in <a class='location' href="https://github.com/coq-community/corn/blob/master/ftc/Rolle.v#L689">C-CoRN/ftc/Rolle</a>):
+(in <a class='location' href="https://github.com/coq-community/corn/blob/master/ftc/Rolle.v#L689">corn/ftc/Rolle</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Theorem Law_of_the_Mean : forall a b, I a -> I b -> forall e, Zero [<] e ->
  {x : IR | Compact (Min_leEq_Max a b) x | forall Ha Hb Hx,
@@ -1253,7 +1252,7 @@ Lemma sum_kthpowers : forall r:nat, forall n:nat,
 <div>
 <p class='statementinfo'>
 <strong class='author'>Daniel de Rauglaudre</strong>
-(in <a class='location' href="https://github.com/roglo/cauchy_schwarz">roglo/cauchy_schwarz</a>):
+(in <a class='location' href="https://github.com/roglo/cauchy_schwarz/blob/master/Cauchy_Schwarz.v">cauchy_schwarz/Cauchy_Schwarz</a>):
 <pre class='comment'></pre>
 <pre class='statement'>
 Notation "'Σ' ( i = b , e ) , g" := (summation b e (λ i, (g)%R)).
@@ -1382,7 +1381,7 @@ Cauchy_Schwarz_inequality
  paralleles (droite B C) (droite B1 C1).</pre>
 </p>
 <strong class='author'>Julien Narboux</strong>
-(in <a class='location' href="http://dpt-info.u-strasbg.fr/~narboux/AreaMethod/AreaMethod.examples_2.html">contribs/AreaMethod/examples_2</a>):
+(in <a class='location' href="https://github.com/coq-contribs/area-method/blob/master/examples_2.v">area-method/examples_2</a>):
 <pre class='comment'>Proved with the area_method tactic.
 http://dpt-info.u-strasbg.fr/~narboux/area_method.html</pre>
 <pre class='statement'>Theorem Desargues :
