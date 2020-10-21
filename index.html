@@ -557,7 +557,7 @@ Lemma hexamy_prop: pappus_strong -> forall A B C D E F,
 <div>
 <p class='statementinfo'>
 <strong class='author'>Jean-Marie Madiot</strong>
-(in file <a class='location' href="ballot.v">ballot.v</a>):
+(in <a class='location' href="https://github.com/coq-community/coq100/blob/master/ballot.v">coq100/ballot</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Theorem bertrand_ballot p q :
   let l := filter (fun votes => count_votes votes "A" =? p) (picks (p + q) ["A"; "B"]) in
@@ -635,7 +635,7 @@ Lemma hexamy_prop: pappus_strong -> forall A B C D E F,
 <div>
 <p class='statementinfo'>
 <strong class='author'>Frédéric Chardard</strong>
-(in file <a class='location' href="cardan_ferrari.v">cardan_ferrari.v</a>):
+(in <a class='location' href="https://github.com/coq-community/coq100/blob/master/cardan_ferrari.v">coq100/cardan_ferrari</a>):
 <pre class='comment'></pre>
 <pre class='statement'>
 Definition Cardan_Tartaglia_formula:=fun (a1:C) (a2:C) (a3:C) (n:nat) =>
@@ -656,17 +656,12 @@ forall u:C, (u-u1)*(u-u2)*(u-u3)=Cpow u 3+a1*Cpow u 2+a2*u+a3.
 </pre>
 </p>
 </div>
-<!--
-opam switch 4.04.2
-camlp5.7.03 conf-gtksourceview.2 conf-m4.1 coq.8.7.0 coq-coquelicot.3.0.1 coq-mathcomp-ssreflect.1.6.2 coqide.8.7.0 depext.1.0.5 lablgtk.2.18.5 num.0 ocamlfind.1.7.3
--->
-
 
 <h3 id='38' class='formalized'><a href='http://www.cs.ru.nl/~freek/100/#38'>38. Arithmetic Mean/Geometric Mean</a></h3>
 <div>
 <p class='statementinfo'>
 <strong class='author'>Jean-Marie Madiot</strong>
-(in file <a class='location' href="mean.v">mean.v</a>, using forward-backward induction):
+(in <a class='location' href="https://github.com/coq-community/coq100/blob/master/mean.v">coq100/mean</a>, using forward-backward induction):
 <pre class='comment'></pre>
 <pre class='statement'>Theorem geometric_arithmetic_mean (a : nat -> R) (n : nat) :
   n <> O ->
@@ -874,7 +869,7 @@ available, also in coquelicot which is available in opam</a>)</span>:
 <div>
 <p class='statementinfo'>
 <strong class='author'>Jean-Marie Madiot</strong>
-(in file <a class='location' href="konigsberg_bridges.v">konigsberg_bridges.v</a>):
+(in <a class='location' href="https://github.com/coq-community/coq100/blob/master/konigsberg_bridges.v">coq100/konigsberg_bridges</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Theorem konigsberg_bridges :
   let E := [(0, 1); (0, 2); (0, 3); (1, 2); (1, 2); (2, 3); (2, 3)] in
@@ -1099,7 +1094,7 @@ Lemma isosceles_conga :
 <div>
 <p class='statementinfo'>
 <strong class='author'>many versions</strong>
-(e.g. file <a class='location' href="sumarith.v">sumarith.v</a></span>):
+(e.g., in <a class='location' href="https://github.com/coq-community/coq100/blob/master/sumarith.v">coq100/sumarith</a></span>):
 <pre class='comment'></pre>
 <pre class='statement'>Theorem arith_sum a b n : 2 * sum (fun i => a + i * b) n = S n * (2 * a + n * b).</pre>
 </p>
@@ -1242,7 +1237,7 @@ Lemma nat_ind :
 <div>
 <p class='statementinfo'>
 <strong class='author'>Frédéric Chardard</strong>
-(in file <a class='location' href="sumkthpowers.v">sumkthpowers.v</a>):
+(in <a class='location' href="https://github.com/coq-community/coq100/blob/master/sumkthpowers.v">coq100/sumkthpowers</a>):
 <pre class='comment'></pre>
 <pre class='statement'>
 Lemma sum_kthpowers : forall r:nat, forall n:nat,
@@ -1352,7 +1347,7 @@ Cauchy_Schwarz_inequality
 <div>
 <p class='statementinfo'>
 <strong class='author'>many versions</strong>
-<span class='location'>(<a href="div3.v">div3.v</a>)</span>:
+<span class='location'>(in <a href="https://github.com/coq-community/coq100/blob/master/div3.v">coq100/div3</a>)</span>:
 <pre class='comment'></pre>
 <pre class='statement'>Theorem div3 : forall n d,
   (number n d) mod 3 = (sumdigits n d) mod 3.
@@ -1482,7 +1477,7 @@ Lemma edivpP m d : edivp_spec m d (edivp m d).
 <div>
 <p class='statementinfo'>
 <strong class='author'>Jean-Marie Madiot</strong>
-(in file <a class='location' href="birthday.v">birthday.v</a>):
+(in <a class='location' href="https://github.com/coq-community/coq100/blob/master/birthday.v">coq100/birthday</a>):
 <pre class='comment'>Note: this formalization uses lists of natural numbers to model sets.</pre>
 <pre class='statement'>Theorem birthday_paradox :
   let l := picks 23 (enumerate 365) in
@@ -1535,7 +1530,7 @@ Theorem birthday_paradox_min :
 <div>
 <p class='statementinfo'>
 <strong class='author'>Jean-Marie Madiot</strong>
-(in file <a class='location' href="inclusionexclusion.v">inclusionexclusion.v</a>):
+(in <a class='location' href="https://github.com/coq-community/coq100/blob/master/inclusionexclusion.v">coq100/inclusionexclusion</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Theorem inclusion_exclusion (l : list set) :
   cardinal (list_union l) =
