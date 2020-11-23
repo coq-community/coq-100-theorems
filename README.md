@@ -1,12 +1,12 @@
 # 100 famous theorems proved using Coq
 
-[![Travis][travis-shield]][travis-link]
+[![CI][action-shield]][action-link]
 [![Contributing][contributing-shield]][contributing-link]
 [![Code of Conduct][conduct-shield]][conduct-link]
 [![Zulip][zulip-shield]][zulip-link]
 
-[travis-shield]: https://travis-ci.com/coq-community/coq100.svg?branch=master
-[travis-link]: https://travis-ci.com/coq-community/coq100/builds
+[action-shield]: https://github.com/coq-community/coq100/workflows/CI/badge.svg?branch=master
+[action-link]: https://github.com/coq-community/coq100/actions?query=workflow%3ACI
 
 [contributing-shield]: https://img.shields.io/badge/contributions-welcome-%23f7931e.svg
 [contributing-link]: https://github.com/coq-community/manifesto/blob/master/CONTRIBUTING.md
