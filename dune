@@ -1,4 +1,7 @@
+; This file was generated from `meta.yml`, please do not edit manually.
+; Follow the instructions on https://github.com/coq-community/templates to regenerate.
+
 (coq.theory
- (name Coq100)
- (package coq-coq100)
+ (name Coq100Theorems)
+ (package coq-coq-100-theorems)
  (synopsis "Coq theorems from the list of 100 famous theorems"))

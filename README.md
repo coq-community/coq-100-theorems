@@ -9,8 +9,8 @@ Follow the instructions on https://github.com/coq-community/templates to regener
 [![Code of Conduct][conduct-shield]][conduct-link]
 [![Zulip][zulip-shield]][zulip-link]
 
-[docker-action-shield]: https://github.com/coq-community/coq100/workflows/Docker%20CI/badge.svg?branch=master
-[docker-action-link]: https://github.com/coq-community/coq100/actions?query=workflow:"Docker%20CI"
+[docker-action-shield]: https://github.com/coq-community/coq-100-theorems/workflows/Docker%20CI/badge.svg?branch=master
+[docker-action-link]: https://github.com/coq-community/coq-100-theorems/actions?query=workflow:"Docker%20CI"
 
 [contributing-shield]: https://img.shields.io/badge/contributions-welcome-%23f7931e.svg
 [contributing-link]: https://github.com/coq-community/manifesto/blob/master/CONTRIBUTING.md
@@ -42,7 +42,7 @@ You can see the list on [this webpage](https://madiot.fr/coq100).
 - Compatible Coq versions: 8.10 or later
 - Additional dependencies:
   - [Coquelicot 3.1.0 or later](http://coquelicot.saclay.inria.fr)
-- Coq namespace: `Coq100`
+- Coq namespace: `Coq100Theorems`
 - Related publication(s): none
 
 ## Building instructions
@@ -51,8 +51,8 @@ To build all theorems that are hosted in this repository,
 run the following commands:
 
 ``` shell
-git clone https://github.com/coq-community/coq100
-cd coq100
+git clone https://github.com/coq-community/coq-100-theorems
+cd coq-100-theorems
 make   # or make -j <number-of-cores-on-your-machine>
 ```
 

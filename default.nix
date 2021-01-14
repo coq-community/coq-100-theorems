@@ -1,3 +1,6 @@
+# This file was generated from `meta.yml`, please do not edit manually.
+# Follow the instructions on https://github.com/coq-community/templates to regenerate.
+
 { pkgs ? (import <nixpkgs> {}), coq-version-or-url, shell ? false }:
 
 let
@@ -13,7 +16,7 @@ with coqPackages;
 
 pkgs.stdenv.mkDerivation {
 
-  name = "coq100";
+  name = "coq-100-theorems";
 
   propagatedBuildInputs = [
     coq

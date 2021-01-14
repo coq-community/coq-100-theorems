@@ -5,9 +5,9 @@ opam-version: "2.0"
 maintainer: "palmskog@gmail.com"
 version: "dev"
 
-homepage: "https://github.com/coq-community/coq100"
-dev-repo: "git+https://github.com/coq-community/coq100.git"
-bug-reports: "https://github.com/coq-community/coq100/issues"
+homepage: "https://github.com/coq-community/coq-100-theorems"
+dev-repo: "git+https://github.com/coq-community/coq-100-theorems.git"
+bug-reports: "https://github.com/coq-community/coq-100-theorems/issues"
 license: "MIT"
 
 synopsis: "Coq theorems from the list of 100 famous theorems"
@@ -30,7 +30,7 @@ depends: [
 tags: [
   "category:Mathematics/Algebra"
   "keyword:famous theorems"
-  "logpath:Coq100"
+  "logpath:Coq100Theorems"
 ]
 authors: [
   "Jean-Marie Madiot"
