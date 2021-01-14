@@ -51,7 +51,7 @@ dependencies:
   description: |-
     [Coquelicot 3.1.0 or later](http://coquelicot.saclay.inria.fr)
 
-namespace: Coq100theorems
+namespace: Coq100Theorems
 
 build: |-
  ## Building instructions

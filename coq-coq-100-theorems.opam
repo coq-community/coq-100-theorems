@@ -30,7 +30,7 @@ depends: [
 tags: [
   "category:Mathematics/Algebra"
   "keyword:famous theorems"
-  "logpath:Coq100theorems"
+  "logpath:Coq100Theorems"
 ]
 authors: [
   "Jean-Marie Madiot"

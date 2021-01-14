@@ -42,7 +42,7 @@ You can see the list on [this webpage](https://madiot.fr/coq100).
 - Compatible Coq versions: 8.10 or later
 - Additional dependencies:
   - [Coquelicot 3.1.0 or later](http://coquelicot.saclay.inria.fr)
-- Coq namespace: `Coq100theorems`
+- Coq namespace: `Coq100Theorems`
 - Related publication(s): none
 
 ## Building instructions
