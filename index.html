@@ -1425,9 +1425,16 @@ Lemma l13_18 : forall A B C A' B' C' O,
 </div>
 
 
-<h3 id='88' class='notformalizedyet'><a href='http://www.cs.ru.nl/~freek/100/#88'>88. Derangements Formula</a></h3>
+<h3 id='88' class='formalized'><a href='http://www.cs.ru.nl/~freek/100/#88'>88. Derangements Formula</a></h3>
 <div>
-<span class="unknown">No known Coq formalization</span>
+<p class='statementinfo'>
+<strong class='author'>Fabian Wolff</strong>
+(<a class='location' href="https://github.com/FabianWolff/coq-derangements-formula">on GitHub</a>):
+<pre class='comment'></pre>
+<pre class='statement'>Theorem drm_formula: forall n, n > 0 ->
+    round ((INR (fact n)) * (exp (-1))) = Some (Z.of_nat (length (drm_construct n))).
+</pre>
+</p>
 </div>
 
 
