@@ -1,6 +1,6 @@
 ---
 fullname: 100 famous theorems proved using Coq
-shortname: coq100
+shortname: coq-100-theorems
 organization: coq-community
 community: true
 action: true
@@ -51,7 +51,7 @@ dependencies:
   description: |-
     [Coquelicot 3.1.0 or later](http://coquelicot.saclay.inria.fr)
 
-namespace: Coq100
+namespace: Coq100theorems
 
 build: |-
  ## Building instructions
@@ -60,8 +60,8 @@ build: |-
  run the following commands:
 
  ``` shell
- git clone https://github.com/coq-community/coq100
- cd coq100
+ git clone https://github.com/coq-community/coq-100-theorems
+ cd coq-100-theorems
  make   # or make -j <number-of-cores-on-your-machine>
  ```
 
