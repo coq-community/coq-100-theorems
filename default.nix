@@ -18,6 +18,9 @@ pkgs.stdenv.mkDerivation {
   propagatedBuildInputs = [
     coq
     coquelicot
+    mathcomp
+    mathcomp-real-closed
+    mathcomp-abel
   ];
 
   src = if shell then null else ./.;

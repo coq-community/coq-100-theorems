@@ -25,6 +25,13 @@ install: [make "install"]
 depends: [
   "coq" {(>= "8.10" & < "8.14~") | (= "dev")}
   "coq-coquelicot" {>= "3.1.0"}
+  "coq-mathcomp-ssreflect" { (>= "1.11.0" & < "1.13~") | = "dev" }
+  "coq-mathcomp-fingroup" 
+  "coq-mathcomp-algebra" 
+  "coq-mathcomp-solvable" 
+  "coq-mathcomp-field" 
+  "coq-mathcomp-real-closed" { (>= "1.1.1") | = "dev" }
+  "coq-mathcomp-abel" { (>= "1.0.0") | = "dev" }
 ]
 
 tags: [

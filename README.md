@@ -42,6 +42,13 @@ You can see the list on [this webpage](https://madiot.fr/coq100).
 - Compatible Coq versions: 8.10 or later
 - Additional dependencies:
   - [Coquelicot 3.1.0 or later](http://coquelicot.saclay.inria.fr)
+  - [MathComp ssreflect 1.11 and 1.12](https://math-comp.github.io)
+  - [MathComp fingroup 1.11 and 1.12](https://math-comp.github.io)
+  - [MathComp algebra 1.11 and 1.12](https://math-comp.github.io)
+  - [MathComp solvable 1.11 and 1.12](https://math-comp.github.io)
+  - [MathComp field 1.11 and 1.12](https://math-comp.github.io)
+  - [MathComp real closed >= 1.11.1](https://github.com/math-comp/real-closed)
+  - [MathComp Abel >= 1.0.0](https://github.com/math-comp/abel)
 - Coq namespace: `Coq100`
 - Related publication(s): none
 
@@ -68,4 +75,5 @@ This repository also contains Coq proofs of some of the 100 theorems:
 - [mean.v](mean.v) for the [Arithmetic Mean/Geometric Mean](https://en.wikipedia.org/wiki/Inequality_of_arithmetic_and_geometric_means#The_inequality)
 - [sumarith.v](sumarith.v) for [Sum of an arithmetic series](https://en.wikipedia.org/wiki/Arithmetic_progression#Sum)
 - [sumkthpowers.v](sumkthpowers.v) for [Sum of kth powers](https://en.wikipedia.org/wiki/Bernoulli_polynomials#Sums_of_pth_powers)
+- [abel.v](avel.v) for [Abel - Ruffini Theorem](https://en.wikipedia.org/wiki/Abel%E2%80%93Ruffini_theorem)
 
