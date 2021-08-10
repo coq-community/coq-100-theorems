@@ -68,19 +68,17 @@
 <strong class='author'>Milad Niqui</strong>
 (in <a class='location' href="https://github.com/coq-community/qarith-stern-brocot/blob/master/theories/Q_denumerable.v">qarith-stern-brocot/theories/Q_denumerable</a>):
 <pre class='comment'></pre>
-<pre class='statement'>Theorem Q_is_denumerable: is_denumerable Q.
-
-Definition same_cardinality (A:Set) (B:Set) :=
-  { f : A -> B &
-  { g : B -> A |
+<pre class='statement'>Definition same_cardinality (A:Type) (B:Type) :=
+  { f : A -> B & { g : B -> A |
     forall b,(compose _ _ _ f g) b = (identity B) b /\
-    forall a,(compose _ _ _ g f) a = (identity A) a
-  }}.
+    forall a,(compose _ _ _ g f) a = (identity A) a } }.
 
-Definition is_denumerable A := same_cardinality A nat.</pre>
+Definition is_denumerable A := same_cardinality A nat.
+
+Theorem Q_is_denumerable: is_denumerable Q.</pre>
 </p>
 <strong class='author'>Daniel Schepler</strong>
-(in <a class='location' href="https://github.com/coq-community/zorns-lemma/blob/master/CountableTypes.v">zorns-lemma/CountableTypes</a>):
+(in <a class='location' href="https://github.com/coq-community/topology/blob/master/theories/ZornsLemma/CountableTypes.v">topology/theories/ZornsLemma/CountableTypes</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Inductive CountableT (X:Type) : Prop :=
   | intro_nat_injection: forall f:X->nat, injective f -> CountableT X.
@@ -94,7 +92,7 @@ Lemma Q_countable: CountableT Q.</pre>
 <div>
 <p class='statementinfo'>
 <strong class='author'>Frédérique Guilhot</strong>
-(in <a class='location' href="https://github.com/coq-community/HighSchoolGeometry/blob/master/euclidien_classiques.v">HighSchoolGeometry/euclidien_classiques</a>):
+(in <a class='location' href="https://github.com/coq-community/HighSchoolGeometry/blob/master/theories/euclidien_classiques.v">HighSchoolGeometry/theories/euclidien_classiques</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Theorem Pythagore :
  forall A B C : PO,
