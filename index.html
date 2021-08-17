@@ -68,19 +68,17 @@
 <strong class='author'>Milad Niqui</strong>
 (in <a class='location' href="https://github.com/coq-community/qarith-stern-brocot/blob/master/theories/Q_denumerable.v">qarith-stern-brocot/theories/Q_denumerable</a>):
 <pre class='comment'></pre>
-<pre class='statement'>Theorem Q_is_denumerable: is_denumerable Q.
-
-Definition same_cardinality (A:Set) (B:Set) :=
-  { f : A -> B &
-  { g : B -> A |
+<pre class='statement'>Definition same_cardinality (A:Type) (B:Type) :=
+  { f : A -> B & { g : B -> A |
     forall b,(compose _ _ _ f g) b = (identity B) b /\
-    forall a,(compose _ _ _ g f) a = (identity A) a
-  }}.
+    forall a,(compose _ _ _ g f) a = (identity A) a } }.
 
-Definition is_denumerable A := same_cardinality A nat.</pre>
+Definition is_denumerable A := same_cardinality A nat.
+
+Theorem Q_is_denumerable: is_denumerable Q.</pre>
 </p>
 <strong class='author'>Daniel Schepler</strong>
-(in <a class='location' href="https://github.com/coq-community/zorns-lemma/blob/master/CountableTypes.v">zorns-lemma/CountableTypes</a>):
+(in <a class='location' href="https://github.com/coq-community/topology/blob/master/theories/ZornsLemma/CountableTypes.v">topology/theories/ZornsLemma/CountableTypes</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Inductive CountableT (X:Type) : Prop :=
   | intro_nat_injection: forall f:X->nat, injective f -> CountableT X.
@@ -94,7 +92,7 @@ Lemma Q_countable: CountableT Q.</pre>
 <div>
 <p class='statementinfo'>
 <strong class='author'>Frédérique Guilhot</strong>
-(in <a class='location' href="https://github.com/coq-community/HighSchoolGeometry/blob/master/euclidien_classiques.v">HighSchoolGeometry/euclidien_classiques</a>):
+(in <a class='location' href="https://github.com/coq-community/HighSchoolGeometry/blob/master/theories/euclidien_classiques.v">HighSchoolGeometry/theories/euclidien_classiques</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Theorem Pythagore :
  forall A B C : PO,
@@ -131,12 +129,11 @@ Lemma pythagoras :
 </div>
 
 
-<h3 id='6' class='formalized'><a href='http://www.cs.ru.nl/~freek/100/#6'>6. Godel’s Incompleteness Theorem</a></h3>
+<h3 id='6' class='formalized'><a href='http://www.cs.ru.nl/~freek/100/#6'>6. Gödel’s Incompleteness Theorem</a></h3>
 <div>
 <p class='statementinfo'>
 <strong class='author'>Russell O'Connor</strong>
-(in <a class='location' href="https://github.com/coq-contribs/goedel/blob/master/goedel1.v">goedel/goedel1</a>,
-see <a class='location' href="http://r6.ca/Goedel/goedel1.html">description on r6.ca</a> and proof archive: <a href="http://r6.ca/Goedel/Goedel20050512.tar.gz">Goedel20050512.tar.gz</a>):
+(in <a class='location' href="https://github.com/coq-community/goedel/blob/master/theories/goedel1.v">goedel/theories/goedel1</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Theorem Goedel'sIncompleteness1st :
  wConsistent T ->
@@ -145,7 +142,7 @@ see <a class='location' href="http://r6.ca/Goedel/goedel1.html">description on r
    ~ SysPrf T (notH f) /\ (forall v : nat, ~ In v (freeVarFormula LNN f)).</pre>
 </p>
 <strong class='author'>Russell O'Connor</strong>
-(in <a class='location' href="https://github.com/coq-contribs/goedel/blob/master/goedel2.v">goedel/goedel2</a>):
+(in <a class='location' href="https://github.com/coq-community/goedel/blob/master/theories/goedel2.v">goedel/theories/goedel2</a>):
 <pre class='comment'>Russell O'Connor proved the theorem under the assumption of the last two Hilbert-Bernays-Loeb derivability conditions.</pre>
 <pre class='statement'>Hypothesis HBL2 : forall f, SysPrf T (impH (box f) (box (box f))).
 Hypothesis HBL3 : forall f g, SysPrf T (impH (box (impH f g)) (impH (box f) (box g))).
@@ -265,7 +262,7 @@ Theorem FTC2 : {c : IR | Feq J (G{-}G0) [-C-]c}.</pre>
 <div>
 <p class='statementinfo'>
 <strong class='author'>Sophie Bernard, Cyril Cohen, Assia Mahboubi, Pierre-Yves Strub</strong>
-(in <a class='location' href="https://github.com/math-comp/Abel/blob/7a85e03fcd1b8d772d592fd53afe753b49f8fe96/theories/abel.v#L1454-L1455">math-compt/Abel</a>):
+(in <a class='location' href="https://github.com/math-comp/Abel/blob/7a85e03fcd1b8d772d592fd53afe753b49f8fe96/theories/abel.v#L1454-L1455">Abel/theories/abel</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Lemma example_not_solvable_by_radicals :
   ~ solvable_by_radical_poly ('X^5 - 4 *: 'X + 2 : {poly rat}).</pre>
@@ -391,7 +388,7 @@ Theorem R_uncountable_strong : forall (f : nat -> R) (x y : R),
 <pre class='statement'>Theorem Schroeder : A <=_card B -> B <=_card A -> A =_card B.</pre>
 </p>
 <strong class='author'>Daniel Schepler</strong>
-(in <a class='location' href="https://github.com/coq-community/zorns-lemma/blob/master/CSB.v">zorns-lemma/CSB</a>):
+(in <a class='location' href="https://github.com/coq-community/topology/blob/master/theories/ZornsLemma/CSB.v">topology/theories/ZornsLemma/CSB</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Section CSB.
 Variable X Y:Type.
@@ -444,7 +441,7 @@ Lemma arctan_series : forall c : IR,
 <div>
 <p class='statementinfo'>
 <strong class='author'>Frédérique Guilhot</strong>
-(in <a class='location' href="https://github.com/coq-community/HighSchoolGeometry/blob/master/angles_vecteurs.v">HighSchoolGeometry/angles_vecteurs</a>):
+(in <a class='location' href="https://github.com/coq-community/HighSchoolGeometry/blob/master/theories/angles_vecteurs.v">HighSchoolGeometry/theories/angles_vecteurs</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Theorem somme_triangle :
  forall A B C : PO,
@@ -1048,7 +1045,7 @@ Theorem Hopital_g0_Lfin_right : limit1_in (fun x ⇒ f x / g x) (open_interval a
 <div>
 <p class='statementinfo'>
 <strong class='author'>Frédérique Guilhot</strong>
-(in <a class='location' href="https://github.com/coq-community/HighSchoolGeometry/blob/master/isocele.v">HighSchoolGeometry/isocele</a>):
+(in <a class='location' href="https://github.com/coq-community/HighSchoolGeometry/blob/master/theories/isocele.v">HighSchoolGeometry/theories/isocele</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Lemma isocele_angles_base :
  isocele A B C -> cons_AV (vec B C) (vec B A) = cons_AV (vec C A) (vec C B).</pre>
@@ -1322,7 +1319,7 @@ Cauchy_Schwarz_inequality
 <h3 id='84' class='formalized'><a href='http://www.cs.ru.nl/~freek/100/#84'>84. Morley’s Theorem</a></h3>
 <div>
 <strong class='author'>Frédérique Guilhot</strong>
-(in <a class='location' href="https://github.com/coq-community/HighSchoolGeometry/blob/master/exercice_morley.v">HighSchoolGeometry/exercice_morley</a>):
+(in <a class='location' href="https://github.com/coq-community/HighSchoolGeometry/blob/master/theories/exercice_morley.v">HighSchoolGeometry/theories/exercice_morley</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Theorem Morley:
  forall (a b c : R) (A B C P Q T : PO),
@@ -1371,7 +1368,7 @@ Cauchy_Schwarz_inequality
 <div>
 <p class='statementinfo'>
 <strong class='author'>Frédérique Guilhot</strong>
-(in <a class='location' href="https://github.com/coq-community/HighSchoolGeometry/blob/master/affine_classiques.v">HighSchoolGeometry/affine_classiques</a>):
+(in <a class='location' href="https://github.com/coq-community/HighSchoolGeometry/blob/master/theories/affine_classiques.v">HighSchoolGeometry/theories/affine_classiques</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Theorem Desargues :
  forall A B C A1 B1 C1 S : PO,
@@ -1507,7 +1504,7 @@ Theorem birthday_paradox_min :
 <div>
 <p class='statementinfo'>
 <strong class='author'>Frédérique Guilhot</strong>
-(in <a class='location' href="https://github.com/coq-community/HighSchoolGeometry/blob/master/metrique_triangle.v">HighSchoolGeometry/metrique_triangle</a>):
+(in <a class='location' href="https://github.com/coq-community/HighSchoolGeometry/blob/master/theories/metrique_triangle.v">HighSchoolGeometry/theories/metrique_triangle</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Theorem Al_Kashi :
  forall (A B C : PO) (a : R),
@@ -1525,7 +1522,7 @@ Theorem birthday_paradox_min :
 <div>
 <p class='statementinfo'>
 <strong class='author'>Tuan-Minh Pham</strong>
-(in <a class='location' href="https://github.com/coq-community/HighSchoolGeometry/blob/master/Ptolemee.v">HighSchoolGeometry/Ptolemee</a>):
+(in <a class='location' href="https://github.com/coq-community/HighSchoolGeometry/blob/master/theories/Ptolemee.v">HighSchoolGeometry/theories/Ptolemee</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Theorem Ptolemee:
  forall (A B C D : PO),
