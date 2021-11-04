@@ -532,8 +532,8 @@ Lemma hexamy_prop: pappus_strong -> forall A B C D E F,
 <h3 id='29' class='formalized'><a href='http://www.cs.ru.nl/~freek/100/#29'>29. Feuerbach’s Theorem</a></h3>
 <div>
 <p class='statementinfo'>
-<strong class='author'>CertiGeo team, marelle project</strong>
-(in <a class='location' href="http://www-sop.inria.fr/marelle/CertiGeo/feuerbach.html">CertiGeo/feuerbach</a>):
+<strong class='author'>Benjamin Grégoire, Loïc Pottier, and Laurent Théry</strong>
+(in <a class='location' href="https://github.com/coq/coq/blob/master/test-suite/success/Nsatz.v#L376">Coq test suite for Nsatz tactic</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Lemma Feuerbach:  forall A B C A1 B1 C1 O A2 B2 C2 O2:point,
   forall r r2:R,
@@ -546,10 +546,10 @@ Lemma hexamy_prop: pappus_strong -> forall A B C D E F,
   collinear A C B2 -> orthogonal A C O2 B2 ->
   distance2 O2 A2 = distance2 O2 B2 ->
   distance2 O2 A2 = distance2 O2 C2 ->
-  r^2 = distance2 O A1 ->
-  r2^2 = distance2 O2 A2 ->
-  distance2 O O2 = (r + r2)^2
-  \/ distance2 O O2 = (r - r2)^2
+  r^2%Z = distance2 O A1 ->
+  r2^2%Z = distance2 O2 A2 ->
+  distance2 O O2 = (r + r2)^2%Z
+  \/ distance2 O O2 = (r - r2)^2%Z
   \/ collinear A B C.</pre>
 </p>
 </div>
