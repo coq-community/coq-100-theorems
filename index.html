@@ -884,11 +884,8 @@ available, also in coquelicot which is available in opam</a>)</span>:
 <h3 id='55' class='formalized'><a href='http://www.cs.ru.nl/~freek/100/#55'>55. Product of Segments of Chords</a></h3>
 <div>
 <p class='statementinfo'>
-<strong class='author'>Loïc Pottier, Benjamin Grégoire, Laurent Théry</strong>
-(in <a class='location' href="http://www-sop.inria.fr/marelle/CertiGeo/chords.html">CertiGeo/chords</a>):
-<pre class='comment'>The proof uses just two tactics. The first one transforms the goal into an algebraic statement and the second one generates and then checks a proof certificate.
-
-More information here: http://hal.inria.fr/inria-00504719_v1/</pre>
+<strong class='author'>Benjamin Grégoire, Loïc Pottier, and Laurent Théry</strong>
+(in <a class='location' href="https://github.com/coq/coq/blob/master/test-suite/success/Nsatz.v#L454">Coq test suite for Nsatz tactic</a>):
 <pre class='statement'>Lemma chords: forall O A B C D M:point,
   equaldistance O A O B ->
   equaldistance O A O C ->
