@@ -20,10 +20,10 @@ using the [Coq proof assistant](https://coq.inria.fr/).
 
 You can see the list on [this webpage](https://madiot.fr/coq100)."""
 
-build: [make "-j%{jobs}%" ]
+build: [make "-j%{jobs}%"]
 install: [make "install"]
 depends: [
-  "coq" {(>= "8.10" & < "8.14~") | (= "dev")}
+  "coq" {(>= "8.10" & < "8.15~") | (= "dev")}
   "coq-coquelicot" {>= "3.1.0"}
 ]
 
