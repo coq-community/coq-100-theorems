@@ -532,8 +532,8 @@ Lemma hexamy_prop: pappus_strong -> forall A B C D E F,
 <h3 id='29' class='formalized'><a href='http://www.cs.ru.nl/~freek/100/#29'>29. Feuerbach’s Theorem</a></h3>
 <div>
 <p class='statementinfo'>
-<strong class='author'>CertiGeo team, marelle project</strong>
-(in <a class='location' href="http://www-sop.inria.fr/marelle/CertiGeo/feuerbach.html">CertiGeo/feuerbach</a>):
+<strong class='author'>Benjamin Grégoire, Loïc Pottier, and Laurent Théry</strong>
+(in <a class='location' href="https://github.com/coq/coq/blob/master/test-suite/success/Nsatz.v#L376">Coq test suite for Nsatz tactic</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Lemma Feuerbach:  forall A B C A1 B1 C1 O A2 B2 C2 O2:point,
   forall r r2:R,
@@ -546,10 +546,10 @@ Lemma hexamy_prop: pappus_strong -> forall A B C D E F,
   collinear A C B2 -> orthogonal A C O2 B2 ->
   distance2 O2 A2 = distance2 O2 B2 ->
   distance2 O2 A2 = distance2 O2 C2 ->
-  r^2 = distance2 O A1 ->
-  r2^2 = distance2 O2 A2 ->
-  distance2 O O2 = (r + r2)^2
-  \/ distance2 O O2 = (r - r2)^2
+  r^2%Z = distance2 O A1 ->
+  r2^2%Z = distance2 O2 A2 ->
+  distance2 O O2 = (r + r2)^2%Z
+  \/ distance2 O O2 = (r - r2)^2%Z
   \/ collinear A B C.</pre>
 </p>
 </div>
@@ -884,11 +884,8 @@ available, also in coquelicot which is available in opam</a>)</span>:
 <h3 id='55' class='formalized'><a href='http://www.cs.ru.nl/~freek/100/#55'>55. Product of Segments of Chords</a></h3>
 <div>
 <p class='statementinfo'>
-<strong class='author'>Loïc Pottier, Benjamin Grégoire, Laurent Théry</strong>
-(in <a class='location' href="http://www-sop.inria.fr/marelle/CertiGeo/chords.html">CertiGeo/chords</a>):
-<pre class='comment'>The proof uses just two tactics. The first one transforms the goal into an algebraic statement and the second one generates and then checks a proof certificate.
-
-More information here: http://hal.inria.fr/inria-00504719_v1/</pre>
+<strong class='author'>Benjamin Grégoire, Loïc Pottier, and Laurent Théry</strong>
+(in <a class='location' href="https://github.com/coq/coq/blob/master/test-suite/success/Nsatz.v#L454">Coq test suite for Nsatz tactic</a>):
 <pre class='statement'>Lemma chords: forall O A B C D M:point,
   equaldistance O A O B ->
   equaldistance O A O C ->
