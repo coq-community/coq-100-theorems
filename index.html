@@ -857,11 +857,11 @@ Distributed under the terms of CeCILL-B.</pre>
 <div>
 <p class='statementinfo'>
 <strong class='author'>Sophie Bernard and Laurence Rideau</strong>
-<span class='location'>(<a href="http://marelledocsgit.gforge.inria.fr/">archive
-available, also in coquelicot which is available in opam</a>)</span>:
-<pre class='comment'>The concept algebraicOver is available from the public release ssreflect-1.4, ratr is the type of rational numbers. The definition of PI is from the Coq standard library.</pre>
-<pre class='statement'>
-  Theorem pi_transcendental : ~algebraicOver ratr PI%:C.
+(in <a class='location' href="https://github.com/Sobernard/Lindemann/blob/master/LindemannTheorem.v">Lindemann/LindemannTheorem</a>):
+<pre class='comment'>The concept algebraicOver is from the Mathematical Components library, and the definition of PI is from the Coq standard library.</pre>
+<pre class='statement'>Notation "x 'is_algebraic'" := (algebraicOver QtoC x) (at level 55).
+
+Theorem Pi_trans_by_LB : ~ (RtoC Rtrigo1.PI is_algebraic).
 </pre>
 </p>
 </div>
@@ -901,9 +901,10 @@ available, also in coquelicot which is available in opam</a>)</span>:
 <div>
 <p class='statementinfo'>
 <strong class='author'>Sophie Bernard</strong>
-(on <a class='location' href="https://github.com/Sobernard/Lindemann/blob/master/LindemannTheorem.v">github</a>. See <a class='location' href="http://www-sop.inria.fr/marelle/lindemann/">installation instructions</a>):
-<pre class='comment'></pre>
-<pre class='statement'>
+(in <a class='location' href="https://github.com/Sobernard/Lindemann/blob/master/LindemannTheorem.v">Lindemann/LindemannTheorem</a>):
+<pre class='comment'>The concept algebraicOver is from the Mathematical Components library.</pre>
+<pre class='statement'>Notation "x 'is_algebraic'" := (algebraicOver QtoC x) (at level 55).
+
 Theorem HermiteLindemann (x : complexR) :
   x != 0 -> x is_algebraic -> ~ ((Cexp x) is_algebraic).
 </pre>
@@ -1081,9 +1082,11 @@ Lemma isosceles_conga :
 <div>
 <p class='statementinfo'>
 <strong class='author'>Sophie Bernard and Laurence Rideau</strong>:
-<pre class='comment'>The concept algebraicOver is available from the public release ssreflect-1.4, ratr is the type of rational numbers. The definition of exp is from the Coq standard library.
-</pre>
-<pre class='statement'>Theorem e_transcendant : ~ (algebraicOver ratr (exp 1)%:C).
+(in <a class='location' href="https://github.com/Sobernard/Lindemann/blob/master/LindemannTheorem.v">Lindemann/LindemannTheorem</a>):
+<pre class='comment'>The concept algebraicOver is from the Mathematical Components library, and the definition of exp is from the Coq standard library.</pre>
+<pre class='statement'>Notation "x 'is_algebraic'" := (algebraicOver QtoC x) (at level 55).
+
+Theorem e_trans_by_LB : ~ (RtoC (Rtrigo_def.exp 1) is_algebraic).
 </pre>
 </p>
 </div>
