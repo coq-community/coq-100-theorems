@@ -62,7 +62,7 @@ Proof.
     |- ?x * (?y * ?z) + ?x' * (?y' * ?z) = _ =>
     transitivity ((x * y + x' * y') * z)
   end. ring.
-  rewrite mult_assoc.
+  rewrite Nat.mul_assoc.
   f_equal.
   replace (S a - S b) with (a - b) by lia.
   replace (S a - b) with (1 + (a - b)) by lia.

@@ -1,5 +1,7 @@
 -Q . Coq100Theorems
 
+-arg -w -arg -deprecated-instance-without-locality
+
 ballot.v
 birthday.v
 cardan_ferrari.v

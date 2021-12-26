@@ -151,9 +151,9 @@ field.
 split;
   apply not_0_INR;
   discriminate.
-apply (neq_0_lt).
+apply Nat.neq_0_lt_0.
 discriminate.
-apply (neq_0_lt).
+apply Nat.neq_0_lt_0.
 discriminate.
 Qed.
 
@@ -252,7 +252,7 @@ fold INR.
 fold pow.
 induction r.
 exfalso.
-apply (lt_0_neq 0).
+apply (Nat.neq_0_lt_0 0).
 assumption.
 reflexivity.
 unfold pow.
@@ -263,9 +263,8 @@ apply not_0_INR.
 discriminate.
 apply not_eq_S.
 intro.
-apply (lt_0_neq _ rneq0).
-symmetry.
-assumption.
+apply Nat.neq_0_lt_0 in rneq0.
+contradiction.
 
 unfold sum_f_R0.
 fold sum_f_R0.
