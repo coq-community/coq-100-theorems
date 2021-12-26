@@ -34,7 +34,7 @@ license:
 
 supported_coq_versions:
   text: 8.10 or later
-  opam: '{(>= "8.10" & < "8.15~") | (= "dev")}'
+  opam: '{(>= "8.10" & < "8.16~") | (= "dev")}'
 
 tested_coq_opam_versions:
 - version: dev
@@ -48,7 +48,6 @@ dependencies:
 - opam:
     name: coq-coquelicot
     version: '{>= "3.1.0"}'
-  nix: coquelicot
   description: |-
     [Coquelicot 3.1.0 or later](http://coquelicot.saclay.inria.fr)
 

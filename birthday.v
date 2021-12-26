@@ -31,7 +31,7 @@ Import ListNotations.
 Fixpoint appears x l :=
   match l with
   | [] => false
-  | y :: l => if beq_nat x y then true else appears x l
+  | y :: l => if Nat.eqb x y then true else appears x l
   end.
 
 Fixpoint collision l :=
@@ -173,14 +173,14 @@ Proof.
       destruct (appears a l) eqn:Ha. discriminate. clear Hcol.
       induction l as [|b l IHl]. reflexivity. simpl.
       destruct (Nat.eq_dec b a).
-      * subst. simpl in Ha. rewrite <-beq_nat_refl in Ha. discriminate.
+      * subst. simpl in Ha. rewrite Nat.eqb_refl in Ha. discriminate.
       * apply IHl. simpl in Ha. destruct (a =? b); auto; discriminate.
     + simpl in *.
       destruct (appears b (pre ++ a :: l)) eqn:Eb. discriminate.
       rewrite IHpre; auto.
       destruct (Nat.eq_dec b a); auto. subst.
       cut (appears a (pre ++ a :: l) = true). congruence. clear.
-      induction pre as [|b pre IHpre]. simpl. rewrite <-beq_nat_refl. reflexivity.
+      induction pre as [|b pre IHpre]. simpl. rewrite Nat.eqb_refl. reflexivity.
       simpl. destruct (a =? b); auto.
   - assert (E : pre ++ a :: l = (pre ++ a :: nil) ++ l).
     { rewrite <-app_assoc. reflexivity. }
@@ -208,7 +208,7 @@ Proof.
     inversion Huniq; auto.
   - clear IHl1.
     rewrite map_map. simpl.
-    pose (l' := filter (no (beq_nat a)) l).
+    pose (l' := filter (no (Nat.eqb a)) l).
     assert (El' : Zlength l' = (Zlength l - 1)%Z).
     {
       apply Forall_inv in Huniq.
@@ -225,7 +225,7 @@ Proof.
       rewrite <-IHl.
       unfold no.
       destruct (Nat.eq_dec b a).
-      - subst. rewrite <-beq_nat_refl. simpl. lia.
+      - subst. rewrite Nat.eqb_refl. simpl. lia.
       - replace (a =? b) with false; simpl. reflexivity.
         symmetry. apply Nat.eqb_neq. auto.
     }
