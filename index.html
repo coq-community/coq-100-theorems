@@ -1358,9 +1358,63 @@ Cauchy_Schwarz_inequality
 </div>
 
 
-<h3 id='86' class='notformalizedyet'><a href='http://www.cs.ru.nl/~freek/100/#86'>86. Lebesgue Measure and Integration</a></h3>
+<h3 id='86' class='formalized'><a href='http://www.cs.ru.nl/~freek/100/#86'>86. Lebesgue Measure and Integration</a></h3>
 <div>
-<span class="unknown">No known Coq formalization</span>
+
+<p class='statementinfo'>
+<strong class='author'>Sylvie Boldo, François Clément, Florian Faissole, Vincent Martin, Micaela Mayero, Houda Mouhcine</strong>
+<span class='location'>
+(papers: <a href="https://hal.inria.fr/hal-03194113/">on <code>LInt_p</code></a>,
+papers: <a href="https://hal.inria.fr/hal-03516749/">on Bochner integral</a>,
+<a href="https://lipn.univ-paris13.fr/coq-num-analysis/tree/Tonelli.1.0/Lebesgue/">statements</a>)
+</span>:
+<p class='comment'>This formalization covers the integration of nonnegative
+measurable functions (including the Beppo Levi theorem, Fatou's Lemma and the
+Tonelli theorem), the Bochner integral for functions taking their values in a
+Banach space (including the dominated convergence theorem), and the Lebesgue
+measure on the real numbers.</p>
+<p>In the snippets below, <code>_p</code> stands for nonnegative
+and <code>SF</code>/<code>sf</code> for simple function.</p>
+<pre class='statement'>
+(* From LInt_p.v *)
+Definition LInt_p : (E -> Rbar) -> Rbar :=
+  fun f => Rbar_lub (fun z : Rbar =>
+    exists (g : E -> R), exists (Hg : SF gen g),
+      non_neg g /\ (forall x, Rbar_le (g x) (f x)) /\
+      LInt_SFp mu g Hg = z).
+
+(* From BInt_Bif.v *)
+Definition BInt {f : X -> E} (bf : Bif μ f) :=
+  lim_seq (fun n => BInt_sf μ (seq bf n)).
+
+(* From measure_R.v *)
+Definition Lebesgue_measure : measure cal_L :=
+  mk_measure cal_L lambda_star
+    lambda_star_False lambda_star_ge_0 Lebesgue_sigma_additivity.
+</pre>
+</p>
+
+<p class='statementinfo'>
+<strong class='author'>Reynald Affeldt and Cyril Cohen</strong>
+<span class='location'>(in mathcomp/analysis:
+<a href="https://github.com/math-comp/analysis/blob/a8b4edae07e2bc3f8661cc11a10017a1427bdea5/theories/lebesgue_measure.v#L4180-L4181">measure</a>,
+<a href="https://github.com/math-comp/analysis/blob/a8b4edae07e2bc3f8661cc11a10017a1427bdea5/theories/lebesgue_integral.v#L1885-L1886">integral</a>)
+</span>
+<p class='comment'>Mathcomp analysis has a formalization of Lebesgue measure and
+Lebesgue integration. Some definitions below.</p>
+<pre class='statement'>
+Definition lebesgue_measure : {measure set gssets -> \bar R} :=
+  Hahn_ext (@slength_measure R).
+
+Definition nnintegral D (f : T -> \bar R) :=
+  ereal_sup [set sintegral mu D g | g in
+    [set g : nnsfun T R | forall x, D x -> (g x)%:E <= f x]].
+
+Definition integral D (f : T -> \bar R) :=
+  nnintegral D (f ^\+) - nnintegral D (f ^\-).
+</pre>
+</p>
+
 </div>
 
 
