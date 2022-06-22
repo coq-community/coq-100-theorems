@@ -938,9 +938,23 @@ Lemma herron_qin : forall A B C,
 </p>
 </div>
 
-<h3 id='59' class='notformalizedyet'><a href='http://www.cs.ru.nl/~freek/100/#59'>59. The Laws of Large Numbers</a></h3>
+<h3 id='59' class='formalized'><a href='http://www.cs.ru.nl/~freek/100/#59'>59. The Laws of Large Numbers</a></h3>
 <div>
-<span class="unknown">No known Coq formalization</span>
+<p class='statementinfo'>
+<strong class='author'>Avraham Shinnar, Barry Trager</strong>
+(in <a class='location' href="https://github.com/IBM/FormalML/blob/b9a36a612c01d6f7e05ae7f68a057d3a4728761d/coq/QLearn/slln.v#L7287">slln</a>):
+<pre class='comment'></pre>
+<pre class='statement'>
+  Lemma Ash_6_2_5
+    {Ts:Type} {dom: SigmaAlgebra Ts} {Prts: ProbSpace dom}.
+    (X : nat -> Ts -> R) (mu : R)
+    {rv : forall n, RandomVariable dom borel_sa (X n)} 
+    {isfe : forall n, IsFiniteExpectation Prts (X n)} :
+    (forall n, FiniteExpectation Prts (X n) = mu) ->
+    iid_rv_collection Prts borel_sa X ->
+    almost Prts (fun omega => is_lim_seq (fun n => ((rvsum X n) omega)/(INR (S n))) mu).
+</pre>
+</p>
 </div>
 
 
@@ -992,9 +1006,67 @@ Lemma Zis_gcd_bezout : forall a b d:Z, Zis_gcd a b d -> Bezout a b d.</pre>
 </div>
 
 
-<h3 id='62' class='notformalizedyet'><a href='http://www.cs.ru.nl/~freek/100/#62'>62. Fair Games Theorem</a></h3>
+<h3 id='62' class='formalized'><a href='http://www.cs.ru.nl/~freek/100/#62'>62. Fair Games Theorem</a></h3>
 <div>
-<span class="unknown">No known Coq formalization</span>
+<p class='statementinfo'>
+<strong class='author'>Avraham Shinnar, Barry Trager</strong>
+(in <a class='location' href="https://github.com/IBM/FormalML/blob/b9a36a612c01d6f7e05ae7f68a057d3a4728761d/coq/ProbTheory/MartingaleStopped.v#L1404-L1504">ProbTheory/MartingaleStopped</a>):
+<pre class='comment'> <a href="https://formalml.github.io/DSML22/documentation/html/FormalML.ProbTheory.MartingaleStopped.html#optional_stopping_time">Generated documentation with comments</a>
+</pre>
+<pre class='statement'>
+  Context
+    {Ts:Type}
+    {σ: SigmaAlgebra Ts} 
+    (prts: ProbSpace σ)
+    
+    (F : nat -> SigmaAlgebra Ts)
+    {filt:IsFiltration F}
+    {sub:IsSubAlgebras σ F}
+    
+    (τ:Ts -> option nat)
+    {is_stop:IsStoppingTime τ F}
+
+    (Y : nat -> Ts -> R) 
+    {rv:forall n, RandomVariable σ borel_sa (Y n)} 
+    {isfe:forall n, IsFiniteExpectation prts (Y n)}
+    {adapt:IsAdapted borel_sa Y F} 
+
+    (conditions: 
+      (exists (N:nat),
+          almost prts (fun ω => match τ ω with
+                             | Some k => (k <= N)%nat 
+                             | None => False
+                             end))
+        
+      \/ 
+        (almost prts (fun ω => τ ω <> None) 
+         /\ exists (K:R), 
+            (forall n, almost prts (fun ω => Rabs (Y n ω) < K))) 
+      \/ 
+        (Rbar_IsFiniteExpectation 
+           prts
+           (fun ω => match τ ω with
+                  | Some n => INR n
+                  | None => p_infty
+                  end)
+         /\ exists (K:R), 
+          forall n, almost prts (fun ω => Rabs (Y (S n) ω - Y n ω) <= K)) 
+    ).
+    
+  Theorem optional_stopping_time
+          {mart:IsMartingale prts eq Y F} :
+    FiniteExpectation prts (process_under Y τ) = FiniteExpectation prts (Y 0%nat).
+    
+  Theorem optional_stopping_time_sub
+          {mart:IsMartingale prts Rle Y F} :
+    FiniteExpectation prts (process_under Y τ) >= FiniteExpectation prts (Y 0%nat).
+    
+  Theorem optional_stopping_time_super
+          {mart:IsMartingale prts Rge Y F} : 
+    FiniteExpectation prts (process_under Y τ) <= FiniteExpectation prts (Y 0%nat).
+
+End optional_stopping_time_thm.
+</p>
 </div>
 
 
