@@ -494,7 +494,7 @@ Qed.
 
 
 
-Theorem Cpowexp : forall n:nat, forall x:R, (exp(x))^n=exp((INR n)*x).
+Theorem Cpowexp : forall n:nat, forall x:R, ((exp(x))^n=exp((INR n)*x)) % R.
 induction n.
 unfold INR.
 intro.
@@ -527,7 +527,7 @@ field.
 Qed.
 
 
-Lemma RCpow : forall n:nat,forall x:R, Cpow (x,0)%C n = (x^n,0)%C.
+Lemma RCpow : forall n:nat,forall x:R, Cpow (x,0)%C n = ((x^n)%R,0)%C.
 induction n.
 intro.
 unfold Cpow.
@@ -637,7 +637,7 @@ Lemma cubicrootreal : forall (x:R), 0%R=Im (cubicroot x).
   intro.
   unfold cubicroot. 
   destruct Rcase_abs as [xneg|xpos].
-  transitivity (-Im(nroot 3 (-x)))%R.
+  transitivity (-Im(nroot 3 (-x)%R))%R.
   rewrite nrootpositive.
   rewrite Ropp_0.
   reflexivity.
@@ -906,8 +906,7 @@ transitivity(-(3*alpha*beta)).
 rewrite Cval3.
 field.
 unfold beta.
-field.
-split;
+field; try (split; [ nneq0 | ]).
 assumption.
 
 unfold z1,z2,z3.
@@ -943,8 +942,7 @@ generalize (Csqrt Delta).
 intro.
 unfold Delta,Cpow.
 rewrite Cval2.
-field.
-split;nneq0.
+field; split; nneq0.
 
 assumption.
 assumption.
@@ -986,8 +984,7 @@ unfold RtoC,Cmult,Copp,Cplus,fst,snd.
 f_equal;field.
 rewrite aux1.
 rewrite Cval2.
-field.
-nneq0.
+field; nneq0.
 
 repeat rewrite Cmult_1_r.
 assert(forall u v :C, (u+v)*(u+v*-1)=u*u-v*v) as diffsq.
@@ -997,8 +994,7 @@ unfold RtoC,Cminus,Cmult,Copp,Cplus,fst,snd.
 f_equal;field.
 rewrite diffsq.
 rewrite Csqrt_Cpow2.
-field.
-nneq0.
+field; nneq0.
 unfold Cpow.
 field.
 Qed.
@@ -1055,7 +1051,7 @@ unfold s.
 unfold Cdiv.
 rewrite (Cmult_comm _ (/4)).
 rewrite (Cmult_assoc 4).
-rewrite Cinv_r.
+rewrite Cinv_r; [ | nneq0 ].
 rewrite Cmult_1_l.
 rewrite Cplus_opp_r.
 rewrite Cmult_0_l.
@@ -1088,8 +1084,7 @@ assert(/8*Cpow q 2=0) as aux.
 rewrite<-Copp_0.
 rewrite Hlambda.
 unfold Cpow,Cdiv,Cminus.
-field.
-split;nneq0.
+field; split; nneq0.
 unfold Cpow in aux.
 rewrite Cmult_1_r in aux.
 assert(q=0) as q0.
@@ -1142,8 +1137,7 @@ f_equal.
 f_equal.
 f_equal.
 field.
-field.
-nneq0.
+field; nneq0.
 apply cancelm.
 rewrite<-(Cmult_0_r (/(lambda-p/2))).
 rewrite Hlambda.
@@ -1151,32 +1145,22 @@ rewrite Cval8.
 rewrite Cval4.
 rewrite Cval2.
 unfold Cpow.
-field;
-split.
-nneq0.
-split.
-nneq0.
-split.
+field.
+try (split; [ nneq0 | ]; split; [ nneq0 | ]; split; [ | nneq0 ]).
 apply Cminus_eq_contra.
 intro hypabs.
 apply cond.
 rewrite<-hypabs.
 destruct lambda.
 unfold Cmult,RtoC,fst,snd.
-f_equal;field.
-nneq0.
+f_equal; field; nneq0.
 unfold B.
 unfold Cdiv.
 rewrite Cval2.
 rewrite Cval4.
-field.
-split.
+field; try (split; [ | split; nneq0 ]).
 assumption.
-split;nneq0.
 unfold B,Cdiv.
-field.
-split.
+field; try (split; [ | nneq0 ]).
 assumption.
-nneq0.
-nneq0.
 Qed.
