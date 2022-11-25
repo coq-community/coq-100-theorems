@@ -1389,9 +1389,16 @@ Cauchy_Schwarz_inequality
 </div>
 
 
-<h3 id='83' class='notformalizedyet'><a href='http://www.cs.ru.nl/~freek/100/#83'>83. The Friendship Theorem</a></h3>
+<h3 id='83' class='formalized'><a href='http://www.cs.ru.nl/~freek/100/#83'>83. The Friendship Theorem</a></h3>
 <div>
-<span class="unknown">No known Coq formalization</span>
+  <strong class='author'>Alex Loiko</strong> (in <a href='https://github.com/aleloi/coq-friendship-theorem'>aleloi/coq-friendship-theorem</a>):
+  <pre class='comment'></pre>
+  <pre class='statement'>Theorem Friendship
+  (T: finType) (T_nonempty: [set: T] != set0)
+  (F : rel T) (Fsym: symmetric F) (Firr: irreflexive F) :
+  (forall (u v: T), u != v -> #|[set w | F u w & F v w]| == 1) ->
+  {u : T | forall v : T, u != v -> F u v}.
+</pre>
 </div>
 
 
