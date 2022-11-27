@@ -23,7 +23,7 @@ You can see the list on [this webpage](https://madiot.fr/coq100)."""
 build: [make "-j%{jobs}%"]
 install: [make "install"]
 depends: [
-  "coq" {(>= "8.10" & < "8.16~") | (= "dev")}
+  "coq" {>= "8.10"}
   "coq-coquelicot" {>= "3.1.0"}
 ]
 
