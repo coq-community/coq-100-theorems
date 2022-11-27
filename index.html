@@ -133,7 +133,7 @@ Lemma pythagoras :
 <div>
 <p class='statementinfo'>
 <strong class='author'>Russell O'Connor</strong>
-(in <a class='location' href="https://github.com/coq-community/goedel/blob/master/theories/goedel1.v">goedel/theories/goedel1</a>):
+(in <a class='location' href="https://github.com/coq-community/hydra-battles/blob/master/theories/goedel/goedel1.v">hydra-battles/theories/goedel/goedel1</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Theorem Goedel'sIncompleteness1st :
  wConsistent T ->
@@ -142,7 +142,7 @@ Lemma pythagoras :
    ~ SysPrf T (notH f) /\ (forall v : nat, ~ In v (freeVarFormula LNN f)).</pre>
 </p>
 <strong class='author'>Russell O'Connor</strong>
-(in <a class='location' href="https://github.com/coq-community/goedel/blob/master/theories/goedel2.v">goedel/theories/goedel2</a>):
+(in <a class='location' href="https://github.com/coq-community/hydra-battles/blob/master/theories/goedel/goedel2.v">hydra-battles/theories/goedel/goedel2</a>):
 <pre class='comment'>Russell O'Connor proved the theorem under the assumption of the last two Hilbert-Bernays-Loeb derivability conditions.</pre>
 <pre class='statement'>Hypothesis HBL2 : forall f, SysPrf T (impH (box f) (box (box f))).
 Hypothesis HBL3 : forall f g, SysPrf T (impH (box (impH f g)) (impH (box f) (box g))).
@@ -1711,7 +1711,7 @@ Lemma mul_adj_mx : forall n (A : 'M[R]_n), \adj A *m A = (\det A)%:M.</pre>
 <div>
 <p class='statementinfo'>
 <strong class='author'>Laurent Théry</strong>
-(in <a class='location' href="https://github.com/coq-community/bertrand/blob/master/Bertrand.v">bertrand/Bertrand</a>):
+(in <a class='location' href="https://github.com/coq-community/bertrand/blob/master/theories/Bertrand.v">bertrand/theories/Bertrand</a>):
 <pre class='comment'></pre>
 <pre class='statement'>Theorem Bertrand : forall n : nat, 2 <= n -> exists p : nat, prime p /\ n < p /\ p < 2 * n.</pre>
 </p>
