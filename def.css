@@ -89,7 +89,6 @@ pre {
 }
 
 h3{margin-top:2em;}
-.others{display:none;}
 
 @media print { h2 { color:#000088; }  .middle{ border-top:none; } }
 

@@ -1,0 +1,1165 @@
+- theorem: 1
+  authors: many versions
+  link: https://github.com/coq-community/qarith-stern-brocot/blob/master/theories/sqrt2.v
+  comment: One of many proofs
+  statement: |
+    Theorem sqrt2_not_rational : forall p q : nat, q <> 0 -> p * p = 2 * (q * q) -> False.
+
+- theorem: 2
+  authors: Herman Geuvers et al.
+  link: https://github.com/coq-community/corn/blob/master/fta/FTA.v#L188
+  statement: |
+    Lemma FTA : forall f : CCX, nonConst _ f -> {z : CC | f ! z [=] [0]}.
+
+- theorem: 3
+  authors: Milad Niqui
+  link: https://github.com/coq-community/qarith-stern-brocot/blob/master/theories/Q_denumerable.v
+  statement: |
+    Definition same_cardinality (A:Type) (B:Type) :=
+      { f : A -> B & { g : B -> A |
+        forall b,(compose _ _ _ f g) b = (identity B) b /\
+        forall a,(compose _ _ _ g f) a = (identity A) a } }.
+    
+    Definition is_denumerable A := same_cardinality A nat.
+    
+    Theorem Q_is_denumerable: is_denumerable Q.
+
+- theorem: 3
+  authors: Daniel Schepler
+  link: https://github.com/coq-community/topology/blob/master/theories/ZornsLemma/CountableTypes.v
+  statement: |
+    Inductive CountableT (X:Type) : Prop :=
+      | intro_nat_injection: forall f:X->nat, injective f -> CountableT X.
+    
+    Lemma Q_countable: CountableT Q.
+
+- theorem: 4
+  authors: Frédérique Guilhot
+  link: https://github.com/coq-community/HighSchoolGeometry/blob/master/theories/euclidien_classiques.v
+  statement: |
+    Theorem Pythagore :
+      forall A B C : PO,
+      orthogonal (vec A B) (vec A C) <->
+      Rsqr (distance B C) = Rsqr (distance A B) + Rsqr (distance A C) :>R.
+
+- theorem: 4
+  authors: Gabriel Braun
+  link: https://github.com/GeoCoq/GeoCoq/blob/master/Tarski_dev/Ch15_lengths.v
+  comment: A synthetic proof in the context of Tarski's axioms.
+  statement: |
+    Lemma pythagoras :
+      forall O E E' A B C AC BC AB AC2 BC2 AB2,
+      O<>E ->
+      Per A C B ->
+      length O E E' A B AB ->
+      length O E E' A C AC ->
+      length O E E' B C BC ->
+      prod O E E' AC AC AC2 ->
+      prod O E E' BC BC BC2 ->
+      prod O E E' AB AB AB2 ->
+      sum  O E E' AC2 BC2 AB2.
+
+- theorem: 6
+  authors: Russell O'Connor
+  link: https://github.com/coq-community/hydra-battles/blob/master/theories/goedel/
+  comment: The second theorem assumes the last two Hilbert-Bernays-Loeb derivability conditions.
+  statement: |
+    (* in goedel1.v *)
+    Theorem Goedel'sIncompleteness1st :
+      wConsistent T ->
+      exists f : Formula,
+        ~ SysPrf T f /\
+        ~ SysPrf T (notH f) /\ (forall v : nat, ~ In v (freeVarFormula LNN f)).
+    
+    (* in goedel2.v *)
+    Hypothesis HBL2 : forall f, SysPrf T (impH (box f) (box (box f))).
+
+    Hypothesis HBL3 : forall f g, SysPrf T (impH (box (impH f g)) (impH (box f) (box g))).
+    
+    Theorem SecondIncompletness :
+      SysPrf T Con -> Inconsistent LNT T.
+
+- theorem: 7
+  authors: Nathanaël Courant
+  link: https://github.com/Ekdohibs/coq-proofs/blob/master/Reciprocity/Reciprocity.v#L1560
+  statement: |
+    Theorem Quadratic_reciprocity :
+      (legendre p q) * (legendre q p) = (-1) ^ (((p - 1) / 2) * ((q - 1) / 2)).
+
+- theorem: 10
+  authors: Laurent Théry
+  link: https://github.com/math-comp/math-comp/blob/master/mathcomp/solvable/cyclic.v
+  statement: |
+    Theorem Euler_exp_totient a n : coprime a n -> a ^ totient n = 1 %[mod n].
+
+- theorem: 11
+  authors: Russell O'Connor
+  link: https://coq.inria.fr/cocorico/NotFinitePrimes
+  comment: This statement was formerly in cocorico, compatible with coq 7.3
+  statement: |
+    Theorem ManyPrimes : ~(EX l:(list Prime) | (p:Prime)(In p l)).
+
+- theorem: 11
+  authors: Georges Gonthier
+  link: https://x80.org/rhino-coq/
+  comment: There are other proofs of this theorem, however you can browse this one in your browser, thanks to JsCoq.
+  statement: |
+    Lemma prime_above m : {p | m < p & prime p}.
+
+- theorem: 13
+  authors: Jean-François Dufourd
+  link: https://github.com/coq-contribs/euler-formula/blob/master/Euler3.v
+  comment: |
+    nc : number of connected components
+    nv : number of vertices
+    ne : number of edges
+    nf : number of faces
+    nd : number of darts
+    plf m : m is a planar formation
+    inv_qhmap : see Euler1.v
+  statement: |
+    Theorem Euler_Poincare_criterion: forall m:fmap,
+      inv_qhmap m -> (plf m <-> (nv m + ne m + nf m - nd m) / 2 = nc m).
+
+- theorem: 14
+  authors: Jean-Marie Madiot
+  link: https://github.com/coq-community/coqtail-math/blob/master/Reals/Rzeta2.v
+  statement: |
+    Theorem zeta2_pi_2_6 : Rser_cv (fun n => 1 / (n + 1) ^ 2) (PI ^ 2 / 6).
+
+- theorem: 15
+  authors: Luís Cruz-Filipe
+  link: https://github.com/coq-community/corn/blob/master/ftc/FTC.v#L181
+  statement: |
+    Theorem FTC1 : Derivative J pJ G F.
+    Theorem FTC2 : {c : IR | Feq J (G{-}G0) [-C-]c}.
+
+- theorem: 15
+  authors: The Coq development team
+  link: https://coq.inria.fr/library/Coq.Reals.RiemannInt.html
+  statement: |
+    Lemma FTC_Riemann :
+      forall (f:C1_fun) (a b:R) (pr:Riemann_integrable (derive f (diff0 f)) a b),
+      RiemannInt pr = f b - f a.
+
+- theorem: 16
+  authors: Sophie Bernard, Cyril Cohen, Assia Mahboubi, Pierre-Yves Strub
+  link: https://github.com/math-comp/Abel/blob/7a85e03fcd1b8d772d592fd53afe753b49f8fe96/theories/abel.v#L1454-L1455
+  statement: |
+    Lemma example_not_solvable_by_radicals :
+      ~ solvable_by_radical_poly ('X^5 - 4 *: 'X + 2 : {poly rat}).
+
+- theorem: 17
+  authors: Coqtail team
+  link: https://github.com/coq-community/coqtail-math/blob/master/Complex/Cexp.v
+  comment: De Moivre's formula is easily deduced from Euler's formula thanks to e^(n*z)=(e^z)^n.
+  statement: |
+    Lemma Cexp_trigo_compat : forall a, Cexp (0 +i a) = cos a +i sin a.
+    Lemma Cexp_mult : forall a n, Cexp (INC n * a) = (Cexp a) ^ n.
+
+- theorem: 18
+  authors: Valentin Blot
+  link: https://github.com/coq-community/corn/blob/master/liouville/Liouville.v
+  statement: |
+    Theorem Liouville_theorem2 :
+      {n : nat | {C : IR | Zero [<] C | forall (x : Q),
+           (C[*]inj_Q IR (1#Qden x)%Q[^]n) [<=] AbsIR (inj_Q _ x [-] a)}}.
+
+- theorem: 19
+  authors: Guillaume Allais, Jean-Marie Madiot
+  link: https://github.com/coq-community/coqtail-math/blob/master/Arith/Lagrange_four_square.v
+  comment: Coq extraction produces a program that indeed computes a, b, c, d
+  statement: |
+    Theorem lagrange_4_square_theorem : forall n, 0 <= n ->
+      { a : _ & { b: _ & { c : _ & { d |
+        n = a * a + b * b + c * c + d * d } } } }.
+
+- theorem: 20
+  authors: Laurent Théry
+  link: https://github.com/coq-contribs/sum-of-two-square/blob/master/TwoSquares.v#L641
+  statement: |
+    Definition sum_of_two_squares :=
+      fun p => exists a , exists b , p = a * a + b * b.
+    
+    Theorem two_squares_exists:
+      forall p, prime p -> p = 2 \/ Zis_mod p 1 4 -> sum_of_two_squares p.
+
+- theorem: 20
+  authors: Laurent Théry
+  link: https://github.com/thery/twoSquare
+  comment: proof using gaussian integers and mathcomp
+  statement: |
+    Lemma sum2sprime p :
+      odd p -> prime p -> p \is a sum_of_two_square = (p %% 4 == 1).
+
+- theorem: 22
+  authors: Pierre-Marie Pédrot
+  link: https://github.com/coq-community/coqtail-math/blob/master/Reals/Logic/Runcountable.v
+  statement: |
+    Theorem R_uncountable : forall (f : nat -> R),
+      {l : R | forall n, l <> f n}.
+    
+    Theorem R_uncountable_strong : forall (f : nat -> R) (x y : R),
+      x < y -> {l : R | forall n, l <> f n & x <= l <= y}.
+
+- theorem: 22
+  authors: C-CoRN team
+  link: https://github.com/coq-community/corn/blob/master/reals/RealCount.v#L362
+  statement: |
+    Theorem reals_not_countable :
+      forall (f : nat -> IR), {x :IR | forall n : nat, x [#] (f n)}.
+
+- theorem: 23
+  authors: David Delahaye
+  link: https://github.com/coq-contribs/fermat4/blob/master/Pythagorean.v
+  statement: |
+    Lemma pytha_thm3 : forall a b c : Z,
+      is_pytha a b c -> Zodd a ->
+      exists p : Z, exists q : Z, exists m : Z,
+        a = m * (q * q - p * p) /\ b = 2 * m * (p * q) /\
+        c = m * (p * p + q * q) /\ m >= 0 /\
+        p >= 0 /\ q > 0 /\ p <= q /\ (rel_prime p q) /\
+        (distinct_parity p q).
+
+- theorem: 25
+  authors: Hugo Herbelin
+  link: https://github.com/coq-contribs/schroeder/blob/master/Schroeder.v
+  statement: |
+    Theorem Schroeder : A <=_card B -> B <=_card A -> A =_card B.
+
+- theorem: 25
+  authors: Daniel Schepler
+  link: https://github.com/coq-community/topology/blob/master/theories/ZornsLemma/CSB.v
+  statement: |
+    Section CSB.
+      Variable X Y:Type.
+      Variable f:X->Y.
+      Variable g:Y->X.
+      Hypothesis f_inj: injective f.
+      Hypothesis g_inj: injective g.
+      
+      Theorem CSB: exists h:X->Y, bijective h.
+    End CSB.
+
+- theorem: 26
+  authors: Guillaume Allais
+  link: https://coq.inria.fr/library/Coq.Reals.Ratan.html
+  statement: |
+    Lemma PI_2_aux : {z : R | 7 / 8 <= z <= 7 / 4 /\ - cos z = 0}.
+    Definition PI := 2 * proj1_sig PI_2_aux.
+    
+    Definition PI_tg n := / INR (2 * n + 1).
+    Lemma exists_PI : {l:R | Un_cv (fun N => sum_f_R0 (tg_alt PI_tg) N) l}.
+    Definition Alt_PI : R := 4 * (let (a,_) := exist_PI in a).
+    
+    Theorem Alt_PI_eq : Alt_PI = PI.
+
+- theorem: 26
+  authors: Luís Cruz-Filipe
+  link: https://github.com/coq-community/corn/blob/master/transc/MoreArcTan.v#L553
+  statement: |
+    Lemma ArcTan_one : ArcTan One[=]Pi[/]FourNZ.
+    
+    Lemma arctan_series : forall c : IR,
+      forall (Hs :
+        fun_series_convergent_IR
+          (olor ([--]One) One)
+          (fun i =>
+            (([--]One)[^]i[/]nring (S (2*i))
+            [//] nringS_ap_zero _ (2*i)){**}Fid IR{^}(2*i+1)))
+        Hc,
+           FSeries_Sum Hs c Hc[=]ArcTan c.
+
+- theorem: 27
+  authors: Frédérique Guilhot
+  link: https://github.com/coq-community/HighSchoolGeometry/blob/master/theories/angles_vecteurs.v
+  statement: |
+    Theorem somme_triangle :
+      forall A B C : PO,
+      A <> B :>PO ->
+      A <> C :>PO ->
+      B <> C :>PO ->
+      plus (cons_AV (vec A B) (vec A C))
+        (plus (cons_AV (vec B C) (vec B A)) (cons_AV (vec C A) (vec C B))) =
+      image_angle pi :>AV.
+
+- theorem: 27
+  authors: Boutry, Gries, Narboux
+  link: https://github.com/GeoCoq/GeoCoq/blob/master/Meta_theory/Parallel_postulates/parallel_postulates.v
+  comment: It is shown that the sum of angles is two rights is equivalent to other versions of the parallel postulate
+  statement: |
+    Theorem equivalent_postulates_assuming_greenberg_s_axiom :
+      greenberg_s_axiom ->
+      all_equiv
+        (alternate_interior_angles_postulate::
+         alternative_playfair_s_postulate::
+         alternative_proclus_postulate::
+         alternative_strong_parallel_postulate::
+         consecutive_interior_angles_postulate::
+         euclid_5::
+         euclid_s_parallel_postulate::
+         existential_playfair_s_postulate::
+         existential_thales_postulate::
+         inverse_projection_postulate::
+         midpoint_converse_postulate::
+         perpendicular_transversal_postulate::
+         postulate_of_transitivity_of_parallelism::
+         playfair_s_postulate::
+         posidonius_postulate::
+         universal_posidonius_postulate::
+         postulate_of_existence_of_a_right_lambert_quadrilateral::
+         postulate_of_existence_of_a_right_saccheri_quadrilateral::
+         postulate_of_existence_of_a_triangle_whose_angles_sum_to_two_rights::
+         postulate_of_existence_of_similar_triangles::
+         postulate_of_parallelism_of_perpendicular_transversals::
+         postulate_of_right_lambert_quadrilaterals::
+         postulate_of_right_saccheri_quadrilaterals::
+         postulate_of_transitivity_of_parallelism::
+         proclus_postulate::
+         strong_parallel_postulate::
+         tarski_s_parallel_postulate::
+         thales_postulate::
+         thales_converse_postulate::
+         triangle_circumscription_principle::
+         triangle_postulate::
+         nil).
+
+- theorem: 28
+  authors: Magaud and Narboux
+  link: https://github.com/coq-contribs/projective-geometry/blob/master/Plane/hexamys.v
+  statement: |
+    Definition is_hexamy A B C D E F :=
+      (A<>B / A<>C / A<>D / A<>E / A<>F /
+      B<>C / B<>D / B<>E / B<>F /
+      C<>D / C<>E / C<>F /
+      D<>E / D<>F /
+      E<>F) /
+      let a:= inter (line B C) (line E F) in
+      let b:= inter (line C D) (line F A) in
+      let c:= inter (line A B) (line D E) in
+      Col a b c.
+    
+    Lemma hexamy_prop: pappus_strong -> forall A B C D E F,
+      (line C D) <> (line A F) ->
+      (line B C) <> (line E F) ->
+      (line A B) <> (line D E) ->
+      
+      (line A C) <> (line E F) ->
+      (line B F) <> (line C D) ->
+      is_hexamy A B C D E F -> is_hexamy B A C D E F.
+
+- theorem: 29
+  authors: Benjamin Grégoire, Loïc Pottier, and Laurent Théry
+  link: https://github.com/coq/coq/blob/master/test-suite/success/Nsatz.v#L376
+  link_description: Coq's test suite
+  statement: |
+    Lemma Feuerbach:  forall A B C A1 B1 C1 O A2 B2 C2 O2:point,
+      forall r r2:R,
+      X A = 0 -> Y A =  0 -> X B = 1 -> Y B =  0->
+      middle A B C1 -> middle B C A1 -> middle C A B1 ->
+      distance2 O A1 = distance2 O B1 ->
+      distance2 O A1 = distance2 O C1 ->
+      collinear A B C2 -> orthogonal A B O2 C2 ->
+      collinear B C A2 -> orthogonal B C O2 A2 ->
+      collinear A C B2 -> orthogonal A C O2 B2 ->
+      distance2 O2 A2 = distance2 O2 B2 ->
+      distance2 O2 A2 = distance2 O2 C2 ->
+      r^2%Z = distance2 O A1 ->
+      r2^2%Z = distance2 O2 A2 ->
+      distance2 O O2 = (r + r2)^2%Z
+      \/ distance2 O O2 = (r - r2)^2%Z
+      \/ collinear A B C.
+
+- theorem: 30
+  authors: Jean-Marie Madiot
+  link: https://github.com/coq-community/coq-100-theorems/blob/master/ballot.v
+  statement: |
+    Theorem bertrand_ballot p q :
+      let l := filter (fun votes => count_votes votes "A" =? p) (picks (p + q) ["A"; "B"]) in
+      p >= q ->
+      (p + q) * List.length (filter (throughout (wins "A" "B")) l) =
+      (p - q) * List.length (filter (wins "A" "B") l).
+
+- theorem: 31
+  authors: Frédéric Blanqui
+  link: https://github.com/fblanqui/color/blob/master/Util/Set_/Ramsey.v
+  link_description: color
+  statement: |
+    Theorem ramsey A (W : set A) n (P : Pinf W) B : forall (C : Pf B)
+      (f : Pcard P (S n) -> elts C), Proper (Pcard_equiv ==> elts_eq) f ->
+      exists c (Q : Pinf P), forall X : Pcard Q (S n), f (Pcard_subset Q X) = c.
+
+- theorem: 32
+  authors: Georges Gonthier, Benjamin Werner
+  link: https://github.com/coq-community/fourcolor/blob/master/theories/fourcolor.v
+  statement: |
+    Theorem four_color m : simple_map m -> colorable_with 4 m.
+
+- theorem: 34
+  authors: Coqtail
+  link: https://github.com/coq-community/coqtail-math/blob/master/Reals/Rseries/Rseries_RiemannInt.v
+  statement: |
+    Lemma harmonic_series_equiv : (sum_f_R0 (fun n ⇒ / (S n))) ~ (fun n ⇒ ln (S (S n))).
+
+- theorem: 35
+  authors: Luís Cruz-Filipe
+  link: https://github.com/coq-community/corn/blob/master/ftc/Taylor.v#L355
+  statement: |
+    Theorem Taylor : forall e, Zero [<] e -> forall Hb',
+      {c : IR | Compact (Min_leEq_Max a b) c |
+        forall Hc, AbsIR (F b Hb'[-]Part _ _ Taylor_aux[-]deriv_Sn c Hc[*] (b[-]a)) [<=] e}.
+
+- theorem: 37
+  authors: Frédéric Chardard
+  link: https://github.com/coq-community/coq-100-theorems/blob/master/cardan_ferrari.v
+  statement: |
+    Definition Cardan_Tartaglia_formula:=fun (a1:C) (a2:C) (a3:C) (n:nat) =>
+      let s:=-a1/3 in
+      let p:=a2+2*s*a1+3*Cpow s 2 in
+      let q:=a3+a2*s+a1*Cpow s 2+Cpow s 3 in
+      let Delta:=(Cpow (q/2) 2)+(Cpow (p/3) 3) in
+      let alpha : C :=if(Ceq_dec p 0) then (RtoC 0) else (cubicroot (-(q/2)+Csqrt Delta)) in
+      let beta:=if(Ceq_dec p 0) then -cubicroot q else -(p/3)/alpha in
+      s+(alpha*Cpow CJ n+beta*Cpow CJ (n+n)).
+    
+    Theorem Cardan_Tartaglia : forall a1 a2 a3 :C,
+      let u1:=(Cardan_Tartaglia_formula a1 a2 a3 0) in
+      let u2:=(Cardan_Tartaglia_formula a1 a2 a3 1) in
+      let u3:=(Cardan_Tartaglia_formula a1 a2 a3 2) in
+      forall u:C, (u-u1)*(u-u2)*(u-u3)=Cpow u 3+a1*Cpow u 2+a2*u+a3.
+
+- theorem: 38
+  authors: Jean-Marie Madiot
+  link: https://github.com/coq-community/coq-100-theorems/blob/master/mean.v
+  comment:  using forward-backward induction
+  statement: |
+    Theorem geometric_arithmetic_mean (a : nat -> R) (n : nat) :
+      n <> O ->
+      (forall i, (i < n)%nat -> 0 <= a i) ->
+      prod n a <= (sum n a / INR n) ^ n
+      /\
+      (prod n a = (sum n a / INR n) ^ n -> forall i, (i < n)%nat -> a i = a O).
+
+- theorem: 41
+  authors: Daniel de Rauglaudre
+  link: https://github.com/roglo/puiseuxth/blob/master/coq/Puiseux.v
+  statement: |
+    Theorem puiseux_series_algeb_closed : ∀ (α : Type) (R : ring α) (K : field R),
+      algeb_closed_field K
+      → ∀ pol : polynomial (puiseux_series α),
+        degree (ps_zerop K) pol ≥ 1
+        → ∃ s : puiseux_series α, (ps_pol_apply pol s = 0)%ps.
+
+- theorem: 42
+  authors: Coqtail
+  link: https://github.com/coq-community/coqtail-math/blob/master/Reals/Triangular.v
+  statement: |
+    Lemma sum_reciprocal_triangular : Rser_cv (fun n => / triangle (S n)) 2.
+
+- theorem: 44
+  authors: The Coq development team
+  link: https://coq.inria.fr/library/Coq.Reals.Binomial.html
+  comment: For the non-constructive type R
+  statement: |
+    Lemma binomial :
+      forall (x y:R) (n:nat),
+        (x + y) ^ n = sum_f_R0 (fun i:nat => C n i * x ^ i * y ^ (n - i)) n.
+
+- theorem: 44
+  authors: Laurent Thery & Jose C. Almeida
+  link: https://github.com/coq-contribs/rsa/blob/master/Binomials.v
+  comment: For the type nat
+  statement: |
+    Theorem exp_Pascal :
+      forall a b n : nat,
+      power (a + b) n =
+      sum_nm n 0 (fun k : nat => binomial n k * (power a (n - k) * power b k)).
+
+- theorem: 44
+  authors: Jean-Marie Madiot
+  link: https://github.com/coq-community/coqtail-math/blob/master/Hierarchy/Commutative_ring_binomial.v#L271
+  comment: For any commutative ring X.
+  statement: |
+    Definition newton_sum n a b : X :=
+      CRsum (fun k => (Nbinomial n k) ** (a ^ k) * (b ^ (n - k))) n.
+    
+    Theorem Newton : forall n a b, (a + b) ^ n == newton_sum n a b.
+
+- theorem: 46
+  authors: Frédéric Chardard
+  link: https://github.com/coq-community/coq-100-theorems/blob/master/cardan_ferrari.v
+  comment: For the non-constructive type R
+  statement: |
+    Theorem Ferrari_formula: forall (a:C) (b:C) (c:C) (d:C),
+      let s:=-a/4 in
+      let p:= b+3*s*a+6*Cpow s 2 in
+      let q:= c+2*b*s+3*a*Cpow s 2+4*Cpow s 3 in
+      let r:= d+c*s+b*Cpow s 2+a*Cpow s 3+Cpow s 4 in
+      let lambda:=Cardan_Tartaglia_formula (-p/2) (-r) (r*p/2-/8*Cpow q 2) 0 in
+      let A:=Csqrt(2*lambda-p) in
+      let cond:=(Ceq_dec (2*lambda) p) in
+      let B:=if cond then (RtoC 0) else (-q/(2*A)) in
+      let z1:=if cond then Csqrt (binom_solution p r 0)
+                      else binom_solution A (B+lambda) 0 in
+      let z2:=if cond then -Csqrt (binom_solution p r 0)
+                      else binom_solution A (B+lambda) 1 in
+      let z3:=if cond then Csqrt (binom_solution p r 1)
+                      else binom_solution (-A) (-B+lambda) 0 in
+      let z4:=if cond then -Csqrt (binom_solution p r 1)
+                      else binom_solution (-A) (-B+lambda) 1 in
+      let u1:=z1+s in
+      let u2:=z2+s in
+      let u3:=z3+s in
+      let u4:=z4+s in
+      forall u:C, (u-u1)*(u-u2)*(u-u3)*(u-u4)=Cpow u 4+a*Cpow u 3+b*Cpow u 2+c*u+d.
+
+- theorem: 49
+  authors: Sidi Ould Biha
+  link: https://github.com/math-comp/math-comp/blob/master/mathcomp/algebra/mxpoly.v#L412
+  statement: |
+    Theorem Cayley_Hamilton (R : comRingType) n' (A : 'M[R]_n'.+1) :
+      horner_mx A (char_poly A) = 0.
+
+- theorem: 51
+  authors: unknown (Inria, Microsoft)
+  link: https://github.com/math-comp/math-comp/blob/master/mathcomp/ssreflect/binomial.v#L52
+  comment: (c) Copyright 2006-2016 Microsoft Corporation and Inria. Distributed under the terms of CeCILL-B.
+  statement: |
+    Theorem Wilson : forall p, p > 1 -> prime p = (p %| ((p.-1)`!).+1).
+
+- theorem: 51
+  authors: Laurent Théry
+  link: https://github.com/coq-contribs/sum-of-two-square/blob/master/Wilson.v
+  comment: LGPL licence
+  statement: |
+    Theorem wilson: forall p, prime p ->  Zis_mod (Zfact (p - 1)) (- 1) p.
+
+- theorem: 52
+  authors: unknown (Inria, Microsoft)
+  link: https://github.com/math-comp/math-comp/blob/master/mathcomp/ssreflect/finset.v#L1542
+  statement: |
+    Lemma card_powerset (T : finType) (A : {set T}) : #|powerset A| = 2 ^ #|A|.
+
+- theorem: 52
+  authors: Pierre Letouzey
+  link: https://github.com/coq-contribs/fsets/blob/master/PowerSet.v#L214
+  statement: |
+    Lemma powerset_cardinal:
+      forall s, MM.cardinal (powerset s) = two_power (M.cardinal s).
+
+- theorem: 53
+  authors: Sophie Bernard and Laurence Rideau
+  link: https://github.com/Sobernard/Lindemann/blob/master/LindemannTheorem.v
+  comment: The concept algebraicOver is from the Mathematical Components library, and the definition of PI is from the Coq standard library.
+  statement: |
+    Notation "x 'is_algebraic'" := (algebraicOver QtoC x) (at level 55).
+    Theorem Pi_trans_by_LB : ~ (RtoC Rtrigo1.PI is_algebraic).
+
+- theorem: 54
+  authors: Jean-Marie Madiot
+  link: https://github.com/coq-community/coq-100-theorems/blob/master/konigsberg_bridges.v
+  statement: |
+    Theorem konigsberg_bridges :
+      let E := [(0, 1); (0, 2); (0, 3); (1, 2); (1, 2); (2, 3); (2, 3)] in
+      forall p, path p -> eulerian E p -> False.
+
+- theorem: 55
+  authors: Benjamin Grégoire, Loïc Pottier, and Laurent Théry
+  link: https://github.com/coq/coq/blob/master/test-suite/success/Nsatz.v#L454
+  link_description: Coq's test suite
+  statement: |
+    Lemma chords: forall O A B C D M:point,
+      equaldistance O A O B ->
+      equaldistance O A O C ->
+      equaldistance O A O D ->
+      collinear A B M -> collinear C D M ->
+      scalarproduct A M B = scalarproduct C M D
+      \/ parallel A B C D.
+
+- theorem: 56
+  authors: Sophie Bernard
+  link: https://github.com/Sobernard/Lindemann/blob/master/LindemannTheorem.v
+  comment: The concept algebraicOver is from the Mathematical Components library.
+  statement: |
+    Notation "x 'is_algebraic'" := (algebraicOver QtoC x) (at level 55).
+    
+    Theorem HermiteLindemann (x : complexR) :
+      x != 0 -> x is_algebraic -> ~ ((Cexp x) is_algebraic).
+
+- theorem: 57
+  authors: Julien Narboux
+  link: https://github.com/coq-contribs/area-method/blob/master/pythagoras_difference_lemmas.v
+  statement: |
+    Definition Py A B C := A**B * A**B + B**C * B**C - A**C * A**C.
+    
+    Lemma herron_qin : forall A B C,
+      S A B C * S A B C = 1 / (2*2*2*2) * (Py A B A * Py A C A - Py B A C * Py B A C).
+
+- theorem: 58
+  authors: Pierre Letouzey
+  link: https://github.com/coq-contribs/fsets/blob/master/PowerSet.v#L261
+  statement: |
+    Lemma powerset_k_cardinal : forall s k,
+      MM.cardinal (powerset_k s k) = binomial (M.cardinal s) k.
+
+- theorem: 59
+  authors: Avraham Shinnar, Barry Trager
+  link: https://github.com/IBM/FormalML/blob/b9a36a612c01d6f7e05ae7f68a057d3a4728761d/coq/QLearn/slln.v#L7287
+  statement: |
+    Lemma Ash_6_2_5
+      {Ts:Type} {dom: SigmaAlgebra Ts} {Prts: ProbSpace dom}.
+      (X : nat -> Ts -> R) (mu : R)
+      {rv : forall n, RandomVariable dom borel_sa (X n)}
+      {isfe : forall n, IsFiniteExpectation Prts (X n)} :
+      (forall n, FiniteExpectation Prts (X n) = mu) ->
+      iid_rv_collection Prts borel_sa X ->
+      almost Prts (fun omega => is_lim_seq (fun n => ((rvsum X n) omega)/(INR (S n))) mu).
+
+- theorem: 60
+  authors: The Coq development team
+  link: https://coq.inria.fr/library/Coq.ZArith.Znumtheory.html
+  statement: |
+    Inductive Zdivide (a b:Z) : Prop :=
+      Zdivide_intro : forall q:Z, b = q * a -> Zdivide a b.
+    
+    Notation "( a | b )" := (Zdivide a b) (at level 0) : Z_scope.
+    
+    Inductive Zis_gcd (a b d:Z) : Prop :=
+      Zis_gcd_intro :
+      (d | a) ->
+      (d | b) ->
+      (forall x:Z, (x | a) -> (x | b) -> (x | d)) ->
+        Zis_gcd a b d.
+    
+    Inductive Bezout (a b d:Z) : Prop :=
+      Bezout_intro : forall u v:Z, u * a + v * b = d -> Bezout a b d.
+    
+    Lemma Zis_gcd_bezout : forall a b d:Z, Zis_gcd a b d -> Bezout a b d.
+
+- theorem: 61
+  authors: Julien Narboux
+  link: https://github.com/coq-contribs/area-method/blob/master/examples_2.v
+  statement: |
+    Theorem Ceva :
+      forall A B C D E F G P : Point,
+      inter_ll D B C A P ->
+      inter_ll E A C B P ->
+      inter_ll F A B C P ->
+      F <> B ->
+      D <> C ->
+      E <> A ->
+      parallel A F F B ->
+      parallel B D D C ->
+      parallel C E E A ->
+      (A ** F / F ** B) * (B ** D / D ** C) * (C ** E / E ** A) = 1.
+
+- theorem: 62
+  authors: Avraham Shinnar, Barry Trager
+  link: https://github.com/IBM/FormalML/blob/b9a36a612c01d6f7e05ae7f68a057d3a4728761d/coq/ProbTheory/MartingaleStopped.v#L1404-L1504
+  comment: <a href="https://formalml.github.io/DSML22/documentation/html/FormalML.ProbTheory.MartingaleStopped.html#optional_stopping_time">Documentation with comments</a>
+  statement: |
+    Context
+      {Ts:Type}
+      {σ: SigmaAlgebra Ts}
+      (prts: ProbSpace σ)
+      
+      (F : nat -> SigmaAlgebra Ts)
+      {filt:IsFiltration F}
+      {sub:IsSubAlgebras σ F}
+          
+      (τ:Ts -> option nat)
+      {is_stop:IsStoppingTime τ F}
+      
+      (Y : nat -> Ts -> R)
+      {rv:forall n, RandomVariable σ borel_sa (Y n)}
+      {isfe:forall n, IsFiniteExpectation prts (Y n)}
+      {adapt:IsAdapted borel_sa Y F}
+      
+      (conditions:
+        (exists (N:nat),
+            almost prts (fun ω => match τ ω with
+                               | Some k => (k <= N)%nat
+                               | None => False
+                               end))
+                
+        \/
+          (almost prts (fun ω => τ ω <> None)
+           /\ exists (K:R),
+              (forall n, almost prts (fun ω => Rabs (Y n ω) < K)))
+        \/
+          (Rbar_IsFiniteExpectation
+             prts
+             (fun ω => match τ ω with
+                    | Some n => INR n
+                    | None => p_infty
+                    end)
+           /\ exists (K:R),
+            forall n, almost prts (fun ω => Rabs (Y (S n) ω - Y n ω) <= K))
+      ).
+        
+    Theorem optional_stopping_time
+            {mart:IsMartingale prts eq Y F} :
+      FiniteExpectation prts (process_under Y τ) = FiniteExpectation prts (Y 0%nat).
+    
+    Theorem optional_stopping_time_sub
+            {mart:IsMartingale prts Rle Y F} :
+      FiniteExpectation prts (process_under Y τ) >= FiniteExpectation prts (Y 0%nat).
+    
+    Theorem optional_stopping_time_super
+            {mart:IsMartingale prts Rge Y F} :
+      FiniteExpectation prts (process_under Y τ) <= FiniteExpectation prts (Y 0%nat).
+
+- theorem: 63
+  authors: Gilles Kahn, Gerard Huet
+  link: https://coq.inria.fr/library/Coq.Sets.Powerset.html
+  comment: Naive Set Theory in Coq
+  statement: |
+    Theorem Strict_Rel_is_Strict_Included :
+      same_relation (Ensemble U) (Strict_Included U)
+        (Strict_Rel_of (Ensemble U) (Power_set_PO (Full_set U))).
+
+- theorem: 64
+  authors: Sylvain Dailler
+  link: https://github.com/coq-community/coqtail-math/blob/master/Reals/Hopital.v
+  comment: Many other versions in the file, for example depending on whether the limits are finite or not.
+  statement: |
+    Variables f g : R → R.
+    Variables a b L : R.
+    Hypothesis Hab : a < b.
+    Hypotheses (Df : ∀ x, open_interval a b x → derivable_pt f x)
+               (Dg : ∀ x, open_interval a b x → derivable_pt g x).
+    Hypotheses (Cf : ∀ x, a ≤ x ≤ b → continuity_pt f x)
+               (Cg : ∀ x, a ≤ x ≤ b → continuity_pt g x).
+    Hypothesis (Zf : limit1_in f (open_interval a b) 0 a).
+    Hypothesis (Zg : limit1_in g (open_interval a b) 0 a).
+    
+    Hypothesis (g_not_0 : ∀ x (Hopen: open_interval a b x), derive_pt g x (Dg x Hopen) ≠ 0 ∧ g x ≠ 0)
+    Hypothesis (Hlimder : ∀ eps, eps > 0 →
+      ∃ alp,
+        alp > 0 ∧
+        (∀ x (Hopen : open_interval a b x), R_dist x a < alp →
+          R_dist (derive_pt f x (Df x Hopen) / derive_pt g x (Dg x Hopen)) L < eps)).
+    
+    Theorem Hopital_g0_Lfin_right : limit1_in (fun x ⇒ f x / g x) (open_interval a b) L a.
+
+- theorem: 65
+  authors: Frédérique Guilhot
+  link: https://github.com/coq-community/HighSchoolGeometry/blob/master/theories/isocele.v
+  statement: |
+    Lemma isocele_angles_base :
+      isocele A B C -> cons_AV (vec B C) (vec B A) = cons_AV (vec C A) (vec C B).
+
+- theorem: 65
+  authors: GeoCoq team
+  link: https://github.com/GeoCoq/GeoCoq/blob/master/Highschool/triangles.v
+  statement: |
+    Lemma isosceles_conga :
+      A<>C -> A <> B ->
+      isosceles A B C ->
+      Conga C A B A C B.
+
+- theorem: 66
+  authors: Luís Cruz-Filipe
+  link: https://github.com/coq-community/corn/blob/master/ftc/MoreFunSeries.v#L994
+  statement: |
+    Lemma fun_power_series_conv_IR :
+      fun_series_convergent_IR
+      (olor ([--][1]) [1])
+      (fun (i:nat) => Fid IR{^}i).
+
+- theorem: 67
+  authors: Sophie Bernard and Laurence Rideau
+  link: https://github.com/Sobernard/Lindemann/blob/master/LindemannTheorem.v
+  comment: The concept algebraicOver is from the Mathematical Components library, and the definition of exp is from the Coq standard library.
+  statement: |
+    Notation "x 'is_algebraic'" := (algebraicOver QtoC x) (at level 55).
+    
+    Theorem e_trans_by_LB : ~ (RtoC (Rtrigo_def.exp 1) is_algebraic).
+
+- theorem: 68
+  authors: many versions
+  link: https://github.com/coq-community/coq-100-theorems/blob/master/sumarith.v
+  statement: |
+    Theorem arith_sum a b n : 2 * sum (fun i => a + i * b) n = S n * (2 * a + n * b).
+
+- theorem: 69
+  authors: The Coq development team
+  link: https://coq.inria.fr/library/Coq.ZArith.Znumtheory.html
+  comment: The following statement handle binary integers; other types are handled in the same file.
+  statement: |
+    Fixpoint Pgcdn (n: nat) (a b : positive) : positive :=
+      match n with
+      | O => 1
+      | S n =>
+        match a,b with
+        | xH, _ => 1
+        | _, xH => 1
+        | xO a, xO b => xO (Pgcdn n a b)
+        | a, xO b => Pgcdn n a b
+        | xO a, b => Pgcdn n a b
+        | xI a', xI b' =>
+          match Pcompare a' b' Eq with
+          | Eq => a
+          | Lt => Pgcdn  n (b'-a') a
+          | Gt => Pgcdn n (a'-b') b
+          end
+        end
+      end.
+   
+    Definition Zgcd (a b : Z) : Z :=
+      match a,b with
+      | Z0, _ => Zabs b
+      | _, Z0 => Zabs a
+      | Zpos a, Zpos b => Zpos (Pgcd a b)
+      | Zpos a, Zneg b => Zpos (Pgcd a b)
+      | Zneg a, Zpos b => Zpos (Pgcd a b)
+      | Zneg a, Zneg b => Zpos (Pgcd a b)
+      end.
+    
+    Lemma Zgcd_is_gcd : forall a b, Zis_gcd a b (Zgcd a b).
+
+- theorem: 70
+  authors: Raül Espejo Boix
+  link: https://github.com/The-busy-man/Perfect-Number-s-Theorem/blob/main/perf_numT.v
+  comment: uses mathcomp
+  statement: |
+    Theorem EulerT p: perfect p -> 2%|p -> p > 0 ->
+      exists n, (p = (2^n-1)*2^n.-1)/\(prime (2^n - 1)).
+
+- theorem: 71
+  authors: unknown (Laurent Théry?)
+  link: https://github.com/math-comp/math-comp/blob/master/mathcomp/fingroup/fingroup.v#L1976
+  statement: |
+    Theorem Lagrange G H : H \subset G -> (#|H| * #|G : H|)%N = #|G|.
+
+- theorem: 72
+  authors: Laurent Théry
+  link: https://github.com/math-comp/math-comp/blob/master/mathcomp/solvable/sylow.v#L91
+  statement: |
+    Theorem Sylow's_theorem :
+      [/\ forall P, [max P | p.-subgroup(G) P] = p.-Sylow(G) P,
+          [transitive G, on 'Syl_p(G) | 'JG],
+          forall P, p.-Sylow(G) P -> #|'Syl_p(G)| = #|G : 'N_G(P)|
+       &  prime p -> #|'Syl_p(G)| %% p = 1%N].
+
+- theorem: 73
+  authors: Florent Hivert
+  link: https://github.com/hivert/Coq-Combi/blob/master/theories/Erdos_Szekeres/Erdos_Szekeres.v
+  statement: |
+    Variable T : ordType. (* a totally ordered type *)
+      (* <= is denoted (leqX T) *)
+      (* >  is denoted (gtnX T) *)
+    
+    Theorem Erdos_Szekeres (m n : nat) (s : seq T) :
+      (size s) > (m * n) ->
+      (exists t, subseq t s /\ sorted (leqX T) t /\ size t > m) \/
+      (exists t, subseq t s /\ sorted (gtnX T) t /\ size t > n).
+
+- theorem: 74
+  authors: Coq's type theory
+  link: https://coq.inria.fr/library/Coq.Init.Datatypes.html
+  comment: The induction priciple is automatically provided by Coq when defining unary natural numbers.
+  statement: |
+    Inductive nat : Set :=  O : nat | S : nat -> nat.
+    
+    nat_ind :
+      forall P : nat -> Prop,
+      P 0 ->
+      (forall n : nat, P n -> P (S n)) ->
+      forall n : nat, P n
+
+- theorem: 74
+  authors: The Coq development team
+  link: https://coq.inria.fr/library/Coq.NArith.BinNat.html#N.peano_rect
+  comment: Peano's induction principle is manually proved for binary natural integers.
+  statement: |
+    peano_rect : forall (P : N -> Type),
+      P 0 ->
+      (forall n : N, P n -> P (succ n)) ->
+      forall (n : N), P n
+  checked: NO
+
+- theorem: 75
+  authors: Luís Cruz-Filipe
+  link: https://github.com/coq-community/corn/blob/master/ftc/Rolle.v#L689
+  statement: |
+    Theorem Law_of_the_Mean : forall a b, I a -> I b -> forall e, Zero [<] e ->
+      {x : IR | Compact (Min_leEq_Max a b) x | forall Ha Hb Hx,
+       AbsIR (F b Hb[-]F a Ha[-]F' x Hx[*] (b[-]a)) [<=] e}.
+
+- theorem: 77
+  authors: Frédéric Chardard
+  link: https://github.com/coq-community/coq-100-theorems/blob/master/sumkthpowers.v
+  statement: |
+    Lemma sum_kthpowers : forall r:nat, forall n:nat,
+      (0<r)%nat->
+      sum_f_R0 (fun k => ((INR k)^r)%R) n
+      =((bernoulli_polynomial (S r) (INR n+1))-(bernoulli_polynomial (S r) 0))/(INR r+1).
+
+- theorem: 78
+  authors: Daniel de Rauglaudre
+  link: https://github.com/roglo/cauchy_schwarz/blob/master/Cauchy_Schwarz.v
+  statement: |
+    Notation "'Σ' ( i = b , e ) , g" := (summation b e (λ i, (g)%R)).
+    Notation "u .[ i ]" := (List.nth (pred i) u 0%R).
+    
+    Theorem Cauchy_Schwarz_inequality : ∀ (u v : list R) n,
+      ((Σ (k = 1, n), (u.[k] * v.[k]))² ≤
+       Σ (k = 1, n), (u.[k]²) * Σ (k = 1, n), (v.[k]²))%R.
+
+- theorem: 79
+  authors: The Coq development team
+  link: https://coq.inria.fr/library/Coq.Reals.Rsqrt_def.html
+  comment: non constructive version in Coq's standard library
+  statement: |
+    Lemma IVT_cor :
+      forall (f:R -> R) (x y:R),
+        continuity f ->
+        x <= y -> f x * f y <= 0 ->
+        { z:R | x <= z <= y /\ f z = 0 }.
+
+- theorem: 80
+  authors: unknown (Inria, Microsoft)
+  link: https://math-comp.github.io/htmldoc/mathcomp.ssreflect.prime.html
+  statement: |
+    Lemma divisors_correct : forall n, n > 0 ->
+      [/\ uniq (divisors n), sorted leq (divisors n)
+        & forall d, (d \in divisors n) = (d %| n)].
+
+- theorem: 83
+  authors: Alex Loiko
+  link: https://github.com/aleloi/coq-friendship-theorem
+  statement: |
+    Theorem Friendship
+      (T: finType) (T_nonempty: [set: T] != set0)
+      (F : rel T) (Fsym: symmetric F) (Firr: irreflexive F) :
+      (forall (u v: T), u != v -> #|[set w | F u w & F v w]| == 1) ->
+      {u : T | forall v : T, u != v -> F u v}.
+
+- theorem: 84
+  authors: Frédérique Guilhot
+  link: https://github.com/coq-community/HighSchoolGeometry/blob/master/theories/exercice_morley.v
+  statement: |
+    Theorem Morley:
+      forall (a b c : R) (A B C P Q T : PO),
+      0 < a ->
+      0 < b ->
+      0 < c ->
+      (a + b) + c = pisurtrois ->
+      A <> B ->
+      A <> C ->
+      B <> C ->
+      B <> P ->
+      B <> Q ->
+      A <> T ->
+      C <> T ->
+      image_angle b = cons_AV (vec B C) (vec B P) ->
+      image_angle b = cons_AV (vec B P) (vec B Q) ->
+      image_angle b = cons_AV (vec B Q) (vec B A) ->
+      image_angle c = cons_AV (vec C P) (vec C B) ->
+      image_angle c = cons_AV (vec C T) (vec C P) ->
+      image_angle a = cons_AV (vec A B) (vec A Q) ->
+      image_angle a = cons_AV (vec A Q) (vec A T) ->
+      image_angle a = cons_AV (vec A T) (vec A C) -> equilateral P Q T.
+
+- theorem: 85
+  authors: many versions
+  link: https://github.com/coq-community/coq-100-theorems/blob/master/div3.v
+  statement: |
+    Theorem div3 : forall n d,
+      (number n d) mod 3 = (sumdigits n d) mod 3.
+
+- theorem: 86
+  authors: Sylvie Boldo, François Clément, Florian Faissole, Vincent Martin, Micaela Mayero, Houda Mouhcine
+  link: https://lipn.univ-paris13.fr/coq-num-analysis/tree/Tonelli.1.0/Lebesgue/
+  comment: >-
+    This formalization covers the integration of nonnegative
+    measurable functions (including the Beppo Levi theorem, Fatou's Lemma and the
+    Tonelli theorem), the Bochner integral for functions taking their values in a
+    Banach space (including the dominated convergence theorem), and the Lebesgue
+    measure on the real numbers.<br>
+    
+    In the snippets below, <code>_p</code> stands for nonnegative
+    and <code>SF</code>/<code>sf</code> for simple function.<br>
+    
+    Articles: <a href="https://hal.inria.fr/hal-03194113/">on <code>LInt_p</code></a>, <a href="https://hal.inria.fr/hal-03516749/">on Bochner integral</a>.
+  statement: |
+    (* From LInt_p.v *)
+    Definition LInt_p : (E -> Rbar) -> Rbar :=
+      fun f => Rbar_lub (fun z : Rbar =>
+        exists (g : E -> R), exists (Hg : SF gen g),
+          non_neg g /\ (forall x, Rbar_le (g x) (f x)) /\
+          LInt_SFp mu g Hg = z).
+    
+    (* From BInt_Bif.v *)
+    Definition BInt {f : X -> E} (bf : Bif μ f) :=
+      lim_seq (fun n => BInt_sf μ (seq bf n)).
+    
+    (* From measure_R.v *)
+    Definition Lebesgue_measure : measure cal_L :=
+      mk_measure cal_L lambda_star
+        lambda_star_False lambda_star_ge_0 Lebesgue_sigma_additivity.
+
+- theorem: 86
+  authors: Reynald Affeldt and Cyril Cohen
+  link: https://github.com/math-comp/analysis/tree/master/theories
+  comment: Mathcomp analysis has a formalization of Lebesgue measure and Lebesgue integration. Some definitions below.
+  statement: |
+    (* in lebesgue_measure.v *)
+    Definition lebesgue_measure : {measure set gssets -> \bar R} :=
+      Hahn_ext (@slength_measure R).
+    
+    (* in lebesgue_integral.v *)
+    Definition nnintegral D (f : T -> \bar R) :=
+      ereal_sup [set sintegral mu D g | g in
+        [set g : nnsfun T R | forall x, D x -> (g x)%:E <= f x]].
+    
+    Definition integral D (f : T -> \bar R) :=
+      nnintegral D (f ^\+) - nnintegral D (f ^\-).
+
+- theorem: 87
+  authors: Frédérique Guilhot
+  link: https://github.com/coq-community/HighSchoolGeometry/blob/master/theories/affine_classiques.v
+  statement: |
+    Theorem Desargues :
+      forall A B C A1 B1 C1 S : PO,
+      C <> C1 -> B <> B1 -> C <> S -> B <> S -> C1 <> S ->
+      B1 <> S -> A1 <> B1 -> A1 <> C1 -> B <> C -> B1 <> C1 ->
+      triangle A A1 B ->
+      triangle A A1 C ->
+      alignes A A1 S ->
+      alignes B B1 S ->
+      alignes C C1 S ->
+      paralleles (droite A B) (droite A1 B1) ->
+      paralleles (droite A C) (droite A1 C1) ->
+      paralleles (droite B C) (droite B1 C1).
+
+- theorem: 87
+  authors: Julien Narboux
+  link: https://github.com/coq-contribs/area-method/blob/master/examples_2.v
+  comment: Proved with the area_method tactic.
+  statement: |
+    Theorem Desargues :
+      forall A B C X A' B' C' : Point, A' <>C' -> A' <> B' ->
+      on_line A' X A ->
+      on_inter_line_parallel B' A' X B A B ->
+      on_inter_line_parallel C' A' X C A C ->
+      parallel B C B' C'.
+
+- theorem: 87
+  authors: Gabriel Braun
+  link: https://geocoq.github.io/GeoCoq/html/GeoCoq.Tarski_dev.Ch13_6_Desargues_Hessenberg.html
+  comment: Hessenberg's proof following the book of Tarski.
+  statement: |
+    Lemma l13_15 : forall A B C A' B' C' O ,
+      ~Col A B C ->
+      Par_strict A B A' B' ->
+      Par_strict A C A' C' ->
+      Col O A A' ->
+      Col O B B' ->
+      Col O C C' ->
+      Par B C B' C'.
+    
+    Lemma l13_18 : forall A B C A' B' C' O,
+      ~Col A B C /\ Par_strict A B A' B' /\  Par_strict A C A' C' ->
+      (Par_strict B C B' C' /\ Col O A A' /\ Col O B B' -> Col O C C') /\
+      ((Par_strict B C B' C' /\ Par A A' B B') ->
+      (Par C C' A A' /\ Par C C' B B'))  /\
+      (Par A A' B B' /\ Par A A' C C' -> Par B C B' C').
+
+- theorem: 88
+  authors: Fabian Wolff
+  link: https://github.com/FabianWolff/coq-derangements-formula
+  statement: |
+    Theorem drm_formula: forall n, n > 0 ->
+      round ((INR (fact n)) * (exp (-1))) = Some (Z.of_nat (length (drm_construct n))).
+
+- theorem: 89
+  authors: unknown ((c) Microsoft Corporation and Inria)
+  link: https://github.com/math-comp/math-comp/blob/master/mathcomp/algebra/polydiv.v
+  statement: |
+    CoInductive edivp_spec m d : nat * {poly F} * {poly F} -> Type :=
+      EdivpSpec n q r of
+      m = q * d + r & (d != 0) ==> (size r < size d) : edivp_spec m d (n, q, r).
+  
+    Lemma edivpP m d : edivp_spec m d (edivp m d).
+
+- theorem: 90
+  authors: Coqtail team
+  link: https://github.com/coq-community/coqtail-math/blob/master/Reals/RStirling.v
+  statement: |
+    Lemma Stirling_equiv :
+      Rseq_fact ~ (fun n => sqrt (2 × PI) × (INR n) ^ n × exp (- (INR n)) × sqrt (INR n)).
+
+- theorem: 91
+  authors: The Coq Development Team
+  link: https://github.com/coq/coq/blob/trunk/theories/Reals/Rgeom.v
+  statement: |
+    Lemma triangle :
+      forall x0 y0 x1 y1 x2 y2:R,
+        dist_euc x0 y0 x1 y1 <= dist_euc x0 y0 x2 y2 + dist_euc x2 y2 x1 y1.
+
+- theorem: 93
+  authors: Jean-Marie Madiot
+  link: https://github.com/coq-community/coq-100-theorems/blob/master/birthday.v
+  comment: This formalization uses lists of natural numbers to model sets
+  statement: |
+    Theorem birthday_paradox :
+      let l := picks 23 (enumerate 365) in
+      2 * length (filter collision l) > length l.
+    
+    Theorem birthday_paradox_min :
+      let l := picks 22 (enumerate 365) in
+      2 * length (filter collision l) < length l.
+
+- theorem: 94
+  authors: Frédérique Guilhot
+  link: https://github.com/coq-community/HighSchoolGeometry/blob/master/theories/metrique_triangle.v
+  statement: |
+    Theorem Al_Kashi :
+      forall (A B C : PO) (a : R),
+      A <> B ->
+      A <> C ->
+      image_angle a = cons_AV (vec A B) (vec A C) ->
+      Rsqr (distance B C) =
+      Rsqr (distance A B) + Rsqr (distance A C) -
+      2 * distance A B * distance A C * cos a.
+
+- theorem: 95
+  authors: Tuan-Minh Pham
+  link: https://github.com/coq-community/HighSchoolGeometry/blob/master/theories/Ptolemee.v
+  statement: |
+    Theorem Ptolemee:
+      forall (A B C D : PO),
+      orient A B C -> orient A B D ->
+      orient C D A -> orient C D B ->
+      sont_cocycliques A B C D ->
+      (distance A B  * distance C D) + (distance B C * distance D A) =
+      distance A C  * distance B D.
+
+- theorem: 96
+  authors: Jean-Marie Madiot
+  link: https://github.com/coq-community/coq-100-theorems/blob/master/inclusionexclusion.v
+  statement: |
+    Theorem inclusion_exclusion (l : list set) :
+      cardinal (list_union l) =
+      sum
+        (map (fun l' => cardinal (list_intersection l') *
+                     alternating_sign (1 + length l'))
+             (filter nonempty (sublists l))).
+
+- theorem: 97
+  authors: Georges Gonthier et al.
+  link: https://math-comp.github.io/htmldoc/mathcomp.algebra.matrix.html
+  statement: |
+    Lemma mul_mx_adj : forall n (A : 'M[R]_n), A *m \adj A = (\det A)%:M.
+    
+    Lemma trmx_adj : forall n (A : 'M[R]_n), (\adj A)^T = \adj A^T.
+    
+    Lemma mul_adj_mx : forall n (A : 'M[R]_n), \adj A *m A = (\det A)%:M.
+
+- theorem: 98
+  authors: Laurent Théry
+  link: https://github.com/coq-community/bertrand/blob/master/theories/Bertrand.v
+  statement: |
+    Theorem Bertrand : forall n : nat, 2 <= n -> exists p : nat, prime p /\ n < p /\ p < 2 * n.
