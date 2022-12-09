@@ -80,7 +80,7 @@
       SysPrf T Con -> Inconsistent LNT T.
 
 - theorem: 7
-  authors: Nathanaël Courant
+  authors: Nathanaëlle Courant
   link: https://github.com/Ekdohibs/coq-proofs/blob/master/Reciprocity/Reciprocity.v#L1560
   statement: |
     Theorem Quadratic_reciprocity :
