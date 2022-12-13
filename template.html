@@ -36,9 +36,11 @@
       </p>
       <p>
         Options:<br>
-        <label><input type="checkbox" checked="checked" onclick="javascript:sheets.solved.disabled = this.checked;"> Show theorems that have been formalized in Coq</label><br>
-        <label><input type="checkbox" checked="checked" onclick="javascript:sheets.unsolved.disabled = this.checked;"> Show theorems that have not been formalized in Coq</label><br>
-        <label><input type="checkbox"                   onclick="javascript:sheets.existing.disabled = this.checked;"> Show existing formalizations</label><br>
+        <label><input type="checkbox" checked="checked" onclick="javascript:toggle(this, 'solved');"> Show theorems that have been formalized in Coq</label><br>
+        <label><input type="checkbox" checked="checked" onclick="javascript:toggle(this, 'unsolved');"> Show theorems that have not been formalized in Coq</label><br>
+        <label><input type="checkbox"                   onclick="javascript:toggle(this, 'existing');"> Show existing formalizations</label><br>
+        <label><input type="checkbox"                   onclick="javascript:toggle(this, 'axioms');"> Show axioms used</label><br>
+        <label><input type="checkbox"                   onclick="javascript:toggle(this, 'repro');"> Show some reproducibility information</label><br>
       </p>
 {{{main}}}
     </div>
@@ -48,14 +50,19 @@
         style.appendChild(document.createTextNode(""));
         document.head.appendChild(style);
         rules.forEach(r => style.sheet.insertRule(r, 0));
-        style.sheet.disabled = options.disabled || false;
+        style.sheet.disabled = options?.disabled || false;
         return style.sheet;
       };
       let sheets = {
         solved: sheet(['.formalized,.formalized+div{ display:none; }'], { disabled: true }),
         unsolved: sheet(['.notformalizedyet,.notformalizedyet+div{ display:none; }'], { disabled: true }),
-        existing: sheet(['.existing { display:none; }'], { disabled: false })
+        existing: sheet(['.existing { display:none; }'], { disabled: false }),
+        axioms: sheet(['.axioms { display:none; }'], { disabled: false }),
+        repro: sheet(['.repro { display:none; }'], { disabled: false }),
       };
+      function toggle(checkbox, field) {
+        sheets[field].disabled = checkbox.checked
+      }
     </script>
   </body>
 </html>

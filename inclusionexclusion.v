@@ -52,8 +52,10 @@ Import ListNotations.
 
 *)
 
-Axiom X : Set.
-Axiom enum_X : list X.
+Section InclusionExclusion.
+
+Variable X : Set.
+Variable enum_X : list X.
 
 Definition set := X -> bool.
 
@@ -309,3 +311,9 @@ Proof.
   induction xs. simpl. iftac.
   simpl. rewrite IHxs. iftac.
 Qed.
+
+End InclusionExclusion.
+
+Arguments list_union [X].
+Arguments list_intersection [X].
+Arguments cardinal [X] [enum_X].

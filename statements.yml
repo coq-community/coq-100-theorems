@@ -4,12 +4,18 @@
   comment: One of many proofs
   statement: |
     Theorem sqrt2_not_rational : forall p q : nat, q <> 0 -> p * p = 2 * (q * q) -> False.
+  reproducibility: Good (CI)
+  constructive: yes
+  axioms: []
 
 - theorem: 2
   authors: Herman Geuvers et al.
   link: https://github.com/coq-community/corn/blob/master/fta/FTA.v#L188
   statement: |
     Lemma FTA : forall f : CCX, nonConst _ f -> {z : CC | f ! z [=] [0]}.
+  reproducibility: Good (CI)
+  constructive: yes
+  axioms: []
 
 - theorem: 3
   authors: Milad Niqui
@@ -23,6 +29,9 @@
     Definition is_denumerable A := same_cardinality A nat.
     
     Theorem Q_is_denumerable: is_denumerable Q.
+  reproducibility: Good (CI)
+  constructive: yes
+  axioms: []
 
 - theorem: 3
   authors: Daniel Schepler
@@ -32,6 +41,9 @@
       | intro_nat_injection: forall f:X->nat, injective f -> CountableT X.
     
     Lemma Q_countable: CountableT Q.
+  reproducibility: Good (CI)
+  constructive: yes
+  axioms: []
 
 - theorem: 4
   authors: Frédérique Guilhot
@@ -41,6 +53,14 @@
       forall A B C : PO,
       orthogonal (vec A B) (vec A C) <->
       Rsqr (distance B C) = Rsqr (distance A B) + Rsqr (distance A C) :>R.
+  reproducibility: Good (CI)
+  constructive: no
+  axioms:
+    - ClassicalDedekindReals.sig_not_dec
+    - ClassicalDedekindReals.sig_forall_dec
+    - FunctionalExtensionality.functional_extensionality_dep
+    - classic
+    - other geometry axioms
 
 - theorem: 4
   authors: Gabriel Braun
@@ -48,16 +68,26 @@
   comment: A synthetic proof in the context of Tarski's axioms.
   statement: |
     Lemma pythagoras :
-      forall O E E' A B C AC BC AB AC2 BC2 AB2,
-      O<>E ->
+      forall
+        (Tn : Tarski_neutral_dimensionless)
+        (TnEQD : Tarski_neutral_dimensionless_with_decidable_point_equality Tn),
+      Tarski_2D TnEQD ->
+      Tarski_euclidean TnEQD ->
+      forall
+        O E E' A B C AC BC AB AC2 BC2
+         AB2 : Tpoint,
+      O <> E ->
       Per A C B ->
-      length O E E' A B AB ->
-      length O E E' A C AC ->
-      length O E E' B C BC ->
-      prod O E E' AC AC AC2 ->
-      prod O E E' BC BC BC2 ->
-      prod O E E' AB AB AB2 ->
-      sum  O E E' AC2 BC2 AB2.
+      Length O E E' A B AB ->
+      Length O E E' A C AC ->
+      Length O E E' B C BC ->
+      Prod O E E' AC AC AC2 ->
+      Prod O E E' BC BC BC2 ->
+      Prod O E E' AB AB AB2 ->
+      Sum O E E' AC2 BC2 AB2.
+  reproducibility: last checked December 2022 with Coq 8.16
+  constructive: hypotheses partially classical
+  axioms: [Eqdep.Eq_rect_eq.eq_rect_eq]
 
 - theorem: 6
   authors: Russell O'Connor
@@ -78,6 +108,9 @@
     
     Theorem SecondIncompletness :
       SysPrf T Con -> Inconsistent LNT T.
+  reproducibility: Good (CI)
+  constructive: yes
+  axioms: []
 
 - theorem: 7
   authors: Nathanaëlle Courant
@@ -85,47 +118,69 @@
   statement: |
     Theorem Quadratic_reciprocity :
       (legendre p q) * (legendre q p) = (-1) ^ (((p - 1) / 2) * ((q - 1) / 2)).
+  reproducibility: last checked December 2022 with Coq 8.16
+  constructive: no
+  axioms: [proof_irrelevance, constructive_definite_description, classic]
 
 - theorem: 10
   authors: Laurent Théry
   link: https://github.com/math-comp/math-comp/blob/master/mathcomp/solvable/cyclic.v
   statement: |
     Theorem Euler_exp_totient a n : coprime a n -> a ^ totient n = 1 %[mod n].
+  reproducibility: Good (CI)
+  constructive: yes
+  axioms: []
 
 - theorem: 11
   authors: Russell O'Connor
   link: https://coq.inria.fr/cocorico/NotFinitePrimes
-  comment: This statement was formerly in cocorico, compatible with coq 7.3
+  comment: This statement was formerly in cocorico, compatible with Coq 7.3
   statement: |
     Theorem ManyPrimes : ~(EX l:(list Prime) | (p:Prime)(In p l)).
+  reproducibility: old proof compatible with Coq 7.3
+  constructive: yes
+  axioms: []
 
 - theorem: 11
   authors: Georges Gonthier
   link: https://x80.org/rhino-coq/
-  comment: There are other proofs of this theorem, however you can browse this one in your browser, thanks to JsCoq.
+  comment: There are other proofs of this theorem but you can browse this one in your browser with JsCoq.
   statement: |
     Lemma prime_above m : {p | m < p & prime p}.
+  reproducibility: last checked December 2022 with Coq 8.16
+  constructive: yes
+  axioms: []
 
 - theorem: 13
   authors: Jean-François Dufourd
   link: https://github.com/coq-contribs/euler-formula/blob/master/Euler3.v
-  comment: |
-    nc : number of connected components
-    nv : number of vertices
-    ne : number of edges
-    nf : number of faces
-    nd : number of darts
-    plf m : m is a planar formation
-    inv_qhmap : see Euler1.v
   statement: |
+    (* nc : number of connected components
+       nv : number of vertices
+       ne : number of edges
+       nf : number of faces
+       nd : number of darts
+       plf m : m is a planar formation
+       inv_qhmap : see Euler1.v *)
+    
     Theorem Euler_Poincare_criterion: forall m:fmap,
       inv_qhmap m -> (plf m <-> (nv m + ne m + nf m - nd m) / 2 = nc m).
+  reproducibility: as of December 2022, build success with Coq 8.13.2, failure with 8.14.1 (using git tag v8.11.0)
+  constructive: to be determined
+  axioms: [Euler3.expf_clos_symm]
 
 - theorem: 14
   authors: Jean-Marie Madiot
   link: https://github.com/coq-community/coqtail-math/blob/master/Reals/Rzeta2.v
   statement: |
     Theorem zeta2_pi_2_6 : Rser_cv (fun n => 1 / (n + 1) ^ 2) (PI ^ 2 / 6).
+  reproducibility: Good (CI)
+  constructive: no
+  axioms:
+  - ClassicalDedekindReals.sig_not_dec
+  - ClassicalDedekindReals.sig_forall_dec
+  - functional_extensionality_dep
+  - classic
 
 - theorem: 15
   authors: Luís Cruz-Filipe
@@ -133,6 +188,9 @@
   statement: |
     Theorem FTC1 : Derivative J pJ G F.
     Theorem FTC2 : {c : IR | Feq J (G{-}G0) [-C-]c}.
+  reproducibility: Good (CI)
+  constructive: yes
+  axioms: []
 
 - theorem: 15
   authors: The Coq development team
@@ -141,6 +199,13 @@
     Lemma FTC_Riemann :
       forall (f:C1_fun) (a b:R) (pr:Riemann_integrable (derive f (diff0 f)) a b),
       RiemannInt pr = f b - f a.
+  reproducibility: Good (CI)
+  constructive: no
+  axioms:
+  - ClassicalDedekindReals.sig_not_dec
+  - ClassicalDedekindReals.sig_forall_dec
+  - functional_extensionality_dep
+  - classic
 
 - theorem: 16
   authors: Sophie Bernard, Cyril Cohen, Assia Mahboubi, Pierre-Yves Strub
@@ -148,6 +213,9 @@
   statement: |
     Lemma example_not_solvable_by_radicals :
       ~ solvable_by_radical_poly ('X^5 - 4 *: 'X + 2 : {poly rat}).
+  reproducibility: Good (CI)
+  constructive: yes
+  axioms: []
 
 - theorem: 17
   authors: Coqtail team
@@ -156,6 +224,12 @@
   statement: |
     Lemma Cexp_trigo_compat : forall a, Cexp (0 +i a) = cos a +i sin a.
     Lemma Cexp_mult : forall a n, Cexp (INC n * a) = (Cexp a) ^ n.
+  reproducibility: Good (CI)
+  constructive: no
+  axioms:
+  - ClassicalDedekindReals.sig_not_dec
+  - ClassicalDedekindReals.sig_forall_dec
+  - functional_extensionality_dep
 
 - theorem: 18
   authors: Valentin Blot
@@ -164,6 +238,9 @@
     Theorem Liouville_theorem2 :
       {n : nat | {C : IR | Zero [<] C | forall (x : Q),
            (C[*]inj_Q IR (1#Qden x)%Q[^]n) [<=] AbsIR (inj_Q _ x [-] a)}}.
+  reproducibility: Good (CI)
+  constructive: yes
+  axioms: []
 
 - theorem: 19
   authors: Guillaume Allais, Jean-Marie Madiot
@@ -173,6 +250,9 @@
     Theorem lagrange_4_square_theorem : forall n, 0 <= n ->
       { a : _ & { b: _ & { c : _ & { d |
         n = a * a + b * b + c * c + d * d } } } }.
+  reproducibility: Good (CI)
+  constructive: yes
+  axioms: []
 
 - theorem: 20
   authors: Laurent Théry
@@ -183,14 +263,20 @@
     
     Theorem two_squares_exists:
       forall p, prime p -> p = 2 \/ Zis_mod p 1 4 -> sum_of_two_squares p.
+  reproducibility: as of December 2022, build success with Coq 8.10.2, failure with 8.11.2 (using git tag v8.10.0)
+  constructive: yes
+  axioms: []
 
 - theorem: 20
   authors: Laurent Théry
-  link: https://github.com/thery/twoSquare
+  link: https://github.com/thery/twoSquare/blob/master/fermat2.v
   comment: proof using gaussian integers and mathcomp
   statement: |
     Lemma sum2sprime p :
       odd p -> prime p -> p \is a sum_of_two_square = (p %% 4 == 1).
+  reproducibility: last checked December 2022 with Coq 8.16
+  constructive: yes
+  axioms: []
 
 - theorem: 22
   authors: Pierre-Marie Pédrot
@@ -201,6 +287,12 @@
     
     Theorem R_uncountable_strong : forall (f : nat -> R) (x y : R),
       x < y -> {l : R | forall n, l <> f n & x <= l <= y}.
+  reproducibility: Good (CI)
+  constructive: no
+  axioms:
+  - ClassicalDedekindReals.sig_not_dec
+  - ClassicalDedekindReals.sig_forall_dec
+  - functional_extensionality_dep
 
 - theorem: 22
   authors: C-CoRN team
@@ -208,6 +300,9 @@
   statement: |
     Theorem reals_not_countable :
       forall (f : nat -> IR), {x :IR | forall n : nat, x [#] (f n)}.
+  reproducibility: Good (CI)
+  constructive: yes
+  axioms: []
 
 - theorem: 23
   authors: David Delahaye
@@ -220,26 +315,35 @@
         c = m * (p * p + q * q) /\ m >= 0 /\
         p >= 0 /\ q > 0 /\ p <= q /\ (rel_prime p q) /\
         (distinct_parity p q).
+  reproducibility: as of December 2022, build success with Coq 8.11.2, failure with 8.12.2 (using git tag v8.10.0)
+  constructive: no
+  axioms:
+  - Coq's axioms for real numbers
 
 - theorem: 25
   authors: Hugo Herbelin
   link: https://github.com/coq-contribs/schroeder/blob/master/Schroeder.v
   statement: |
     Theorem Schroeder : A <=_card B -> B <=_card A -> A =_card B.
+  reproducibility: as of December 2022, build success with Coq 8.16 (using git tag v8.11.0)
+  constructive: no
+  axioms:
+  - classic
+  - Extensionality_Ensembles
 
 - theorem: 25
   authors: Daniel Schepler
   link: https://github.com/coq-community/topology/blob/master/theories/ZornsLemma/CSB.v
   statement: |
-    Section CSB.
-      Variable X Y:Type.
-      Variable f:X->Y.
-      Variable g:Y->X.
-      Hypothesis f_inj: injective f.
-      Hypothesis g_inj: injective g.
-      
-      Theorem CSB: exists h:X->Y, bijective h.
-    End CSB.
+    Theorem CSB (X Y : Type) (f : X -> Y) (g : Y -> X) :
+      injective f ->
+      injective g ->
+      exists h : X -> Y, bijective h.
+  reproducibility: Good (CI)
+  constructive: no
+  axioms:
+  - constructive_definite_description
+  - classic
 
 - theorem: 26
   authors: Guillaume Allais
@@ -253,6 +357,13 @@
     Definition Alt_PI : R := 4 * (let (a,_) := exist_PI in a).
     
     Theorem Alt_PI_eq : Alt_PI = PI.
+  reproducibility: Good (CI)
+  constructive: no
+  axioms:
+  - ClassicalDedekindReals.sig_not_dec
+  - ClassicalDedekindReals.sig_forall_dec
+  - functional_extensionality_dep
+  - classic
 
 - theorem: 26
   authors: Luís Cruz-Filipe
@@ -269,6 +380,9 @@
             [//] nringS_ap_zero _ (2*i)){**}Fid IR{^}(2*i+1)))
         Hc,
            FSeries_Sum Hs c Hc[=]ArcTan c.
+  reproducibility: Good (CI)
+  constructive: yes
+  axioms: []
 
 - theorem: 27
   authors: Frédérique Guilhot
@@ -282,6 +396,14 @@
       plus (cons_AV (vec A B) (vec A C))
         (plus (cons_AV (vec B C) (vec B A)) (cons_AV (vec C A) (vec C B))) =
       image_angle pi :>AV.
+  reproducibility: Good (CI)
+  constructive: no
+  axioms:
+  - ClassicalDedekindReals.sig_not_dec
+  - ClassicalDedekindReals.sig_forall_dec
+  - functional_extensionality_dep
+  - classic
+  - many geometry axioms
 
 - theorem: 27
   authors: Boutry, Gries, Narboux
@@ -323,6 +445,9 @@
          triangle_circumscription_principle::
          triangle_postulate::
          nil).
+  reproducibility: last checked December 2022 with Coq 8.16
+  constructive: yes
+  axioms: [Eqdep.Eq_rect_eq.eq_rect_eq]
 
 - theorem: 28
   authors: Magaud and Narboux
@@ -347,6 +472,9 @@
       (line A C) <> (line E F) ->
       (line B F) <> (line C D) ->
       is_hexamy A B C D E F -> is_hexamy B A C D E F.
+  reproducibility: as of December 2022, build success with Coq 8.13.2, failure with 8.14.1 (using git tag v8.10.0)
+  constructive: no
+  axioms: [many projective geometry axioms, including decidability of incidence]
 
 - theorem: 29
   authors: Benjamin Grégoire, Loïc Pottier, and Laurent Théry
@@ -369,6 +497,11 @@
       distance2 O O2 = (r + r2)^2%Z
       \/ distance2 O O2 = (r - r2)^2%Z
       \/ collinear A B C.
+  reproducibility: Good (CI)
+  constructive: no
+  axioms:
+  - ClassicalDedekindReals.sig_forall_dec
+  - functional_extensionality_dep
 
 - theorem: 30
   authors: Jean-Marie Madiot
@@ -379,6 +512,9 @@
       p >= q ->
       (p + q) * List.length (filter (throughout (wins "A" "B")) l) =
       (p - q) * List.length (filter (wins "A" "B") l).
+  reproducibility: Good (CI)
+  constructive: yes
+  axioms: []
 
 - theorem: 31
   authors: Frédéric Blanqui
@@ -388,18 +524,35 @@
     Theorem ramsey A (W : set A) n (P : Pinf W) B : forall (C : Pf B)
       (f : Pcard P (S n) -> elts C), Proper (Pcard_equiv ==> elts_eq) f ->
       exists c (Q : Pinf P), forall X : Pcard Q (S n), f (Pcard_subset Q X) = c.
+  reproducibility: Good (CI)
+  constructive: no
+  axioms:
+  - CoLoR.Util.Logic.DepChoice.dep_choice
+  - ClassicalEpsilon.constructive_indefinite_description
+  - Description.constructive_definite_description
+  - classic
 
 - theorem: 32
   authors: Georges Gonthier, Benjamin Werner
   link: https://github.com/coq-community/fourcolor/blob/master/theories/fourcolor.v
   statement: |
     Theorem four_color m : simple_map m -> colorable_with 4 m.
+  reproducibility: Good (CI)
+  constructive: yes
+  axioms: []
 
 - theorem: 34
   authors: Coqtail
   link: https://github.com/coq-community/coqtail-math/blob/master/Reals/Rseries/Rseries_RiemannInt.v
   statement: |
     Lemma harmonic_series_equiv : (sum_f_R0 (fun n ⇒ / (S n))) ~ (fun n ⇒ ln (S (S n))).
+  reproducibility: Good (CI)
+  constructive: no
+  axioms:
+  - ClassicalDedekindReals.sig_not_dec
+  - ClassicalDedekindReals.sig_forall_dec
+  - functional_extensionality_dep
+  - classic
 
 - theorem: 35
   authors: Luís Cruz-Filipe
@@ -408,6 +561,9 @@
     Theorem Taylor : forall e, Zero [<] e -> forall Hb',
       {c : IR | Compact (Min_leEq_Max a b) c |
         forall Hc, AbsIR (F b Hb'[-]Part _ _ Taylor_aux[-]deriv_Sn c Hc[*] (b[-]a)) [<=] e}.
+  reproducibility: Good (CI)
+  constructive: yes
+  axioms: []
 
 - theorem: 37
   authors: Frédéric Chardard
@@ -427,6 +583,13 @@
       let u2:=(Cardan_Tartaglia_formula a1 a2 a3 1) in
       let u3:=(Cardan_Tartaglia_formula a1 a2 a3 2) in
       forall u:C, (u-u1)*(u-u2)*(u-u3)=Cpow u 3+a1*Cpow u 2+a2*u+a3.
+  reproducibility: Good (CI)
+  constructive: no
+  axioms:
+  - ClassicalDedekindReals.sig_not_dec
+  - ClassicalDedekindReals.sig_forall_dec
+  - functional_extensionality_dep
+  - classic
 
 - theorem: 38
   authors: Jean-Marie Madiot
@@ -439,6 +602,12 @@
       prod n a <= (sum n a / INR n) ^ n
       /\
       (prod n a = (sum n a / INR n) ^ n -> forall i, (i < n)%nat -> a i = a O).
+  reproducibility: Good (CI)
+  constructive: no
+  axioms:
+  - ClassicalDedekindReals.sig_not_dec
+  - ClassicalDedekindReals.sig_forall_dec
+  - functional_extensionality_dep
 
 - theorem: 41
   authors: Daniel de Rauglaudre
@@ -449,12 +618,21 @@
       → ∀ pol : polynomial (puiseux_series α),
         degree (ps_zerop K) pol ≥ 1
         → ∃ s : puiseux_series α, (ps_pol_apply pol s = 0)%ps.
+  reproducibility: as of December 2022, build success with Coq 8.16
+  constructive: no
+  axioms:
+  - Puiseux_series.LPO (equivalent to sig_forall_dec)
 
 - theorem: 42
   authors: Coqtail
   link: https://github.com/coq-community/coqtail-math/blob/master/Reals/Triangular.v
   statement: |
     Lemma sum_reciprocal_triangular : Rser_cv (fun n => / triangle (S n)) 2.
+  reproducibility: Good (CI)
+  constructive: no
+  axioms:
+  - ClassicalDedekindReals.sig_forall_dec
+  - functional_extensionality_dep
 
 - theorem: 44
   authors: The Coq development team
@@ -464,6 +642,11 @@
     Lemma binomial :
       forall (x y:R) (n:nat),
         (x + y) ^ n = sum_f_R0 (fun i:nat => C n i * x ^ i * y ^ (n - i)) n.
+  reproducibility: Good (CI)
+  constructive: no
+  axioms:
+  - ClassicalDedekindReals.sig_forall_dec
+  - functional_extensionality_dep
 
 - theorem: 44
   authors: Laurent Thery & Jose C. Almeida
@@ -474,6 +657,9 @@
       forall a b n : nat,
       power (a + b) n =
       sum_nm n 0 (fun k : nat => binomial n k * (power a (n - k) * power b k)).
+  reproducibility: last checked December 2022 with Coq 8.16
+  constructive: yes
+  axioms: []
 
 - theorem: 44
   authors: Jean-Marie Madiot
@@ -484,6 +670,9 @@
       CRsum (fun k => (Nbinomial n k) ** (a ^ k) * (b ^ (n - k))) n.
     
     Theorem Newton : forall n a b, (a + b) ^ n == newton_sum n a b.
+  reproducibility: Good (CI)
+  constructive: yes
+  axioms: []
 
 - theorem: 46
   authors: Frédéric Chardard
@@ -512,6 +701,13 @@
       let u3:=z3+s in
       let u4:=z4+s in
       forall u:C, (u-u1)*(u-u2)*(u-u3)*(u-u4)=Cpow u 4+a*Cpow u 3+b*Cpow u 2+c*u+d.
+  reproducibility: Good (CI)
+  constructive: no
+  axioms:
+  - ClassicalDedekindReals.sig_not_dec
+  - ClassicalDedekindReals.sig_forall_dec
+  - functional_extensionality_dep
+  - classic
 
 - theorem: 49
   authors: Sidi Ould Biha
@@ -519,6 +715,9 @@
   statement: |
     Theorem Cayley_Hamilton (R : comRingType) n' (A : 'M[R]_n'.+1) :
       horner_mx A (char_poly A) = 0.
+  reproducibility: Good (CI)
+  constructive: yes
+  axioms: []
 
 - theorem: 51
   authors: unknown (Inria, Microsoft)
@@ -526,6 +725,9 @@
   comment: (c) Copyright 2006-2016 Microsoft Corporation and Inria. Distributed under the terms of CeCILL-B.
   statement: |
     Theorem Wilson : forall p, p > 1 -> prime p = (p %| ((p.-1)`!).+1).
+  reproducibility: Good (CI)
+  constructive: yes
+  axioms: []
 
 - theorem: 51
   authors: Laurent Théry
@@ -533,12 +735,18 @@
   comment: LGPL licence
   statement: |
     Theorem wilson: forall p, prime p ->  Zis_mod (Zfact (p - 1)) (- 1) p.
+  reproducibility: see <a href="#20">#20</a>
+  constructive: yes
+  axioms: []
 
 - theorem: 52
   authors: unknown (Inria, Microsoft)
   link: https://github.com/math-comp/math-comp/blob/master/mathcomp/ssreflect/finset.v#L1542
   statement: |
     Lemma card_powerset (T : finType) (A : {set T}) : #|powerset A| = 2 ^ #|A|.
+  reproducibility: Good (CI)
+  constructive: yes
+  axioms: []
 
 - theorem: 52
   authors: Pierre Letouzey
@@ -546,6 +754,9 @@
   statement: |
     Lemma powerset_cardinal:
       forall s, MM.cardinal (powerset s) = two_power (M.cardinal s).
+  reproducibility: as of December 2022, build success with Coq 8.10.2, failure with 8.11.2 (using git tag v8.10.0)
+  constructive: yes
+  axioms: []
 
 - theorem: 53
   authors: Sophie Bernard and Laurence Rideau
@@ -562,6 +773,9 @@
     Theorem konigsberg_bridges :
       let E := [(0, 1); (0, 2); (0, 3); (1, 2); (1, 2); (2, 3); (2, 3)] in
       forall p, path p -> eulerian E p -> False.
+  reproducibility: Good (CI)
+  constructive: yes
+  axioms: []
 
 - theorem: 55
   authors: Benjamin Grégoire, Loïc Pottier, and Laurent Théry
@@ -575,6 +789,11 @@
       collinear A B M -> collinear C D M ->
       scalarproduct A M B = scalarproduct C M D
       \/ parallel A B C D.
+  reproducibility: Good (CI)
+  constructive: no
+  axioms:
+  - ClassicalDedekindReals.sig_forall_dec
+  - functional_extensionality_dep
 
 - theorem: 56
   authors: Sophie Bernard
@@ -594,6 +813,11 @@
     
     Lemma herron_qin : forall A B C,
       S A B C * S A B C = 1 / (2*2*2*2) * (Py A B A * Py A C A - Py B A C * Py B A C).
+  reproducibility: as of December 2022, build success with Coq 8.13.2 and 8.14.1, failure with 8.15.2 and 8.16.0 (using git tag v8.10.0)
+  constructive: no
+  axioms:
+  - classic
+  - many geometry axioms
 
 - theorem: 58
   authors: Pierre Letouzey
@@ -601,6 +825,9 @@
   statement: |
     Lemma powerset_k_cardinal : forall s k,
       MM.cardinal (powerset_k s k) = binomial (M.cardinal s) k.
+  reproducibility: see <a href="#52">#52</a>
+  constructive: yes
+  axioms: []
 
 - theorem: 59
   authors: Avraham Shinnar, Barry Trager
@@ -635,6 +862,9 @@
       Bezout_intro : forall u v:Z, u * a + v * b = d -> Bezout a b d.
     
     Lemma Zis_gcd_bezout : forall a b d:Z, Zis_gcd a b d -> Bezout a b d.
+  reproducibility: Good (CI)
+  constructive: yes
+  axioms: []
 
 - theorem: 61
   authors: Julien Narboux
@@ -652,6 +882,11 @@
       parallel B D D C ->
       parallel C E E A ->
       (A ** F / F ** B) * (B ** D / D ** C) * (C ** E / E ** A) = 1.
+  reproducibility: see <a href="#57">#57</a>
+  constructive: no
+  axioms:
+  - classic
+  - many geometry axioms
 
 - theorem: 62
   authors: Avraham Shinnar, Barry Trager
@@ -717,6 +952,9 @@
     Theorem Strict_Rel_is_Strict_Included :
       same_relation (Ensemble U) (Strict_Included U)
         (Strict_Rel_of (Ensemble U) (Power_set_PO (Full_set U))).
+  reproducibility: Good (CI)
+  constructive: no (extensionality)
+  axioms: [Extensionality_Ensembles]
 
 - theorem: 64
   authors: Sylvain Dailler
@@ -741,6 +979,13 @@
           R_dist (derive_pt f x (Df x Hopen) / derive_pt g x (Dg x Hopen)) L < eps)).
     
     Theorem Hopital_g0_Lfin_right : limit1_in (fun x ⇒ f x / g x) (open_interval a b) L a.
+  reproducibility: Good (CI)
+  constructive: no
+  axioms:
+  - ClassicalDedekindReals.sig_not_dec
+  - ClassicalDedekindReals.sig_forall_dec
+  - functional_extensionality_dep
+  - classic
 
 - theorem: 65
   authors: Frédérique Guilhot
@@ -748,15 +993,29 @@
   statement: |
     Lemma isocele_angles_base :
       isocele A B C -> cons_AV (vec B C) (vec B A) = cons_AV (vec C A) (vec C B).
+  reproducibility: Good (CI)
+  constructive: no
+  axioms:
+  - ClassicalDedekindReals.sig_not_dec
+  - ClassicalDedekindReals.sig_forall_dec
+  - functional_extensionality_dep
+  - classic
+  - many geometry axioms
 
 - theorem: 65
   authors: GeoCoq team
   link: https://github.com/GeoCoq/GeoCoq/blob/master/Highschool/triangles.v
   statement: |
     Lemma isosceles_conga :
-      A<>C -> A <> B ->
-      isosceles A B C ->
-      Conga C A B A C B.
+      forall Tn : Tarski_neutral_dimensionless,
+      Tarski_neutral_dimensionless_with_decidable_point_equality Tn ->
+      forall A B C : Tpoint,
+      A <> C ->
+      A <> B ->
+      isosceles A B C -> CongA C A B A C B.
+  reproducibility: last checked December 2022 with Coq 8.16
+  constructive: hypotheses partially classical
+  axioms: [Eqdep.Eq_rect_eq.eq_rect_eq]
 
 - theorem: 66
   authors: Luís Cruz-Filipe
@@ -766,6 +1025,9 @@
       fun_series_convergent_IR
       (olor ([--][1]) [1])
       (fun (i:nat) => Fid IR{^}i).
+  reproducibility: Good (CI)
+  constructive: yes
+  axioms: []
 
 - theorem: 67
   authors: Sophie Bernard and Laurence Rideau
@@ -781,6 +1043,9 @@
   link: https://github.com/coq-community/coq-100-theorems/blob/master/sumarith.v
   statement: |
     Theorem arith_sum a b n : 2 * sum (fun i => a + i * b) n = S n * (2 * a + n * b).
+  reproducibility: Good (CI)
+  constructive: yes
+  axioms: []
 
 - theorem: 69
   authors: The Coq development team
@@ -817,6 +1082,9 @@
       end.
     
     Lemma Zgcd_is_gcd : forall a b, Zis_gcd a b (Zgcd a b).
+  reproducibility: Good (CI)
+  constructive: yes
+  axioms: []
 
 - theorem: 70
   authors: Raül Espejo Boix
@@ -825,22 +1093,32 @@
   statement: |
     Theorem EulerT p: perfect p -> 2%|p -> p > 0 ->
       exists n, (p = (2^n-1)*2^n.-1)/\(prime (2^n - 1)).
+  reproducibility: as of December 2022, build success with Coq 8.16
+  constructive: yes
+  axioms: []
 
 - theorem: 71
   authors: unknown (Laurent Théry?)
   link: https://github.com/math-comp/math-comp/blob/master/mathcomp/fingroup/fingroup.v#L1976
   statement: |
-    Theorem Lagrange G H : H \subset G -> (#|H| * #|G : H|)%N = #|G|.
+    Theorem Lagrange (gT : finGroupType) (G H : {group gT}) :
+      H \subset G -> (#|H| * #|G : H|)%N = #|G|
+  reproducibility: Good (CI)
+  constructive: yes
+  axioms: []
 
 - theorem: 72
   authors: Laurent Théry
   link: https://github.com/math-comp/math-comp/blob/master/mathcomp/solvable/sylow.v#L91
   statement: |
-    Theorem Sylow's_theorem :
+    Theorem Sylow's_theorem (p : nat) (gT : finGroupType) (G : {group gT}) :
       [/\ forall P, [max P | p.-subgroup(G) P] = p.-Sylow(G) P,
           [transitive G, on 'Syl_p(G) | 'JG],
           forall P, p.-Sylow(G) P -> #|'Syl_p(G)| = #|G : 'N_G(P)|
        &  prime p -> #|'Syl_p(G)| %% p = 1%N].
+  reproducibility: Good (CI)
+  constructive: yes
+  axioms: []
 
 - theorem: 73
   authors: Florent Hivert
@@ -867,6 +1145,9 @@
       P 0 ->
       (forall n : nat, P n -> P (S n)) ->
       forall n : nat, P n
+  reproducibility: Good (CI)
+  constructive: yes
+  axioms: []
 
 - theorem: 74
   authors: The Coq development team
@@ -877,7 +1158,9 @@
       P 0 ->
       (forall n : N, P n -> P (succ n)) ->
       forall (n : N), P n
-  checked: NO
+  reproducibility: Good (CI)
+  constructive: yes
+  axioms: []
 
 - theorem: 75
   authors: Luís Cruz-Filipe
@@ -886,6 +1169,9 @@
     Theorem Law_of_the_Mean : forall a b, I a -> I b -> forall e, Zero [<] e ->
       {x : IR | Compact (Min_leEq_Max a b) x | forall Ha Hb Hx,
        AbsIR (F b Hb[-]F a Ha[-]F' x Hx[*] (b[-]a)) [<=] e}.
+  reproducibility: Good (CI)
+  constructive: yes
+  axioms: []
 
 - theorem: 77
   authors: Frédéric Chardard
@@ -895,6 +1181,13 @@
       (0<r)%nat->
       sum_f_R0 (fun k => ((INR k)^r)%R) n
       =((bernoulli_polynomial (S r) (INR n+1))-(bernoulli_polynomial (S r) 0))/(INR r+1).
+  reproducibility: Good (CI)
+  constructive: no
+  axioms:
+  - ClassicalDedekindReals.sig_not_dec
+  - ClassicalDedekindReals.sig_forall_dec
+  - functional_extensionality_dep
+  - classic
 
 - theorem: 78
   authors: Daniel de Rauglaudre
@@ -906,6 +1199,11 @@
     Theorem Cauchy_Schwarz_inequality : ∀ (u v : list R) n,
       ((Σ (k = 1, n), (u.[k] * v.[k]))² ≤
        Σ (k = 1, n), (u.[k]²) * Σ (k = 1, n), (v.[k]²))%R.
+  reproducibility: as of December 2022, build success with Coq 8.16
+  constructive: no
+  axioms:
+  - ClassicalDedekindReals.sig_forall_dec
+  - functional_extensionality_dep
 
 - theorem: 79
   authors: The Coq development team
@@ -917,6 +1215,12 @@
         continuity f ->
         x <= y -> f x * f y <= 0 ->
         { z:R | x <= z <= y /\ f z = 0 }.
+  reproducibility: Good (CI)
+  constructive: no
+  axioms:
+  - ClassicalDedekindReals.sig_not_dec
+  - ClassicalDedekindReals.sig_forall_dec
+  - functional_extensionality_dep
 
 - theorem: 80
   authors: unknown (Inria, Microsoft)
@@ -925,6 +1229,9 @@
     Lemma divisors_correct : forall n, n > 0 ->
       [/\ uniq (divisors n), sorted leq (divisors n)
         & forall d, (d \in divisors n) = (d %| n)].
+  reproducibility: Good (CI)
+  constructive: yes
+  axioms: []
 
 - theorem: 83
   authors: Alex Loiko
@@ -935,6 +1242,8 @@
       (F : rel T) (Fsym: symmetric F) (Firr: irreflexive F) :
       (forall (u v: T), u != v -> #|[set w | F u w & F v w]| == 1) ->
       {u : T | forall v : T, u != v -> F u v}.
+  constructive: yes
+  axioms: []
 
 - theorem: 84
   authors: Frédérique Guilhot
@@ -961,6 +1270,14 @@
       image_angle a = cons_AV (vec A B) (vec A Q) ->
       image_angle a = cons_AV (vec A Q) (vec A T) ->
       image_angle a = cons_AV (vec A T) (vec A C) -> equilateral P Q T.
+  reproducibility: Good (CI)
+  constructive: no
+  axioms:
+  - ClassicalDedekindReals.sig_not_dec
+  - ClassicalDedekindReals.sig_forall_dec
+  - functional_extensionality_dep
+  - classic
+  - many geometry axioms
 
 - theorem: 85
   authors: many versions
@@ -968,6 +1285,9 @@
   statement: |
     Theorem div3 : forall n d,
       (number n d) mod 3 = (sumdigits n d) mod 3.
+  reproducibility: Good (CI)
+  constructive: yes
+  axioms: []
 
 - theorem: 86
   authors: Sylvie Boldo, François Clément, Florian Faissole, Vincent Martin, Micaela Mayero, Houda Mouhcine
@@ -977,10 +1297,10 @@
     measurable functions (including the Beppo Levi theorem, Fatou's Lemma and the
     Tonelli theorem), the Bochner integral for functions taking their values in a
     Banach space (including the dominated convergence theorem), and the Lebesgue
-    measure on the real numbers.<br>
+    measure on the real numbers.<br><br>
     
     In the snippets below, <code>_p</code> stands for nonnegative
-    and <code>SF</code>/<code>sf</code> for simple function.<br>
+    and <code>SF</code>/<code>sf</code> for simple function.<br><br>
     
     Articles: <a href="https://hal.inria.fr/hal-03194113/">on <code>LInt_p</code></a>, <a href="https://hal.inria.fr/hal-03516749/">on Bochner integral</a>.
   statement: |
@@ -999,6 +1319,16 @@
     Definition Lebesgue_measure : measure cal_L :=
       mk_measure cal_L lambda_star
         lambda_star_False lambda_star_ge_0 Lebesgue_sigma_additivity.
+  reproducibility: as of December 2022, build success with Coq 8.16
+  constructive: no
+  axioms:
+  - ClassicalDedekindReals.sig_not_dec
+  - ClassicalDedekindReals.sig_forall_dec
+  - functional_extensionality_dep
+  - relational_choice
+  - propositional_extensionality
+  - dependent_unique_choice
+  - Description.constructive_definite_description
 
 - theorem: 86
   authors: Reynald Affeldt and Cyril Cohen
@@ -1016,6 +1346,13 @@
     
     Definition integral D (f : T -> \bar R) :=
       nnintegral D (f ^\+) - nnintegral D (f ^\-).
+  reproducibility: Good (CI)
+  constructive: yes
+  axioms:
+  - propositional_extensionality
+  - functional_extensionality_dep
+  - constructive_indefinite_description
+
 
 - theorem: 87
   authors: Frédérique Guilhot
@@ -1033,6 +1370,13 @@
       paralleles (droite A B) (droite A1 B1) ->
       paralleles (droite A C) (droite A1 C1) ->
       paralleles (droite B C) (droite B1 C1).
+  reproducibility: Good (CI)
+  constructive: no
+  axioms:
+    - ClassicalDedekindReals.sig_forall_dec
+    - FunctionalExtensionality.functional_extensionality_dep
+    - classic
+    - other geometry axioms
 
 - theorem: 87
   authors: Julien Narboux
@@ -1045,6 +1389,11 @@
       on_inter_line_parallel B' A' X B A B ->
       on_inter_line_parallel C' A' X C A C ->
       parallel B C B' C'.
+  reproducibility: see <a href="#57">#57</a>
+  constructive: no
+  axioms:
+  - classic
+  - many geometry axioms
 
 - theorem: 87
   authors: Gabriel Braun
@@ -1066,6 +1415,14 @@
       ((Par_strict B C B' C' /\ Par A A' B B') ->
       (Par C C' A A' /\ Par C C' B B'))  /\
       (Par A A' B B' /\ Par A A' C C' -> Par B C B' C').
+    
+    (* Common Section hypotheses:
+      (Tn : Tarski_neutral_dimensionless)
+      (TnEQD : Tarski_neutral_dimensionless_with_decidable_point_equality Tn)
+      Tarski_euclidean TnEQD *)
+  reproducibility: last checked December 2022 with Coq 8.16
+  constructive: hypotheses partially classical
+  axioms: [Eqdep.Eq_rect_eq.eq_rect_eq]
 
 - theorem: 88
   authors: Fabian Wolff
@@ -1073,6 +1430,8 @@
   statement: |
     Theorem drm_formula: forall n, n > 0 ->
       round ((INR (fact n)) * (exp (-1))) = Some (Z.of_nat (length (drm_construct n))).
+  reproducibility: as of December 2022, build success with Coq 8.16
+  TODO: add Makefile
 
 - theorem: 89
   authors: unknown ((c) Microsoft Corporation and Inria)
@@ -1081,8 +1440,11 @@
     CoInductive edivp_spec m d : nat * {poly F} * {poly F} -> Type :=
       EdivpSpec n q r of
       m = q * d + r & (d != 0) ==> (size r < size d) : edivp_spec m d (n, q, r).
-  
+    
     Lemma edivpP m d : edivp_spec m d (edivp m d).
+  reproducibility: Good (CI)
+  constructive: yes
+  axioms: []
 
 - theorem: 90
   authors: Coqtail team
@@ -1090,6 +1452,13 @@
   statement: |
     Lemma Stirling_equiv :
       Rseq_fact ~ (fun n => sqrt (2 × PI) × (INR n) ^ n × exp (- (INR n)) × sqrt (INR n)).
+  reproducibility: Good (CI)
+  constructive: no
+  axioms:
+  - ClassicalDedekindReals.sig_not_dec
+  - ClassicalDedekindReals.sig_forall_dec
+  - functional_extensionality_dep
+  - classic
 
 - theorem: 91
   authors: The Coq Development Team
@@ -1098,6 +1467,12 @@
     Lemma triangle :
       forall x0 y0 x1 y1 x2 y2:R,
         dist_euc x0 y0 x1 y1 <= dist_euc x0 y0 x2 y2 + dist_euc x2 y2 x1 y1.
+  reproducibility: Good (CI)
+  constructive: no
+  axioms:
+  - ClassicalDedekindReals.sig_not_dec
+  - ClassicalDedekindReals.sig_forall_dec
+  - functional_extensionality_dep
 
 - theorem: 93
   authors: Jean-Marie Madiot
@@ -1111,6 +1486,9 @@
     Theorem birthday_paradox_min :
       let l := picks 22 (enumerate 365) in
       2 * length (filter collision l) < length l.
+  reproducibility: Good (CI)
+  constructive: yes
+  axioms: []
 
 - theorem: 94
   authors: Frédérique Guilhot
@@ -1124,6 +1502,14 @@
       Rsqr (distance B C) =
       Rsqr (distance A B) + Rsqr (distance A C) -
       2 * distance A B * distance A C * cos a.
+  reproducibility: Good (CI)
+  constructive: no
+  axioms:
+    - ClassicalDedekindReals.sig_not_dec
+    - ClassicalDedekindReals.sig_forall_dec
+    - FunctionalExtensionality.functional_extensionality_dep
+    - classic
+    - other geometry axioms
 
 - theorem: 95
   authors: Tuan-Minh Pham
@@ -1136,17 +1522,28 @@
       sont_cocycliques A B C D ->
       (distance A B  * distance C D) + (distance B C * distance D A) =
       distance A C  * distance B D.
+  reproducibility: Good (CI)
+  constructive: no
+  axioms:
+    - ClassicalDedekindReals.sig_not_dec
+    - ClassicalDedekindReals.sig_forall_dec
+    - FunctionalExtensionality.functional_extensionality_dep
+    - classic
+    - other geometry axioms
 
 - theorem: 96
   authors: Jean-Marie Madiot
   link: https://github.com/coq-community/coq-100-theorems/blob/master/inclusionexclusion.v
   statement: |
-    Theorem inclusion_exclusion (l : list set) :
+    Theorem inclusion_exclusion (X : Set) (enum_X : list X) (l : list (set X)) :
       cardinal (list_union l) =
       sum
         (map (fun l' => cardinal (list_intersection l') *
                      alternating_sign (1 + length l'))
              (filter nonempty (sublists l))).
+  reproducibility: Good (CI)
+  constructive: yes
+  axioms: []
 
 - theorem: 97
   authors: Georges Gonthier et al.
@@ -1157,9 +1554,19 @@
     Lemma trmx_adj : forall n (A : 'M[R]_n), (\adj A)^T = \adj A^T.
     
     Lemma mul_adj_mx : forall n (A : 'M[R]_n), \adj A *m A = (\det A)%:M.
+  reproducibility: Good (CI)
+  constructive: yes
+  axioms: []
 
 - theorem: 98
   authors: Laurent Théry
   link: https://github.com/coq-community/bertrand/blob/master/theories/Bertrand.v
   statement: |
     Theorem Bertrand : forall n : nat, 2 <= n -> exists p : nat, prime p /\ n < p /\ p < 2 * n.
+  reproducibility: Good (CI)
+  constructive: no
+  axioms:
+  - ClassicalDedekindReals.sig_not_dec
+  - ClassicalDedekindReals.sig_forall_dec
+  - functional_extensionality_dep
+  - classic
