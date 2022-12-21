@@ -841,6 +841,22 @@
       (forall n, FiniteExpectation Prts (X n) = mu) ->
       iid_rv_collection Prts borel_sa X ->
       almost Prts (fun omega => is_lim_seq (fun n => ((rvsum X n) omega)/(INR (S n))) mu).
+  reproducibility: as of December 2022, build success with Coq 8.12 (use the provided .opam file with an additional coq <= 8.12.1 constraint)
+  constructive: no
+  axioms:
+  - ClassicalDedekindReals.sig_not_dec
+  - ClassicalDedekindReals.sig_forall_dec
+  - relational_choice
+  - propositional_extensionality
+  - proof_irrelevance
+  - functional_extensionality_dep
+  - eq_rect_eq
+  - dependent_unique_choice
+  - constructive_indefinite_description
+  - constructive_definite_description
+  - classic
+  - JMeq_eq
+  - Extensionality_Ensembles
 
 - theorem: 60
   authors: The Coq development team
@@ -943,6 +959,22 @@
     Theorem optional_stopping_time_super
             {mart:IsMartingale prts Rge Y F} :
       FiniteExpectation prts (process_under Y τ) <= FiniteExpectation prts (Y 0%nat).
+  reproducibility: see <a href="#59">#59</a>
+  constructive: no
+  axioms:
+  - ClassicalDedekindReals.sig_not_dec
+  - ClassicalDedekindReals.sig_forall_dec
+  - relational_choice
+  - propositional_extensionality
+  - proof_irrelevance
+  - functional_extensionality_dep
+  - Eq_rect_eq.eq_rect_eq
+  - dependent_unique_choice
+  - constructive_indefinite_description
+  - constructive_definite_description
+  - classic
+  - JMeq_eq
+  - Ensembles.Extensionality_Ensembles
 
 - theorem: 63
   authors: Gilles Kahn, Gerard Huet
@@ -1132,6 +1164,9 @@
       (size s) > (m * n) ->
       (exists t, subseq t s /\ sorted (leqX T) t /\ size t > m) \/
       (exists t, subseq t s /\ sorted (gtnX T) t /\ size t > n).
+  reproducibility: CI for Coq 8.15, build success with Coq 8.16 after minor adaptations
+  constructive: yes
+  axioms: []
 
 - theorem: 74
   authors: Coq's type theory
@@ -1242,6 +1277,7 @@
       (F : rel T) (Fsym: symmetric F) (Firr: irreflexive F) :
       (forall (u v: T), u != v -> #|[set w | F u w & F v w]| == 1) ->
       {u : T | forall v : T, u != v -> F u v}.
+  reproducibility: as of December 2022, build success with Coq 8.16
   constructive: yes
   axioms: []
 
@@ -1431,7 +1467,11 @@
     Theorem drm_formula: forall n, n > 0 ->
       round ((INR (fact n)) * (exp (-1))) = Some (Z.of_nat (length (drm_construct n))).
   reproducibility: as of December 2022, build success with Coq 8.16
-  TODO: add Makefile
+  constructive: no
+  axioms:
+  - ClassicalDedekindReals.sig_not_dec
+  - ClassicalDedekindReals.sig_forall_dec
+  - functional_extensionality_dep
 
 - theorem: 89
   authors: unknown ((c) Microsoft Corporation and Inria)

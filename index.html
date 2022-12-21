@@ -1217,6 +1217,24 @@ Lemma herron_qin : forall A B C,
   iid_rv_collection Prts borel_sa X -&gt;
   almost Prts (fun omega =&gt; is_lim_seq (fun n =&gt; ((rvsum X n) omega)/(INR (S n))) mu).
 </pre>
+<p class='repro'>Reproducibility: as of December 2022, build success with Coq 8.12 (use the provided .opam file with an additional coq <= 8.12.1 constraint)</p>
+<p class='axioms'>Constructive: no</p>
+<p class='axioms'>Axioms used:</p>
+<ul class='axioms'>
+<li>ClassicalDedekindReals.sig_not_dec</li>
+<li>ClassicalDedekindReals.sig_forall_dec</li>
+<li>relational_choice</li>
+<li>propositional_extensionality</li>
+<li>proof_irrelevance</li>
+<li>functional_extensionality_dep</li>
+<li>eq_rect_eq</li>
+<li>dependent_unique_choice</li>
+<li>constructive_indefinite_description</li>
+<li>constructive_definite_description</li>
+<li>classic</li>
+<li>JMeq_eq</li>
+<li>Extensionality_Ensembles</li>
+</ul>
 <p class='existing'>Formalized in: Coq, Isabelle, Lean</p></div>
 
 <h3 id='60' class='formalized'><a href='http://www.cs.ru.nl/~freek/100/#60'>60. Bezout’s Theorem</a></h3>
@@ -1335,6 +1353,24 @@ Theorem optional_stopping_time_super
         {mart:IsMartingale prts Rge Y F} :
   FiniteExpectation prts (process_under Y τ) &lt;= FiniteExpectation prts (Y 0%nat).
 </pre>
+<p class='repro'>Reproducibility: see <a href="#59">#59</a></p>
+<p class='axioms'>Constructive: no</p>
+<p class='axioms'>Axioms used:</p>
+<ul class='axioms'>
+<li>ClassicalDedekindReals.sig_not_dec</li>
+<li>ClassicalDedekindReals.sig_forall_dec</li>
+<li>relational_choice</li>
+<li>propositional_extensionality</li>
+<li>proof_irrelevance</li>
+<li>functional_extensionality_dep</li>
+<li>Eq_rect_eq.eq_rect_eq</li>
+<li>dependent_unique_choice</li>
+<li>constructive_indefinite_description</li>
+<li>constructive_definite_description</li>
+<li>classic</li>
+<li>JMeq_eq</li>
+<li>Ensembles.Extensionality_Ensembles</li>
+</ul>
 <p class='existing'>Formalized in: Coq, Lean</p></div>
 
 <h3 id='63' class='formalized'><a href='http://www.cs.ru.nl/~freek/100/#63'>63. Cantor’s Theorem</a></h3>
@@ -1585,6 +1621,9 @@ Theorem Erdos_Szekeres (m n : nat) (s : seq T) :
   (exists t, subseq t s /\ sorted (leqX T) t /\ size t &gt; m) \/
   (exists t, subseq t s /\ sorted (gtnX T) t /\ size t &gt; n).
 </pre>
+<p class='repro'>Reproducibility: CI for Coq 8.15, build success with Coq 8.16 after minor adaptations</p>
+<p class='axioms'>Constructive: yes</p>
+<p class='axioms'>Axioms used: (none)</p>
 <p class='existing'>Formalized in: Coq, HOL Light, Isabelle, Lean, Metamath, Mizar</p></div>
 
 <h3 id='74' class='formalized'><a href='http://www.cs.ru.nl/~freek/100/#74'>74. The Principle of Mathematical Induction</a></h3>
@@ -1746,6 +1785,7 @@ Theorem Cauchy_Schwarz_inequality : ∀ (u v : list R) n,
   (forall (u v: T), u != v -&gt; #|[set w | F u w &amp; F v w]| == 1) -&gt;
   {u : T | forall v : T, u != v -&gt; F u v}.
 </pre>
+<p class='repro'>Reproducibility: as of December 2022, build success with Coq 8.16</p>
 <p class='axioms'>Constructive: yes</p>
 <p class='axioms'>Axioms used: (none)</p>
 <p class='existing'>Formalized in: Coq (constructive), HOL Light, Isabelle, Lean, Metamath, Mizar</p></div>
@@ -1963,6 +2003,13 @@ Lemma l13_18 : forall A B C A&#039; B&#039; C&#039; O,
   round ((INR (fact n)) * (exp (-1))) = Some (Z.of_nat (length (drm_construct n))).
 </pre>
 <p class='repro'>Reproducibility: as of December 2022, build success with Coq 8.16</p>
+<p class='axioms'>Constructive: no</p>
+<p class='axioms'>Axioms used:</p>
+<ul class='axioms'>
+<li>ClassicalDedekindReals.sig_not_dec</li>
+<li>ClassicalDedekindReals.sig_forall_dec</li>
+<li>functional_extensionality_dep</li>
+</ul>
 <p class='existing'>Formalized in: Coq, HOL Light, Isabelle, Lean, Metamath, Mizar</p></div>
 
 <h3 id='89' class='formalized'><a href='http://www.cs.ru.nl/~freek/100/#89'>89. The Factor and Remainder Theorems</a></h3>
@@ -2189,6 +2236,52 @@ Lemma mul_adj_mx : forall n (A : &#039;M[R]_n), \adj A *m A = (\det A)%:M.
       function toggle(checkbox, field) {
         sheets[field].disabled = checkbox.checked
       }
+      var stats = {
+        "formalized_in_coq": 79,
+        "nb_statements": 97,
+        "nb_reproducibility_info": 94,
+        "nb_axioms_info": 94,
+        "nb_constructive_info": 94,
+        "constructivity_values": {
+          "yes": 48,
+          "no": 41,
+          "hypotheses partially classical": 3,
+          "to be determined": 1,
+          "undefined": 3,
+          "no (extensionality)": 1
+        },
+        "missing_info": [
+          "53 https://github.com/Sobernard/Lindemann/blob/master/LindemannTheorem.v",
+          "56 https://github.com/Sobernard/Lindemann/blob/master/LindemannTheorem.v",
+          "67 https://github.com/Sobernard/Lindemann/blob/master/LindemannTheorem.v"
+        ],
+        "constructive_only_here": [
+          16,
+          27,
+          30,
+          32,
+          49,
+          54,
+          58,
+          73,
+          85,
+          86,
+          93,
+          96,
+          97
+        ],
+        "constructive_only_at_freeks": [
+          13,
+          23,
+          25,
+          29,
+          31,
+          34,
+          42,
+          57,
+          79
+        ]
+      };
     </script>
   </body>
 </html>
