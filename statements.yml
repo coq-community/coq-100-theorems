@@ -1171,7 +1171,7 @@
 - theorem: 74
   authors: Coq's type theory
   link: https://coq.inria.fr/library/Coq.Init.Datatypes.html
-  comment: The induction priciple is automatically provided by Coq when defining unary natural numbers.
+  comment: The induction principle is automatically provided by Coq when defining unary natural numbers.
   statement: |
     Inductive nat : Set :=  O : nat | S : nat -> nat.
     
