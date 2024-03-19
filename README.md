@@ -69,3 +69,14 @@ This repository also contains Coq proofs of some of the 100 theorems:
 - [sumarith.v](sumarith.v) for [Sum of an arithmetic series](https://en.wikipedia.org/wiki/Arithmetic_progression#Sum)
 - [sumkthpowers.v](sumkthpowers.v) for [Sum of kth powers](https://en.wikipedia.org/wiki/Bernoulli_polynomials#Sums_of_pth_powers)
 
+## How to add a new statement
+
+To add a new statement for one of the therorems, do not modify `index.html`
+directly because it is automatically generated. Instead, edit `statements.yml`.
+Then, if you have node installed, generate the index file with
+`gen.js > index.html` and check it looks as intended in a browser.
+Finally, make a pull request with both files.
+
+If the proof does not belong to another repository, you can also add a single
+self-contained `.v` proof file, in which case you should edit `LICENSE.md`
+accordingly.
